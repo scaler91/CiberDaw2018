@@ -5,17 +5,19 @@
  */
 package hack.beers;
 
-import java.util.LinkedList;
+import java.util.Date;
 
 /**
  *
  * @author alxayu97
  */
-public class Almacenamiento {
-    private LinkedList<Archivo> archivos;
+public class Archivo {
+    private String nombre;
+    private Date fecha;
 
-    public Almacenamiento() {
-        archivos=new LinkedList();
+    public Archivo(String nombre, Date fecha) {
+        this.nombre = nombre;
+        this.fecha = fecha;
     }
     
     
