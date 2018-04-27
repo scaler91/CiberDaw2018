@@ -1,0 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package hack.beers;
+
+import java.util.LinkedList;
+
+/**
+ *
+ * @author alxayu97
+ */
+public class Usuario extends Persona{
+    private boolean VIP;
+    private int tiempo;
+    private LinkedList registroConexiones;
+    private int mesa;
+    
+    public Usuario(String nombre, String apellidos, String DNI, String contraseña, boolean VIP, int tiempo, int mesa) {
+        super(nombre, apellidos, DNI, contraseña);
+        this.VIP=VIP;
+        this.tiempo=tiempo;
+        this.mesa=mesa;
+        registroConexiones=new LinkedList();
+    }
+    
+    private void crearPedido(){
+        
+    }
+    
+    private void ponerQueja(){
+        
+    }
+    
+}
