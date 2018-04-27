@@ -6,6 +6,7 @@
 package hack.beers.Pedidos;
 
 import java.util.Iterator;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,9 +16,8 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaPedido extends javax.swing.JFrame {
 
     Pedido p;
-    String cabecera[] = {"Seleccionar", "Nombre", "Precio", "Cantidad"};
-    DefaultTableModel tabla;
-    Iterator it;
+    DefaultTableModel modelo;
+    JTable JTable1 = new JTable();
 
     /**
      * Creates new form Tabla
@@ -25,17 +25,45 @@ public class VentanaPedido extends javax.swing.JFrame {
     public VentanaPedido() {
         p = new Pedido();
 
-        initComponents();
+        
 
-        it = p.listaConsumibles.iterator();
-        int i = 0;
+        Iterator it = p.listaConsumibles.iterator();
+
+        modelo = new DefaultTableModel() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return Boolean.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return Double.class;
+                    case 3:
+                        return Integer.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        //Asigna el modelo a la tabla
+        JTable1.setModel(modelo);
+
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Cantidad");
+
+        //Filas
         while (it.hasNext()) {
+            int i = 0;
             Consumibles next = (Consumibles) it.next();
-            jTable1.setValueAt(next.getNombre(), i, 1);
-            jTable1.setValueAt(next.getPrecio(), i, 2);
-            //jTable1.setValueAt(next.getCantidad(), i, 3);
+            System.out.println(next.getNombre());
+            modelo.addRow(new Object[0]);
+            modelo.setValueAt(false, i, 0);
+            modelo.setValueAt(next.getNombre(), i, 1);
+            modelo.setValueAt(next.getPrecio(), i, 2);
             i++;
         }
+        initComponents();
     }
 
     /**
@@ -61,31 +89,12 @@ public class VentanaPedido extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Boolean(false), null, null, null},
-                { new Boolean(false), null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Selecionar", "Nombre", "Precio", "Cantidad"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, false, true
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Seleciona tu pedido");
@@ -191,26 +200,19 @@ public class VentanaPedido extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_CancelarActionPerformed
-
+//Boton mostrar Precio total del pedido añadir varias cantidades y detecte checkbox señecionado
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         double total = 0;
 
-        it = p.listaConsumibles.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            Consumibles next = (Consumibles) it.next();
-            total = ((double) next.getPrecio()) + total;
-            Boolean checked = (boolean) jTable1.getValueAt(i, 0);
-            if (checked == false) {
-                total = ((double) next.getPrecio()) + total;
-                i++;
-                
-                if (!it.hasNext()) {
-                 //   i--;
-                } else {
-                    i++;
-                }
+        System.out.println(modelo.getRowCount() + " hola");
+
+        for (int i = 0; i <= modelo.getRowCount(); i++) {
+            Boolean checked = Boolean.valueOf(modelo.getValueAt(i, 0).toString());
+            double temp = (double) modelo.getValueAt(i, 2);
+
+            if (checked) {
+                total = temp + total;
             }
         }
         jTextField1.setText("" + total);
