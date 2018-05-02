@@ -18,6 +18,8 @@ public class Cliente extends javax.swing.JFrame {
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
     int tiempo = 3000000;
+    int minuto = tiempo / 60000;
+    int segundo = tiempo % 60000;
 
     /**
      * Creates new form Cliente
@@ -27,8 +29,12 @@ public class Cliente extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                jLabel7.setText(Integer.toString(tiempo));
-                tiempo = tiempo - 100;
+                jLabel7.setText(Integer.toString(minuto) + ":" + segundo);
+                if (segundo == 0) {
+                    minuto = minuto - 1;
+                    segundo = 60;
+                }
+                segundo = segundo - 1;
             }
         });
         timer.start();
