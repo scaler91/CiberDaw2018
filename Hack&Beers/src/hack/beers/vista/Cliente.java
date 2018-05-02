@@ -5,19 +5,36 @@
  */
 package hack.beers.vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 /**
  *
  * @author Alumno
  */
 public class Cliente extends javax.swing.JFrame {
 
-    String [] cabecera = {" ", " " ," " ," " };
+    String[] cabecera = {"Nombre", "Cantidad"};
+    Timer timer;
+    int tiempo = 3000000;
+
     /**
      * Creates new form Cliente
      */
     public Cliente() {
+        this.timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                jLabel7.setText(Integer.toString(tiempo));
+                tiempo = tiempo - 100;
+            }
+        });
+        timer.start();
         initComponents();
-       //https://stackoverflow.com/questions/6168498/how-to-put-a-timer-on-a-jlabel-to-update-itself-every-second
+
+        //https://stackoverflow.com/questions/6168498/how-to-put-a-timer-on-a-jlabel-to-update-itself-every-second
     }
 
     /**
@@ -120,11 +137,9 @@ public class Cliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel7)))
                                 .addGap(96, 96, 96)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(194, 194, 194))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
