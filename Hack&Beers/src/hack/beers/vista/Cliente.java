@@ -30,6 +30,10 @@ public class Cliente extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 jLabel7.setText(Integer.toString(minuto) + ":" + segundo);
+
+                if (segundo < 10 && segundo > 0 || segundo == 0) {
+                    jLabel7.setText(Integer.toString(minuto) + ":0" + segundo);
+                }
                 if (segundo == 0) {
                     minuto = minuto - 1;
                     segundo = 60;
