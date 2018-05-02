@@ -25,12 +25,34 @@ public class Usuario extends Persona{
         registroConexiones=new LinkedList();
     }
     
+    //MÉTODOS
+    
     private void crearPedido(){
         
     }
     
     private void ponerQueja(){
         
+    }
+    
+    //Método para ver todos los archivos que son propiedad del usuario
+    private void verArchivos(){
+        if(VIP==false){
+            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
+        }
+        else{
+        
+        }
+    }
+    
+    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+    private void borrarArchivo(){
+        if(VIP==false){
+            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
+        }
+        else{
+        
+        }
     }
     
 }
