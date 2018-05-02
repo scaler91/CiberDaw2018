@@ -77,5 +77,13 @@ public abstract class Persona {
         return conexion;
     }
     
+    private void verArchivos(){
+        
+    }
+    
+    private void borrarArchivo(){
+        
+    }
+    
 
 }
