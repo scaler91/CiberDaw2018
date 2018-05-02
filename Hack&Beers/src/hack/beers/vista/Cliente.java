@@ -17,7 +17,7 @@ public class Cliente extends javax.swing.JFrame {
 
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
-    int tiempo = 3000000;
+    int tiempo = 300000;
     int minuto = tiempo / 60000;
     int segundo = tiempo % 60000;
 
@@ -35,15 +35,17 @@ public class Cliente extends javax.swing.JFrame {
                     segundo = 60;
                 }
                 segundo = segundo - 1;
+                if (minuto == 0 && segundo == 0) {
+                    timer.stop();
+                    jLabel7.setText("0:00");
+                }
             }
         });
+
         timer.start();
-        if (minuto == 0 && segundo == 0) {
-            timer.stop();
-        }
+
         initComponents();
 
-        //https://stackoverflow.com/questions/6168498/how-to-put-a-timer-on-a-jlabel-to-update-itself-every-second
     }
 
     /**
