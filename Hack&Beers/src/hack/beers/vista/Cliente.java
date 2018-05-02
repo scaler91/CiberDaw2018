@@ -38,6 +38,9 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
         timer.start();
+        if (minuto == 0 && segundo == 0) {
+            timer.stop();
+        }
         initComponents();
 
         //https://stackoverflow.com/questions/6168498/how-to-put-a-timer-on-a-jlabel-to-update-itself-every-second
