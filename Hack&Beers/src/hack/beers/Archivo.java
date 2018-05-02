@@ -14,10 +14,12 @@ import java.util.Date;
 public class Archivo {
     private String nombre;
     private Date fecha;
+    private String propietario;
 
-    public Archivo(String nombre, Date fecha) {
+    public Archivo(String nombre, Date fecha, String propietario) {
         this.nombre = nombre;
         this.fecha = fecha;
+        this.propietario = propietario;
     }
     
     
