@@ -6,6 +6,9 @@
 package hack.beers;
 
 import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -64,8 +67,19 @@ public abstract class Persona {
     //MÉTODOS
     
     //Método para iniciar sesión en el sistema
-    private void conectarse() throws ErrorConexionBD{
+    private boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
+        boolean conexionCorrecta=false;
         ConexionBD.crearConexion();
+        //Comprobar contraseña
+        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+            "select Contraseña from usuarios where Contraseña = '"+contraseña+"'");
+        //Comprobar usuario
+        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni from usuarios where dni = '"+usuario+"'"+"and Contraseña = '"+contraseña+"'");
+        if(validarContraseña.toString()==contraseña&&validarUsuario.toString()==usuario){
+            conexionCorrecta=true;
+        }
+        return conexionCorrecta;
     }
     
     //Método para que un usuario ejecute un programa en el sistema
