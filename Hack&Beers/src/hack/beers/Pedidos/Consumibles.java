@@ -11,16 +11,22 @@ package hack.beers.Pedidos;
  */
 class Consumibles {
     
+    private int id;
     private String nombre;
     private int cantidad;
     private double precio;
 
-    public Consumibles(String nombre, int cantidad, double precio) {
+    public Consumibles(int id, String nombre, int cantidad, double precio) {
+        this.id=id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -31,6 +37,10 @@ class Consumibles {
 
     public int getCantidad() {
         return cantidad;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCantidad(int cantidad) {
