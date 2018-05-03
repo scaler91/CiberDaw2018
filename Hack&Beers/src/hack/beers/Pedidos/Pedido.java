@@ -18,11 +18,11 @@ public class Pedido {
 
     public Pedido() {
         listaConsumibles = new LinkedList<>();
-        listaConsumibles.add(new Consumibles("Cocacola", 3, 2));
-        listaConsumibles.add(new Consumibles("Fanta Naranja", 5, 2));
-        listaConsumibles.add(new Consumibles("Cerveza", 5, 1.5));
-        listaConsumibles.add(new Consumibles("Cafe", 5, 1.1));
-        listaConsumibles.add(new Consumibles("Cerveza", 5, 1.5));
+        listaConsumibles.add(new Consumibles(1, "Cocacola", 3, 2));
+        listaConsumibles.add(new Consumibles(2, "Fanta Naranja", 5, 2));
+        listaConsumibles.add(new Consumibles(3, "Cerveza", 5, 1.5));
+        listaConsumibles.add(new Consumibles(4, "Cafe", 5, 1.1));
+        listaConsumibles.add(new Consumibles(5, "Cerveza", 5, 1.5));
     }
 
     protected List<Consumibles> getListConsumibles() {
