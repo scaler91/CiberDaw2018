@@ -26,7 +26,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         p = new Pedido();
 
         
-
+        //Cambiar por lista de Inventario
         Iterator it = p.listaConsumibles.iterator();
 
         modelo = new DefaultTableModel() {
