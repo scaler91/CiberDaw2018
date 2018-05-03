@@ -5,6 +5,8 @@
  */
 package hack.beers;
 
+import hack.beers.conexion.ConexionBD;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
@@ -27,8 +29,9 @@ public class Usuario extends Persona{
     
     //MÉTODOS
     
-    private void crearPedido(){
-        
+    private void crearPedido(int id, int cantidad) throws SQLException{
+        ConexionBD.instancia().getStatement().execute(
+            "insert into pedidos values ('" + DNI + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
     
     private void ponerQueja(){
