@@ -5,7 +5,6 @@
  */
 package hack.beers.Pedidos;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import java.util.LinkedList;
 import java.util.List;
 
