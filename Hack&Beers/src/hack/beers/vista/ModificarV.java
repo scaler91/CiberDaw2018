@@ -11,18 +11,16 @@ import java.awt.Color;
  *
  * @author Alumno
  */
-public class Modificar extends javax.swing.JFrame {
-
+public class ModificarV extends javax.swing.JFrame {
+    
     private String DNI;
 
     /**
      * Creates new form Modificar
      */
-    public Modificar() {
-        //Broma by Jose(Mihaiku)
-       
-        DNI = "Lam el codo";
-        initComponents();
+    public ModificarV() {
+        DNI = "Vacio";
+        initComponents();   
     }
 
     /**
@@ -34,7 +32,7 @@ public class Modificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonCerrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         JTextNombre = new javax.swing.JTextField();
         JTextApellidos = new javax.swing.JTextField();
@@ -46,18 +44,25 @@ public class Modificar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         usuarioActual = new javax.swing.JLabel();
         jTextBuscarUsuario = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonBusqueda = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("X");
+        jButtonCerrar.setText("X");
+        jButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre");
 
         jLabel3.setText("Apellidos");
 
         JCheckboxVIP.setText("Si / No");
+        JCheckboxVIP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JCheckboxVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCheckboxVIPActionPerformed(evt);
@@ -85,6 +90,7 @@ public class Modificar extends javax.swing.JFrame {
 
         jTextBuscarUsuario.setForeground(new java.awt.Color(156, 156, 156));
         jTextBuscarUsuario.setText("Introduce el DNI");
+        jTextBuscarUsuario.setToolTipText("Introduce el DNI");
         jTextBuscarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextBuscarUsuarioMouseClicked(evt);
@@ -101,10 +107,13 @@ public class Modificar extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBusqueda.setIcon(new javax.swing.ImageIcon("D:\\Documentos\\NetBeansProjects\\CiberDaw2018\\Hack&Beers\\imagenes\\lupa.png")); // NOI18N
+        jButtonBusqueda.setToolTipText("Buscar");
+        jButtonBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonBusqueda.setFocusable(false);
+        jButtonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonBusquedaActionPerformed(evt);
             }
         });
 
@@ -137,9 +146,9 @@ public class Modificar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButtonCerrar)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -151,8 +160,8 @@ public class Modificar extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(usuarioActual)
                         .addComponent(jTextBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2))
-                    .addComponent(jButton1))
+                        .addComponent(jButtonBusqueda))
+                    .addComponent(jButtonCerrar))
                 .addGap(7, 7, 7)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -181,11 +190,11 @@ public class Modificar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JCheckboxVIPActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBusquedaActionPerformed
         // TODO add your handling code here:
         DNI = jTextBuscarUsuario.getText();
         usuarioActual.setText(DNI);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonBusquedaActionPerformed
 
     private void jTextBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBuscarUsuarioActionPerformed
         // TODO add your handling code here:
@@ -194,7 +203,7 @@ public class Modificar extends javax.swing.JFrame {
     private void jTextBuscarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextBuscarUsuarioKeyTyped
         // TODO add your handling code here:
         int limite = 9;
-        if(jTextBuscarUsuario.getText().length() == limite){
+        if (jTextBuscarUsuario.getText().length() == limite) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextBuscarUsuarioKeyTyped
@@ -204,6 +213,11 @@ public class Modificar extends javax.swing.JFrame {
         jTextBuscarUsuario.setText("");
         jTextBuscarUsuario.setForeground(Color.black);
     }//GEN-LAST:event_jTextBuscarUsuarioMouseClicked
+
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,20 +236,21 @@ public class Modificar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Modificar().setVisible(true);
+                new ModificarV().setVisible(true);
             }
         });
     }
@@ -244,8 +259,8 @@ public class Modificar extends javax.swing.JFrame {
     private javax.swing.JCheckBox JCheckboxVIP;
     private javax.swing.JTextField JTextApellidos;
     private javax.swing.JTextField JTextNombre;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonBusqueda;
+    private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

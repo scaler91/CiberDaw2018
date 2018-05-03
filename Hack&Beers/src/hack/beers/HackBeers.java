@@ -5,6 +5,7 @@
  */
 package hack.beers;
 
+import hack.beers.vista.LoginV;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,51 +20,59 @@ import javax.swing.Timer;
  *
  * @author alxayu97
  */
-public class HackBeers extends JFrame{
+public class HackBeers extends JFrame {
 
     JFrame frame = new JFrame();
-    public HackBeers(){
+
+    public HackBeers() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new Panel());
         frame.pack();
         frame.setVisible(true);
     }
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
         new HackBeers();
-           
-           
+        LoginV log = new LoginV();
+        log.setVisible(true);
     }
-    
+
 }
+
 class Panel extends JPanel {
-  Timer timer;
-  Panel() {
-    setBackground(Color.BLACK);
-    setForeground(Color.WHITE);
-    refreshScreen();
-  }
-  @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    g.setFont(new Font("arial", Font.PLAIN, 24));
-    g.drawString("java2s.com", 200, 200);
-  }
-  public void refreshScreen() {
-    timer = new Timer(0, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        repaint();
-      }
-    });
-    timer.setRepeats(true);
-    // Aprox. 60 FPS
-    timer.setDelay(17);
-    timer.start();
-  }
-  @Override
-  public Dimension getPreferredSize() {
-    return new Dimension(650, 480);
-  }
+
+    Timer timer;
+
+    Panel() {
+        setBackground(Color.BLACK);
+        setForeground(Color.WHITE);
+        refreshScreen();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setFont(new Font("arial", Font.PLAIN, 24));
+        g.setColor(Color.yellow);
+        g.drawString("java2s.com", 200, 200);
+    }
+
+    public void refreshScreen() {
+        timer = new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        });
+        timer.setRepeats(true);
+        // Aprox. 60 FPS
+        timer.setDelay(17);
+        timer.start();
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(650, 480);
+    }
 }
