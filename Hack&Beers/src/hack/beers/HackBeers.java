@@ -55,7 +55,7 @@ class Panel extends JPanel {
         super.paintComponent(g);
         g.setFont(new Font("arial", Font.PLAIN, 24));
         g.setColor(Color.yellow);
-        g.drawString("java2s.com", 200, 200);
+        g.drawString("Hack&Beers", 200, 200);
     }
 
     public void refreshScreen() {
