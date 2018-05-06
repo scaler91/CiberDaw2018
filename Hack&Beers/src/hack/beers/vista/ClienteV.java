@@ -52,7 +52,7 @@ public class ClienteV extends javax.swing.JFrame {
         });
 
         timer.start();
-        
+
         initComponents();
         logo.setIcon(iconLogo);
     }
@@ -236,6 +236,9 @@ public class ClienteV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        LoginV v = new LoginV();
+        v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
