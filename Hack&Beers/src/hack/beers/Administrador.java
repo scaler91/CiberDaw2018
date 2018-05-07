@@ -51,6 +51,16 @@ public class Administrador extends Persona{
         
     }
     
+    //Método para ver todos los archivos que son propiedad del usuario
+    private void verArchivos(){
+        
+    }
+    
+    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+    private void borrarArchivo(){
+        
+    }
+    
     
     
 }

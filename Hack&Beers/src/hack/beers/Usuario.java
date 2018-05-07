@@ -5,6 +5,8 @@
  */
 package hack.beers;
 
+import hack.beers.conexion.ConexionBD;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
@@ -25,12 +27,35 @@ public class Usuario extends Persona{
         registroConexiones=new LinkedList();
     }
     
-    private void crearPedido(){
-        
+    //MÉTODOS
+    
+    private void crearPedido(int id, int cantidad) throws SQLException{
+        ConexionBD.instancia().getStatement().execute(
+            "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
     
     private void ponerQueja(){
         
+    }
+    
+    //Método para ver todos los archivos que son propiedad del usuario
+    private void verArchivos(){
+        if(VIP==false){
+            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
+        }
+        else{
+        
+        }
+    }
+    
+    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+    private void borrarArchivo(){
+        if(VIP==false){
+            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
+        }
+        else{
+        
+        }
     }
     
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2018 a las 09:44:13
+-- Tiempo de generación: 02-05-2018 a las 11:08:23
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `cibercafebd`
+-- Base de datos: `cibercafedb`
 --
 
 -- --------------------------------------------------------
@@ -30,6 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `administradores` (
   `dni` varchar(9) NOT NULL,
+  `Nombre` varchar(10) NOT NULL,
+  `Apellidos` varchar(10) NOT NULL,
+  `Contraseña` varchar(20) NOT NULL,
   `esAdministrador` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -89,25 +92,15 @@ CREATE TABLE `pedidos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personas`
---
-
-CREATE TABLE `personas` (
-  `dni` varchar(9) NOT NULL,
-  `nombre` varchar(10) NOT NULL,
-  `apellidos` varchar(20) NOT NULL,
-  `contraseña` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `dni` varchar(9) NOT NULL,
-  `IdOrdenanor` int(2) NOT NULL,
+  `Nombre` varchar(10) NOT NULL,
+  `Apellidos` varchar(10) NOT NULL,
+  `Contraseña` varchar(20) NOT NULL,
+  `IdOrdenador` int(2) NOT NULL,
   `tiempo` varchar(5) NOT NULL,
   `vip` tinyint(1) NOT NULL,
   `primerLog` tinyint(1) NOT NULL
@@ -121,7 +114,7 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  ADD UNIQUE KEY `dni` (`dni`) USING BTREE;
+  ADD PRIMARY KEY (`dni`);
 
 --
 -- Indices de la tabla `almacenamiento`
@@ -149,33 +142,21 @@ ALTER TABLE `pedidos`
   ADD UNIQUE KEY `id` (`idConsumible`);
 
 --
--- Indices de la tabla `personas`
---
-ALTER TABLE `personas`
-  ADD PRIMARY KEY (`dni`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD UNIQUE KEY `dni` (`dni`) USING BTREE,
-  ADD UNIQUE KEY `IdOrdenador` (`IdOrdenanor`);
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `IdOrdenador` (`IdOrdenador`);
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `administradores`
---
-ALTER TABLE `administradores`
-  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `personas` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `almacenamiento`
 --
 ALTER TABLE `almacenamiento`
-  ADD CONSTRAINT `almacenamiento_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `personas` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `almacenamiento_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `consumibles`
@@ -187,14 +168,13 @@ ALTER TABLE `consumibles`
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `personas` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `personas` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`IdOrdenanor`) REFERENCES `ordenadores` (`IdOrdenador`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`IdOrdenador`) REFERENCES `ordenadores` (`IdOrdenador`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

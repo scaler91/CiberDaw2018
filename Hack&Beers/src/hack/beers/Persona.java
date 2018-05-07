@@ -5,14 +5,20 @@
  */
 package hack.beers;
 
+import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import ventasbd.dao.exception.ErrorConexionBD;
+
 /**
  *
  * @author alxayu97
  */
 public abstract class Persona {
+    private String DNI;
     private String nombre;
     private String apellidos;
-    private String DNI;
     private String contraseña;
 
     //CONSTRUCTOR
@@ -61,9 +67,19 @@ public abstract class Persona {
     //MÉTODOS
     
     //Método para iniciar sesión en el sistema
-    private boolean conectarse(){
-        boolean conexion=false;
-        return conexion;
+    private boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
+        boolean conexionCorrecta=false;
+        ConexionBD.crearConexion();
+        //Comprobar contraseña
+        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+            "select Contraseña from usuarios where Contraseña = '"+contraseña+"'");
+        //Comprobar usuario
+        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni from usuarios where dni = '"+usuario+"'"+"and Contraseña = '"+contraseña+"'");
+        if(validarContraseña.toString()==contraseña&&validarUsuario.toString()==usuario){
+            conexionCorrecta=true;
+        }
+        return conexionCorrecta;
     }
     
     //Método para que un usuario ejecute un programa en el sistema
@@ -72,15 +88,16 @@ public abstract class Persona {
     }
     
     //Método para desconectar la sesión actual del sistema
-    private boolean desconectarse(){
-        boolean conexion=true;
-        return conexion;
+    private void desconectarse(){
+        ConexionBD.desconectar();
     }
     
+    //Método para ver todos los archivos que son propiedad del usuario
     private void verArchivos(){
         
     }
     
+    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
     private void borrarArchivo(){
         
     }
