@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hack.beers.Pedidos;
+package hack.beers.vista;
 
+import hack.beers.Pedidos.Consumibles;
+import hack.beers.Pedidos.Pedido;
 import java.util.Iterator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +28,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         p = new Pedido();
 
         
-        //Cambiar por lista de Inventario
+
         Iterator it = p.listaConsumibles.iterator();
 
         modelo = new DefaultTableModel() {

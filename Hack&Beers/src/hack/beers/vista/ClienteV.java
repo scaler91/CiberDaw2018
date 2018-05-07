@@ -22,7 +22,7 @@ public class ClienteV extends javax.swing.JFrame {
     int minuto = tiempo / 60000;
     int segundo = tiempo % 60000;
 // Import ImageIcon     
-    ImageIcon iconLogo = new ImageIcon("imagenes/logo.jpg");
+    ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
 
     /**
      * Creates new form Cliente
@@ -106,7 +106,7 @@ public class ClienteV extends javax.swing.JFrame {
             }
         });
 
-        logo.setText("Logo");
+        logo.setText(".");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

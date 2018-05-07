@@ -162,7 +162,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="logo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Logo"/>
+        <Property name="text" type="java.lang.String" value="."/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
