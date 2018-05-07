@@ -9,6 +9,9 @@ import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.util.Collections.list;
+import java.util.Iterator;
+import java.util.LinkedList;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -16,7 +19,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author alxayu97
  */
 public abstract class Persona {
-    private String DNI;
+    String DNI;
     private String nombre;
     private String apellidos;
     private String contraseña;
@@ -83,18 +86,54 @@ public abstract class Persona {
     }
     
     //Método para que un usuario ejecute un programa en el sistema
-    private void ejecutarPrograma(){
-        
+    private void ejecutarPrograma() throws SQLException{
+        //Lista a mostrar de programas
+        LinkedList<Programa> programa= new LinkedList<>();
+        Programa p;
+        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from programas");
+        //Pasar la consulta SQL a LinkedList
+        while(misProgramas.next()){
+            String nombre = misProgramas.getString("nombre");
+            p = new Programa(nombre);
+            programa.add(p);
+        }
+        //Iterador para la lista de programas
+        Iterator<Programa> ep = programa.iterator();
+        while(ep.hasNext()) {
+        ep.next().getNombre();
+        }
     }
     
+    
     //Método para desconectar la sesión actual del sistema
-    private void desconectarse(){
+    private boolean desconectarse(){
+        boolean conexion=false;
         ConexionBD.desconectar();
+        return conexion;
     }
     
     //Método para ver todos los archivos que son propiedad del usuario
-    private void verArchivos(){
-        
+    private void verArchivos() throws SQLException{
+        //Lista a mostrar al usuario con sus archivos
+        LinkedList<Archivo> archivosPropios= new LinkedList<>();
+        Archivo a;
+        ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from almacenamiento where dni = '"+DNI+"'");
+        //Pasar la consulta SQL a LinkedList
+        while(misArchivos.next()){
+            String dniDB = misArchivos.getString("dni");
+            String nombreArchivo = misArchivos.getString("nombre");
+            a = new Archivo(nombreArchivo, dniDB);
+            archivosPropios.add(a);
+        }
+        //Iterador para la lista de archivos
+        Iterator<Archivo> ia = archivosPropios.iterator();
+        while(ia.hasNext()) {
+        ia.next().getNombre();
+        ia.next().getFecha();
+        ia.next().getPropietario();
+        }
     }
     
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
