@@ -29,4 +29,5 @@ public class Pedido {
     protected List<Consumibles> getListConsumibles() {
         return listaConsumibles;
     }
+   
 }
