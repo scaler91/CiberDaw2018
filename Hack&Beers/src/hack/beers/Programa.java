@@ -5,17 +5,19 @@
  */
 package hack.beers;
 
-import java.util.LinkedList;
-
 /**
  *
  * @author alxayu97
  */
-public class Programas {
-    private LinkedList listaProgramas;
+public class Programa {
+    private String nombre;
 
-    public Programas(String nombre) {
-        listaProgramas = new LinkedList();
+    public Programa(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
     
     

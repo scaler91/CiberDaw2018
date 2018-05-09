@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2018 a las 11:08:23
+-- Tiempo de generación: 09-05-2018 a las 08:58:39
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -44,7 +44,8 @@ CREATE TABLE `administradores` (
 
 CREATE TABLE `almacenamiento` (
   `dni` varchar(9) NOT NULL,
-  `NombreArchivo` varchar(50) NOT NULL
+  `NombreArchivo` varchar(50) NOT NULL,
+  `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

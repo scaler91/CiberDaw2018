@@ -9,6 +9,10 @@ import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.util.Collections.list;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -16,10 +20,10 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author alxayu97
  */
 public abstract class Persona {
-    private String DNI;
+    String DNI;
     private String nombre;
     private String apellidos;
-    private String contraseña;
+    String contraseña;
 
     //CONSTRUCTOR
     
@@ -29,6 +33,9 @@ public abstract class Persona {
         this.DNI = DNI;
         this.contraseña = contraseña;
     }
+
+   
+    
 
     //GETS Y SETS
     
@@ -67,7 +74,7 @@ public abstract class Persona {
     //MÉTODOS
     
     //Método para iniciar sesión en el sistema
-    private boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
+    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
         boolean conexionCorrecta=false;
         ConexionBD.crearConexion();
         //Comprobar contraseña
@@ -83,23 +90,70 @@ public abstract class Persona {
     }
     
     //Método para que un usuario ejecute un programa en el sistema
-    private void ejecutarPrograma(){
-        
+    public void ejecutarPrograma() throws SQLException{
+        //Lista a mostrar de programas
+        LinkedList<Programa> programa= new LinkedList<>();
+        Programa p;
+        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from programas");
+        //Pasar la consulta SQL a LinkedList
+        while(misProgramas.next()){
+            String nombre = misProgramas.getString("nombre");
+            p = new Programa(nombre);
+            programa.add(p);
+        }
+        //Iterador para la lista de programas
+        Iterator<Programa> ep = programa.iterator();
+        while(ep.hasNext()) {
+        ep.next().getNombre();
+        }
     }
     
+    
     //Método para desconectar la sesión actual del sistema
-    private void desconectarse(){
+    public boolean desconectarse(){
+        boolean conexion=false;
         ConexionBD.desconectar();
+        return conexion;
     }
     
     //Método para ver todos los archivos que son propiedad del usuario
-    private void verArchivos(){
-        
+    public void verArchivos() throws SQLException{
+        //Lista a mostrar al usuario con sus archivos
+        LinkedList<Archivo> archivosPropios= new LinkedList<>();
+        Archivo a;
+        ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from almacenamiento where dni = '"+DNI+"'");
+        //Pasar la consulta SQL a LinkedList
+        while(misArchivos.next()){
+            String dniDB = misArchivos.getString("dni");
+            String nombreArchivo = misArchivos.getString("nombre");
+            a = new Archivo(nombreArchivo, dniDB);
+            archivosPropios.add(a);
+        }
+        //Iterador para la lista de archivos
+        Iterator<Archivo> ia = archivosPropios.iterator();
+        while(ia.hasNext()) {
+        ia.next().getNombre();
+        ia.next().getFecha();
+        ia.next().getPropietario();
+        }
     }
     
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    private void borrarArchivo(){
-        
+    public void borrarArchivo() throws SQLException{
+        String nombreArchivo;
+        //Visualiza la lista de archivos que tiene el usuario
+        verArchivos();
+        System.out.println("¿Qué archivo deseas eliminar?");
+        Scanner entrada = new Scanner(System.in);
+        nombreArchivo = entrada.next();
+        //Elimina el archivo con el nombre dado
+        ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni, NombreArchivo, fecha from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
+        System.out.println("¡¡Hecho!!");
+        //Visualiza los archivos restantes
+        verArchivos();
     }
     
 
