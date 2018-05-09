@@ -46,6 +46,12 @@ public class ProgramasV extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +98,46 @@ public class ProgramasV extends javax.swing.JFrame {
             case 0:
                 iconLogo = new ImageIcon("imagenes/firefox.png");
                 jLabel1.setIcon(iconLogo);
-                
+
+                break;
+            case 1:
+                iconLogo = new ImageIcon("imagenes/chrome.png");
+                jLabel1.setIcon(iconLogo);
+
+                break;
+            case 2:
+                iconLogo = new ImageIcon("imagenes/word.jpg");
+                jLabel1.setIcon(iconLogo);
+
+                break;
+            case 3:
+                iconLogo = new ImageIcon("imagenes/word.jpg");
+                jLabel1.setIcon(iconLogo);
+
+                break;
+            case 4:
+                iconLogo = new ImageIcon("imagenes/counter.jpg");
+                jLabel1.setIcon(iconLogo);
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        switch (jComboBox1.getSelectedIndex()) {
+            case 0:
+                iconLogo = new ImageIcon("imagenes/firefox.png");
+                jLabel1.setIcon(iconLogo);
+
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
@@ -143,13 +188,7 @@ public class ProgramasV extends javax.swing.JFrame {
             default:
                 throw new AssertionError();
         }
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
