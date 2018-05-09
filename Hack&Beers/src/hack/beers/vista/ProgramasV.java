@@ -35,6 +35,7 @@ public class ProgramasV extends javax.swing.JFrame {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +43,13 @@ public class ProgramasV extends javax.swing.JFrame {
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -55,6 +63,10 @@ public class ProgramasV extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,7 +76,9 @@ public class ProgramasV extends javax.swing.JFrame {
                         .addGap(125, 125, 125)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(15, 15, 15)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -78,28 +92,64 @@ public class ProgramasV extends javax.swing.JFrame {
             case 0:
                 iconLogo = new ImageIcon("imagenes/firefox.png");
                 jLabel1.setIcon(iconLogo);
+                
+                try {
+                    /* directorio/ejecutable es el path del ejecutable y un nombre */
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+                } catch (Exception e) {
+                    /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+                }
                 break;
             case 1:
                 iconLogo = new ImageIcon("imagenes/chrome.png");
                 jLabel1.setIcon(iconLogo);
+                try {
+                    /* directorio/ejecutable es el path del ejecutable y un nombre */
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+                } catch (Exception e) {
+                    /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+                }
                 break;
             case 2:
                 iconLogo = new ImageIcon("imagenes/word.jpg");
                 jLabel1.setIcon(iconLogo);
+                try {
+                    /* directorio/ejecutable es el path del ejecutable y un nombre */
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE");
+                } catch (Exception e) {
+                    /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+                }
                 break;
             case 3:
                 iconLogo = new ImageIcon("imagenes/word.jpg");
                 jLabel1.setIcon(iconLogo);
+                try {
+                    /* directorio/ejecutable es el path del ejecutable y un nombre */
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+                } catch (Exception e) {
+                    /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+                }
                 break;
             case 4:
                 iconLogo = new ImageIcon("imagenes/counter.jpg");
                 jLabel1.setIcon(iconLogo);
+                try {
+                    /* directorio/ejecutable es el path del ejecutable y un nombre */
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+                } catch (Exception e) {
+                    /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+                }
                 break;
             default:
                 throw new AssertionError();
         }
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +189,7 @@ public class ProgramasV extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

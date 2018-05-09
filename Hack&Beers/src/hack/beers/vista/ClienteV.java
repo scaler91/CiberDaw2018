@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
+import hack.beers.conexion.ConexionBD;
 
 /**
  *
@@ -17,9 +18,10 @@ import javax.swing.Timer;
  */
 public class ClienteV extends javax.swing.JFrame {
 
+    LoginV v = new LoginV();
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
-    int tiempo = 300000;
+    int tiempo = 60000 /*500000*/;
     int minuto = tiempo / 60000;
     int segundo = tiempo % 60000;
 // Import ImageIcon     
@@ -48,6 +50,12 @@ public class ClienteV extends javax.swing.JFrame {
                 if (minuto == 0 && segundo == 0) {
                     timer.stop();
                     jLabel7.setText("0:00");
+
+                }
+                if ("0:00".equals(jLabel7.getText())) {
+                    ConexionBD.desconectar();
+                    v.setVisible(true);
+                    fin();
                 }
             }
         });
@@ -57,6 +65,11 @@ public class ClienteV extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
+
+    }
+
+    public void fin() {
+        this.setVisible(false);
     }
 
     /**
@@ -254,6 +267,7 @@ public class ClienteV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ConexionBD.desconectar();
         this.setVisible(false);
         LoginV v = new LoginV();
         v.setVisible(true);
@@ -262,16 +276,15 @@ public class ClienteV extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         ProgramasV pv = new ProgramasV();
-        this.setVisible(false);
         pv.setVisible(true);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        VentanaPedido vp = new VentanaPedido();
-        this.setVisible(false);
-        vp.setVisible(true);
+//        VentanaPedido vp = new VentanaPedido();
+//        this.setVisible(false);
+//        vp.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
