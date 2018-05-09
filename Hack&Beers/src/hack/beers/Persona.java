@@ -23,7 +23,7 @@ public abstract class Persona {
     String DNI;
     private String nombre;
     private String apellidos;
-    private String contraseña;
+    String contraseña;
 
     //CONSTRUCTOR
     
@@ -33,6 +33,9 @@ public abstract class Persona {
         this.DNI = DNI;
         this.contraseña = contraseña;
     }
+
+   
+    
 
     //GETS Y SETS
     
@@ -71,7 +74,7 @@ public abstract class Persona {
     //MÉTODOS
     
     //Método para iniciar sesión en el sistema
-    private boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
+    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
         boolean conexionCorrecta=false;
         ConexionBD.crearConexion();
         //Comprobar contraseña
@@ -87,7 +90,7 @@ public abstract class Persona {
     }
     
     //Método para que un usuario ejecute un programa en el sistema
-    private void ejecutarPrograma() throws SQLException{
+    public void ejecutarPrograma() throws SQLException{
         //Lista a mostrar de programas
         LinkedList<Programa> programa= new LinkedList<>();
         Programa p;
@@ -108,14 +111,14 @@ public abstract class Persona {
     
     
     //Método para desconectar la sesión actual del sistema
-    private boolean desconectarse(){
+    public boolean desconectarse(){
         boolean conexion=false;
         ConexionBD.desconectar();
         return conexion;
     }
     
     //Método para ver todos los archivos que son propiedad del usuario
-    private void verArchivos() throws SQLException{
+    public void verArchivos() throws SQLException{
         //Lista a mostrar al usuario con sus archivos
         LinkedList<Archivo> archivosPropios= new LinkedList<>();
         Archivo a;
@@ -138,7 +141,7 @@ public abstract class Persona {
     }
     
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    private void borrarArchivo() throws SQLException{
+    public void borrarArchivo() throws SQLException{
         String nombreArchivo;
         //Visualiza la lista de archivos que tiene el usuario
         verArchivos();
