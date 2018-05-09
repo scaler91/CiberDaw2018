@@ -150,7 +150,7 @@ public abstract class Persona {
         nombreArchivo = entrada.next();
         //Elimina el archivo con el nombre dado
         ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
-            "select dni, NombreArchivo, fecha from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
+            "delete from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
         System.out.println("¡¡Hecho!!");
         //Visualiza los archivos restantes
         verArchivos();
