@@ -16,7 +16,7 @@ public class Inventario {
      public void annadirConsumibles(  ){
          
          
-         listaConsumibles.add(new Consumibles("Cocacola", 3, 2));
+         listaConsumibles.add(new Consumibles(1,"Cocacola", 3, 2));
             
          
          
