@@ -12,6 +12,7 @@ import java.sql.Statement;
 import static java.util.Collections.list;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Scanner;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -137,8 +138,19 @@ public abstract class Persona {
     }
     
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    private void borrarArchivo(){
-        
+    private void borrarArchivo() throws SQLException{
+        String nombreArchivo;
+        //Visualiza la lista de archivos que tiene el usuario
+        verArchivos();
+        System.out.println("¿Qué archivo deseas eliminar?");
+        Scanner entrada = new Scanner(System.in);
+        nombreArchivo = entrada.next();
+        //Elimina el archivo con el nombre dado
+        ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni, NombreArchivo, fecha from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
+        System.out.println("¡¡Hecho!!");
+        //Visualiza los archivos restantes
+        verArchivos();
     }
     
 
