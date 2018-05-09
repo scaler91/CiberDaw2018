@@ -6,6 +6,7 @@
 package hack.beers;
 
 import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -26,7 +27,23 @@ public class Usuario extends Persona {
         registroConexiones=new LinkedList();
     }
 
- 
+    public boolean isVIP() {
+        return VIP;
+    }
+
+    public LinkedList getRegistroConexiones() {
+        return registroConexiones;
+    }
+
+    public void setVIP(boolean VIP) {
+        this.VIP = VIP;
+    }
+
+    public void setRegistroConexiones(LinkedList registroConexiones) {
+        this.registroConexiones = registroConexiones;
+    }
+
+
 
     //MÉTODOS
     
@@ -56,9 +73,22 @@ public class Usuario extends Persona {
 
         }
     }
+    
+    @Override
    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
-       super.conectarse(usuario, contraseña);
-       return ;
+       //super.conectarse(String usuario, String contraseña);
+       boolean conexionCorrecta=false;
+        ConexionBD.crearConexion();
+        //Comprobar contraseña
+        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+            "select Contraseña from usuarios where Contraseña = '"+contraseña+"'");
+        //Comprobar usuario
+        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni from usuarios where dni = '"+usuario+"'"+"and Contraseña = '"+contraseña+"'");
+        if(validarContraseña.toString()==contraseña&&validarUsuario.toString()==usuario){
+            conexionCorrecta=true;
+        }
+       return conexionCorrecta;
    }
 
 }

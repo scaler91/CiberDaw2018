@@ -22,7 +22,7 @@ public class Administrador extends Persona{
         registroConexiones=new LinkedList();
     }
     
-    public void altaUsuarioBD(String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, boolean VIPUsuario, int tiempoUsuario, int mesaUsuario) throws SQLException{
+    public void altaUsuarioBD(String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, boolean VIPUsuario) throws SQLException{
         ResultSet crearUsuario = ConexionBD.instancia().getStatement().executeQuery(
             "insert into usuarios values ('"+DNIUsuario+"', '"+nombreUsuario+"', '"+apellidosUsuario+"', '"+contraseñaUsuario+"', '"+VIPUsuario+"')");
     }
@@ -32,7 +32,7 @@ public class Administrador extends Persona{
             "delete from usuarios where dni = '"+DNIUsuario+"'");
     }
     
-    public void modificarUsuarioBD(){
+    public void modificarUsuarioBD(String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, boolean VIPUsuario){
         
     }
     
