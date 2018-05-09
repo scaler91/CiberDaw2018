@@ -7,18 +7,24 @@ package hack.beers.vista;
 
 import com.mysql.jdbc.jmx.LoadBalanceConnectionGroupManager;
 import java.awt.Window;
+import hack.beers.Persona;
+import hack.beers.Usuario;
+import hack.beers.Administrador;
 
 /**
  *
  * @author Alumno
  */
 public class LoginV extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
     public LoginV() {
         initComponents();
+        Usuario u = new Usuario();
+        
+        
     }
 
     /**
@@ -50,6 +56,11 @@ public class LoginV extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         jButton1.setText("Iniciar Sesión");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +124,11 @@ public class LoginV extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
