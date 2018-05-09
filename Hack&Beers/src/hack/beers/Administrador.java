@@ -27,9 +27,9 @@ public class Administrador extends Persona{
             "insert into usuarios values ('"+DNIUsuario+"', '"+nombreUsuario+"', '"+apellidosUsuario+"', '"+contraseñaUsuario+"', '"+VIPUsuario+"')");
     }
     
-    public void bajaUsuarioBD(String DNIUsuario){
-        ResultSet eliminarusuario = ConexionBD.instancia().getStatement().executeQuery(
-            "delete from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
+    public void bajaUsuarioBD(String DNIUsuario) throws SQLException{
+        ResultSet eliminarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+            "delete from usuarios where dni = '"+DNIUsuario+"'");
     }
     
     public void modificarUsuarioBD(){
