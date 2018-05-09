@@ -15,14 +15,12 @@ import java.util.LinkedList;
  */
 public class Usuario extends Persona{
     private boolean VIP;
-    private int tiempo;
     private LinkedList registroConexiones;
     private int mesa;
     
-    public Usuario(String nombre, String apellidos, String DNI, String contraseña, boolean VIP, int tiempo, int mesa) {
+    public Usuario(String nombre, String apellidos, String DNI, String contraseña, boolean VIP, int mesa) {
         super(nombre, apellidos, DNI, contraseña);
         this.VIP=VIP;
-        this.tiempo=tiempo;
         this.mesa=mesa;
         registroConexiones=new LinkedList();
     }
