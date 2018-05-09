@@ -32,18 +32,19 @@ public class Usuario extends Persona {
  
 
     //MÉTODOS
-    private void crearPedido(int id, int cantidad) throws SQLException {
+    
+    public void crearPedido(int id, int cantidad) throws SQLException{
         ConexionBD.instancia().getStatement().execute(
                 "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
-
-    private void ponerQueja() {
-
+    
+    public void ponerQueja(){
+        
     }
 
     //Método para ver todos los archivos que son propiedad del usuario
-    public void verArchivos() {
-        if (VIP == false) {
+    public void verArchivos(){
+        if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
         } else {
 
@@ -51,8 +52,8 @@ public class Usuario extends Persona {
     }
 
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    public void borrarArchivo() {
-        if (VIP == false) {
+    public void borrarArchivo(){
+        if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
         } else {
 
