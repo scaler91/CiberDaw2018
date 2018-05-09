@@ -22,7 +22,7 @@ public class LoginV extends javax.swing.JFrame {
      */
     public LoginV() {
         initComponents();
-        Usuario u = new Usuario();
+        
         
         
     }
@@ -127,7 +127,7 @@ public class LoginV extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
