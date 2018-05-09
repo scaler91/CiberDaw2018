@@ -22,21 +22,14 @@ public class Administrador extends Persona{
         registroConexiones=new LinkedList();
     }
     
-    public void altaUsuarioBD() throws SQLException{
-        String nombreUsuario;
-        String apellidosUsuario;
-        String DNIUsuario;
-        String contraseñaUsuario;
-        boolean VIPUsuario;
-        int tiempoUsuario;
-        int mesaUsuario;
+    public void altaUsuarioBD(String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, boolean VIPUsuario, int tiempoUsuario, int mesaUsuario) throws SQLException{
         ResultSet crearUsuario = ConexionBD.instancia().getStatement().executeQuery(
-            "insert into usuarios values ("+DNIUsuario+", "+nombreUsuario+", "+apellidosUsuario+", "+contraseñaUsuario+", "+VIPUsuario+")");
-        
+            "insert into usuarios values ('"+DNIUsuario+"', '"+nombreUsuario+"', '"+apellidosUsuario+"', '"+contraseñaUsuario+"', '"+VIPUsuario+"')");
     }
     
-    public void bajaUsuarioBD(){
-        
+    public void bajaUsuarioBD(String DNIUsuario){
+        ResultSet eliminarusuario = ConexionBD.instancia().getStatement().executeQuery(
+            "delete from almacenamiento where NombreArchivo = '"+nombreArchivo+"'");
     }
     
     public void modificarUsuarioBD(){
