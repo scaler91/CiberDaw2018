@@ -5,11 +5,11 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Consumibles;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import java.util.Iterator;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -17,28 +17,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPedido extends javax.swing.JFrame {
 
-    Inventario I;
-    Pedido p;
-    DefaultTableModel modelo;
-    JTable JTable1 = new JTable();
-    String[] box = new String[10];
-    String model;
-
     /**
      * Creates new form Tabla
      */
     public VentanaPedido() {
-        p = new Pedido();
+        initComponents();
+
+        annadirComboBox();
+    }
+
+    private void annadirComboBox() {
+        Pedido p = new Pedido();
+        Inventario I = new Inventario();
 
         Iterator it = I.listaInventario().iterator();
-        while (it.hasNext()) {
-            Inventario nextElement = (Inventario) it.next();
-            box[nextElement.getId()] = nextElement.getNombre();
-            model = nextElement.getNombre()+"\n";
-        }
-        jComboBox1.setModel(box);
 
-        initComponents();
+        while (it.hasNext()) {
+            Consumibles nextElement = (Consumibles) it.next();
+            jComboBox1.addItem(nextElement.getNombre());
+        }
+    }
+    
+    private void cantidadPedida () {
+//        annadirComboBox();
+//        switch (jComboBox1.getSelected()) {
+//            case 0:
+//                
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
     }
 
     /**
@@ -54,6 +62,9 @@ public class VentanaPedido extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
         Aceptar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        dinerito = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,12 +84,19 @@ public class VentanaPedido extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setMaximumRowCount(200);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("X");
+
+        jComboBox2.setMaximumRowCount(200);
+
+        dinerito.setEditable(false);
+        dinerito.setText("0.0 €");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,22 +109,33 @@ public class VentanaPedido extends javax.swing.JFrame {
                 .addComponent(Cancelar)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(dinerito, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dinerito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar))
@@ -172,7 +201,10 @@ public class VentanaPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JTextField dinerito;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
