@@ -5,6 +5,9 @@
  */
 package hack.beers;
 
+import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
@@ -19,45 +22,54 @@ public class Administrador extends Persona{
         registroConexiones=new LinkedList();
     }
     
-    private void altaUsuarioBD(){
+    public void altaUsuarioBD() throws SQLException{
+        String nombreUsuario;
+        String apellidosUsuario;
+        String DNIUsuario;
+        String contraseñaUsuario;
+        boolean VIPUsuario;
+        int tiempoUsuario;
+        int mesaUsuario;
+        ResultSet crearUsuario = ConexionBD.instancia().getStatement().executeQuery(
+            "insert into usuarios values ("+DNIUsuario+", "+nombreUsuario+", "+apellidosUsuario+", "+contraseñaUsuario+", "+VIPUsuario+")");
         
     }
     
-    private void bajaUsuarioBD(){
+    public void bajaUsuarioBD(){
         
     }
     
-    private void modificarUsuarioBD(){
+    public void modificarUsuarioBD(){
         
     }
     
-    private void consultarUsuarioBD(){
+    public void consultarUsuarioBD(){
         
     }
     
-    private void altaOrdenadorBD(){
+    public void altaOrdenadorBD(){
         
     }
     
-    private void bajaOrdenadorBD(){
+    public void bajaOrdenadorBD(){
         
     }
     
-    private void modificarOrdenadorBD(){
+    public void modificarOrdenadorBD(){
         
     }
     
-    private void consultarOrdenadorBD(){
+    public void consultarOrdenadorBD(){
         
     }
     
     //Método para ver todos los archivos que son propiedad del usuario
-    private void verArchivos(){
+    public void verArchivos(){
         
     }
     
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    private void borrarArchivo(){
+    public void borrarArchivo(){
         
     }
     
