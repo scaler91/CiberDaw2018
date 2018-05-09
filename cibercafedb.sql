@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2018 a las 08:58:39
+-- Tiempo de generación: 09-05-2018 a las 09:58:43
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -46,6 +46,18 @@ CREATE TABLE `almacenamiento` (
   `dni` varchar(9) NOT NULL,
   `NombreArchivo` varchar(50) NOT NULL,
   `Fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `conexiones`
+--
+
+CREATE TABLE `conexiones` (
+  `dni` varchar(9) NOT NULL,
+  `idOrdenador` int(2) NOT NULL,
+  `FechaConexion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -101,8 +113,6 @@ CREATE TABLE `usuarios` (
   `Nombre` varchar(10) NOT NULL,
   `Apellidos` varchar(10) NOT NULL,
   `Contraseña` varchar(20) NOT NULL,
-  `IdOrdenador` int(2) NOT NULL,
-  `tiempo` varchar(5) NOT NULL,
   `vip` tinyint(1) NOT NULL,
   `primerLog` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,6 +131,12 @@ ALTER TABLE `administradores`
 -- Indices de la tabla `almacenamiento`
 --
 ALTER TABLE `almacenamiento`
+  ADD UNIQUE KEY `dni` (`dni`);
+
+--
+-- Indices de la tabla `conexiones`
+--
+ALTER TABLE `conexiones`
   ADD UNIQUE KEY `dni` (`dni`);
 
 --
@@ -146,8 +162,7 @@ ALTER TABLE `pedidos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`dni`),
-  ADD UNIQUE KEY `IdOrdenador` (`IdOrdenador`);
+  ADD PRIMARY KEY (`dni`);
 
 --
 -- Restricciones para tablas volcadas
@@ -170,12 +185,6 @@ ALTER TABLE `consumibles`
 --
 ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`IdOrdenador`) REFERENCES `ordenadores` (`IdOrdenador`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
