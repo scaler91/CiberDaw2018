@@ -17,6 +17,9 @@ import javax.swing.JComboBox;
  */
 public class VentanaPedido extends javax.swing.JFrame {
 
+    Pedido p;
+    Inventario I;
+
     /**
      * Creates new form Tabla
      */
@@ -27,18 +30,18 @@ public class VentanaPedido extends javax.swing.JFrame {
     }
 
     private void annadirComboBox() {
-        Pedido p = new Pedido();
-        Inventario I = new Inventario();
 
-        Iterator it = I.listaInventario().iterator();
+        I = new Inventario();
+
+        Iterator it = I.getInventario().iterator();
 
         while (it.hasNext()) {
             Consumibles nextElement = (Consumibles) it.next();
             jComboBox1.addItem(nextElement.getNombre());
         }
     }
-    
-    private void cantidadPedida () {
+
+    private void cantidadPedida() {
 //        annadirComboBox();
 //        switch (jComboBox1.getSelected()) {
 //            case 0:

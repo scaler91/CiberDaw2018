@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hack.beers.Pedidos;
+
 import java.util.*;
 
 /**
@@ -11,37 +12,30 @@ import java.util.*;
  * @author saulm
  */
 public class Pedido {
+
     double precioTotal;
-    String nombre;
-    int mesa;
-    int cantidad;
-    int id;
+    int ordenador;
     double precio;
     protected List<Consumibles> pedido;
-    
 
-
-    public Pedido(int mesa, int cantidad, double precio, int id, String nombre) {
-        this.mesa=mesa;
-        this.nombre=nombre;
-        this.id=id;
-        this.cantidad=cantidad;
-        this.precio=precio;
-        
-        pedido.add(new Consumibles(id,nombre, cantidad, precio));
-        
-        
+    public Pedido(int ordenador) {
+        this.ordenador = ordenador;
+        pedido = new LinkedList<Consumibles>();
 
     }
-    public void calcularPrecio(){
-        precioTotal=0;
-        Iterator <Consumibles> it=pedido.iterator();
-        while(it.hasNext()){
-           precioTotal=precioTotal+(precio*cantidad); 
-            
-        }
-        
-        
+
+    public void nuevoPedido(int id, String nombre, int cantidad, double precio) {
+        pedido.add(new Consumibles(id, nombre, cantidad, precio));
     }
-   
+
+//    public void calcularPrecio(){
+//        precioTotal=0;
+//        Iterator <Consumibles> it=pedido.iterator();
+//        while(it.hasNext()){
+//           precioTotal=precioTotal+(precio*cantidad); 
+//            
+//        }
+//        
+//        
+//    }
 }

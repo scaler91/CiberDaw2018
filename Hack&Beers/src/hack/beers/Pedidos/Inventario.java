@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hack.beers.Pedidos;
+
 import java.util.*;
 
 /**
@@ -11,23 +12,25 @@ import java.util.*;
  * @author Alumno
  */
 public class Inventario {
-     protected List<Consumibles> listaConsumibles;
-     
-     public void annadirConsumibles(  ){
-         
-         
-         listaConsumibles.add(new Consumibles(1,"Cocacola", 3, 2));
-            
-         
-         
-         
-         
-     }
-     public List getInventario() {
+
+    protected List<Consumibles> listaConsumibles;
+
+    public Inventario() {
+        listaConsumibles = new LinkedList<>();
+    }
+
+    public void annadirConsumibles() {
+
+        listaConsumibles.add(new Consumibles(1, "Cocacola", 3, 2));
+
+    }
+
+    public List getInventario() {
         return listaConsumibles;
-     }
-     public void deleteConsumibles(int i){
-         listaConsumibles.remove(i);
-     }
-    
+    }
+
+    public void deleteConsumibles(int i) {
+        listaConsumibles.remove(i);
+    }
+
 }
