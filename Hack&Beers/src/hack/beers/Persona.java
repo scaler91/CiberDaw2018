@@ -83,28 +83,29 @@ public abstract class Persona {
         return conexionCorrecta;
     }
 
-    /**
-     * Método para que un usuario ejecute un programa en el sistema
-     * @throws SQLException
-     */
-    public void ejecutarPrograma() throws SQLException {
-        //Lista a mostrar de programas
-        LinkedList<Programa> programa = new LinkedList<>();
-        Programa p;
-        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
-                "select * from programas");
-        //Pasar la consulta SQL a LinkedList
-        while (misProgramas.next()) {
-            String nombre = misProgramas.getString("nombre");
-            p = new Programa(nombre);
-            programa.add(p);
-        }
-        //Iterador para la lista de programas
-        Iterator<Programa> ep = programa.iterator();
-        while (ep.hasNext()) {
-            ep.next().getNombre();
-        }
-    }
+    
+//    /**
+//     * Método para que un usuario ejecute un programa en el sistema
+//     * @throws SQLException
+//     */
+//    public void ejecutarPrograma() throws SQLException {
+//        //Lista a mostrar de programas
+//        LinkedList<Programa> programa = new LinkedList<>();
+//        Programa p;
+//        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
+//                "select * from programas");
+//        //Pasar la consulta SQL a LinkedList
+//        while (misProgramas.next()) {
+//            String nombre = misProgramas.getString("nombre");
+//            p = new Programa(nombre);
+//            programa.add(p);
+//        }
+//        //Iterador para la lista de programas
+//        Iterator<Programa> ep = programa.iterator();
+//        while (ep.hasNext()) {
+//            ep.next().getNombre();
+//        }
+//    }
 
     /**
      * Método para desconectar la sesión actual del sistema
