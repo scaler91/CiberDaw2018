@@ -96,23 +96,17 @@ public class Usuario extends Persona {
     }
 
     @Override
-    public void borrarArchivo() throws SQLException{
+    public void borrarArchivo(String nombreArchivo) throws SQLException{
         if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
         } else {
-            String nombreArchivo;
         //Visualiza la lista de archivos que tiene el usuario
         verArchivos();
-        System.out.println("¿Qué archivo deseas eliminar?");
-        Scanner entrada = new Scanner(System.in);
-        nombreArchivo = entrada.next();
         //Elimina el archivo con el nombre dado
         ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
                 "delete from almacenamiento where NombreArchivo = '" + nombreArchivo + "'");
-        System.out.println("¡¡Hecho!!");
         //Visualiza los archivos restantes
         verArchivos();
-
         }
     }
     

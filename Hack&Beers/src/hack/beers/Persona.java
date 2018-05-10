@@ -147,17 +147,12 @@ public abstract class Persona {
      * Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
      * @throws SQLException
      */
-    public void borrarArchivo() throws SQLException {
-        String nombreArchivo;
+    public void borrarArchivo(String nombreArchivo) throws SQLException {
         //Visualiza la lista de archivos que tiene el usuario
         verArchivos();
-        System.out.println("¿Qué archivo deseas eliminar?");
-        Scanner entrada = new Scanner(System.in);
-        nombreArchivo = entrada.next();
         //Elimina el archivo con el nombre dado
         ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
                 "delete from almacenamiento where NombreArchivo = '" + nombreArchivo + "'");
-        System.out.println("¡¡Hecho!!");
         //Visualiza los archivos restantes
         verArchivos();
     }
