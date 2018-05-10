@@ -9,14 +9,14 @@ package hack.beers.Pedidos;
  *
  * @author saulm
  */
-public class Consumibles {
+public class Consumible {
     
     private int id;
     private String nombre;
     private int cantidad;
     private double precio;
 
-    public Consumibles(int id, String nombre, int cantidad, double precio) {
+    public Consumible(int id, String nombre, int cantidad, double precio) {
         this.id=id;
         this.nombre = nombre;
         this.cantidad = cantidad;
