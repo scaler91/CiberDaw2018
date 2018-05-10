@@ -96,7 +96,6 @@ public class ProgramasV extends javax.swing.JFrame {
 
         switch (jComboBox1.getSelectedIndex()) {
             case 0:
-                iconLogo = new ImageIcon("imagenes/firefox.png");
                 jLabel1.setIcon(iconLogo);
 
                 break;
