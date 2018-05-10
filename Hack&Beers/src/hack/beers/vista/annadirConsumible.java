@@ -18,6 +18,8 @@ public class annadirConsumible extends javax.swing.JDialog {
 
     /**
      * Creates new form annadirConsumible
+     * @param parent
+     * @param modal
      */
     public annadirConsumible(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
