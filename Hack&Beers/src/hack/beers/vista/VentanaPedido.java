@@ -9,7 +9,6 @@ import hack.beers.Pedidos.Consumibles;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import java.util.Iterator;
-import javax.swing.JComboBox;
 
 /**
  *
