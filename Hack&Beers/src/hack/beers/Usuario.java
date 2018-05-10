@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import ventasbd.dao.exception.ErrorConexionBD;
+import java.util.*;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Usuario extends Persona {
 
     //MÉTODOS
     
-    public void crearPedido(int id, int cantidad) throws SQLException{
+    public void crearPedido(int id, int mesa, int cantidad) throws SQLException{
         ConexionBD.instancia().getStatement().execute(
                 "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
@@ -57,19 +58,49 @@ public class Usuario extends Persona {
     }
 
     //Método para ver todos los archivos que son propiedad del usuario
-    public void verArchivos(){
+    public void verArchivos() throws SQLException{
         if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
         } else {
+            LinkedList<Archivo> archivosPropios = new LinkedList<>();
+        Archivo a;
+        ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from almacenamiento where dni = '" + DNI + "'");
+        //Pasar la consulta SQL a LinkedList
+        while (misArchivos.next()) {
+            String dniDB = misArchivos.getString("dni");
+            String nombreArchivo = misArchivos.getString("nombre");
+            a = new Archivo(nombreArchivo, dniDB);
+            archivosPropios.add(a);
+        }
+        //Iterador para la lista de archivos
+        Iterator<Archivo> ia = archivosPropios.iterator();
+        while (ia.hasNext()) {
+            ia.next().getNombre();
+            ia.next().getFecha();
+            ia.next().getPropietario();
+        }
 
         }
     }
 
     //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    public void borrarArchivo(){
+    public void borrarArchivo() throws SQLException{
         if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
         } else {
+            String nombreArchivo;
+        //Visualiza la lista de archivos que tiene el usuario
+        verArchivos();
+        System.out.println("¿Qué archivo deseas eliminar?");
+        Scanner entrada = new Scanner(System.in);
+        nombreArchivo = entrada.next();
+        //Elimina el archivo con el nombre dado
+        ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
+                "delete from almacenamiento where NombreArchivo = '" + nombreArchivo + "'");
+        System.out.println("¡¡Hecho!!");
+        //Visualiza los archivos restantes
+        verArchivos();
 
         }
     }
