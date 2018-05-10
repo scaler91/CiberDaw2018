@@ -47,17 +47,28 @@ public class Usuario extends Persona {
 
 
     //MÉTODOS
+
+    /**
+     * Método para crear un pedido (Bebidas, comida, etc)
+     * @param id
+     * @param mesa
+     * @param cantidad
+     * @throws SQLException
+     */
     
     public void crearPedido(int id, int mesa, int cantidad) throws SQLException{
         ConexionBD.instancia().getStatement().execute(
                 "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
     
+    /**
+     * Método para poner una queja en el establecimiento
+     */
     public void ponerQueja(){
         
     }
-
-    //Método para ver todos los archivos que son propiedad del usuario
+ 
+    @Override
     public void verArchivos() throws SQLException{
         if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
@@ -84,7 +95,7 @@ public class Usuario extends Persona {
         }
     }
 
-    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+    @Override
     public void borrarArchivo() throws SQLException{
         if(VIP==false){
             System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
