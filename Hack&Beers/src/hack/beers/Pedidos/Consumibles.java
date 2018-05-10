@@ -9,7 +9,7 @@ package hack.beers.Pedidos;
  *
  * @author saulm
  */
-class Consumibles {
+public class Consumibles {
     
     private int id;
     private String nombre;
