@@ -68,40 +68,59 @@ public abstract class Persona {
     }
 
     //MÉTODOS
-    //Método para iniciar sesión en el sistema
+
+    /**
+     * Método para iniciar sesión en el sistema
+     * @param usuario
+     * @param contraseña
+     * @return
+     * @throws ErrorConexionBD
+     * @throws SQLException
+     */
+    
     public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
         boolean conexionCorrecta = false;
         return conexionCorrecta;
     }
 
-    //Método para que un usuario ejecute un programa en el sistema
-    public void ejecutarPrograma() throws SQLException {
-        //Lista a mostrar de programas
-        LinkedList<Programa> programa = new LinkedList<>();
-        Programa p;
-        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
-                "select * from programas");
-        //Pasar la consulta SQL a LinkedList
-        while (misProgramas.next()) {
-            String nombre = misProgramas.getString("nombre");
-            p = new Programa(nombre);
-            programa.add(p);
-        }
-        //Iterador para la lista de programas
-        Iterator<Programa> ep = programa.iterator();
-        while (ep.hasNext()) {
-            ep.next().getNombre();
-        }
-    }
+    
+//    /**
+//     * Método para que un usuario ejecute un programa en el sistema
+//     * @throws SQLException
+//     */
+//    public void ejecutarPrograma() throws SQLException {
+//        //Lista a mostrar de programas
+//        LinkedList<Programa> programa = new LinkedList<>();
+//        Programa p;
+//        ResultSet misProgramas = ConexionBD.instancia().getStatement().executeQuery(
+//                "select * from programas");
+//        //Pasar la consulta SQL a LinkedList
+//        while (misProgramas.next()) {
+//            String nombre = misProgramas.getString("nombre");
+//            p = new Programa(nombre);
+//            programa.add(p);
+//        }
+//        //Iterador para la lista de programas
+//        Iterator<Programa> ep = programa.iterator();
+//        while (ep.hasNext()) {
+//            ep.next().getNombre();
+//        }
+//    }
 
-    //Método para desconectar la sesión actual del sistema
+    /**
+     * Método para desconectar la sesión actual del sistema
+     * @return
+     */
     public boolean desconectarse() {
         boolean conexion = false;
         ConexionBD.desconectar();
         return conexion;
     }
 
-    //Método para ver todos los archivos que son propiedad del usuario
+    /**
+     * Método para ver todos los archivos que son propiedad del usuario
+     * @throws SQLException
+     */
     public void verArchivos() throws SQLException {
         //Lista a mostrar al usuario con sus archivos
         LinkedList<Archivo> archivosPropios = new LinkedList<>();
@@ -124,7 +143,10 @@ public abstract class Persona {
         }
     }
 
-    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+    /**
+     * Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
+     * @throws SQLException
+     */
     public void borrarArchivo() throws SQLException {
         String nombreArchivo;
         //Visualiza la lista de archivos que tiene el usuario
