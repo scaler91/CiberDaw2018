@@ -16,17 +16,19 @@ public class Archivo {
     private Date fecha;
     private String propietario;
 
+    //CONSTRUCTOR
     public Archivo(String nombre, String propietario) {
         this.nombre = nombre;
         fecha = fechaSistema();
         this.propietario = propietario;
     }
     
+    //MÉTODOS
     public Date fechaSistema(){
         java.util.Date fechaActual = new java.util.Date();
         return fechaActual;
     }
-    
+
     public String ToString(){
          return this.nombre+" "+this.propietario+" "+this.fecha;
     }
