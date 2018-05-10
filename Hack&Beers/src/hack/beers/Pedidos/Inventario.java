@@ -5,7 +5,9 @@
  */
 package hack.beers.Pedidos;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  *
@@ -19,10 +21,8 @@ public class Inventario {
         listaConsumibles = new LinkedList<>();
     }
 
-    public void annadirConsumibles() {
-
-        listaConsumibles.add(new Consumible(1, "Cocacola", 3, 2));
-
+    public void annadirConsumible(Consumible c) {
+        listaConsumibles.add(c);
     }
 
     public List getInventario() {

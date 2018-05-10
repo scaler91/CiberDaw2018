@@ -5,6 +5,12 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Consumible;
+import hack.beers.controlCibercafe;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Alumno
@@ -81,8 +87,15 @@ public class InventarioV extends javax.swing.JFrame {
         // TODO add your handling code here:
         annadirConsumible ac = new annadirConsumible(this, true);
         ac.setVisible(true);
+
+        Consumible c = new Consumible(ac.getId(), ac.getNombre(), ac.getCantidad(), ac.getPrecio());
+        controlCibercafe ccc = new controlCibercafe();
         
-        Consumibles
+        try {
+            ccc.añadirConsumible(c);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_annadirConsumibleActionPerformed
 
     /**
