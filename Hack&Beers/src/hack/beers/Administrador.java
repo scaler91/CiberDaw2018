@@ -25,19 +25,40 @@ public class Administrador extends Persona{
     
     //MÉTODOS
     
-    //Método para dar de alta a un usuario
+    /**
+     * Método para dar de alta a un usuario
+     * @param nombreUsuario
+     * @param apellidosUsuario
+     * @param DNIUsuario
+     * @param contraseñaUsuario
+     * @param VIPUsuario
+     * @throws SQLException
+     */
     public void altaUsuarioBD(String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, boolean VIPUsuario) throws SQLException{
         ResultSet crearUsuario = ConexionBD.instancia().getStatement().executeQuery(
             "insert into usuarios values ('"+DNIUsuario+"', '"+nombreUsuario+"', '"+apellidosUsuario+"', '"+contraseñaUsuario+"', '"+VIPUsuario+"')");
     }
     
-    //Método para dar de baja a un usuario
+    /**
+     * Método para dar de baja a un usuario
+     * @param DNIUsuario
+     * @throws SQLException
+     */
     public void bajaUsuarioBD(String DNIUsuario) throws SQLException{
         ResultSet eliminarUsuario = ConexionBD.instancia().getStatement().executeQuery(
             "delete from usuarios where dni = '"+DNIUsuario+"'");
     }
     
-    //Método para modificar un usuario
+    /**
+     * Método para modificar un usuario
+     * @param usuarioDNI
+     * @param nombreUsuario
+     * @param apellidosUsuario
+     * @param DNIUsuario
+     * @param contraseñaUsuario
+     * @param VIPUsuario
+     * @throws SQLException
+     */
     public void modificarUsuarioBD(String usuarioDNI, String nombreUsuario, String apellidosUsuario, String DNIUsuario, String contraseñaUsuario, String VIPUsuario) throws SQLException{
         ResultSet seleccionarUsuario = ConexionBD.instancia().getStatement().executeQuery(
             "select * from usuarios where dni = "+usuarioDNI);
@@ -67,38 +88,94 @@ public class Administrador extends Persona{
         }
     }
     
-    //Método para buscar un usuario
+    /**
+     * Método para buscar un usuario
+     * @param usuarioDNI
+     * @throws SQLException
+     */
     public void consultarUsuarioBD(String usuarioDNI) throws SQLException{
         ResultSet seleccionarUsuario = ConexionBD.instancia().getStatement().executeQuery(
             "select * from usuarios where dni = "+usuarioDNI);
     }
     
-    public void altaOrdenadorBD(){
-        
+    /**
+     * Método para dar de alta un ordenador
+     * @param ID
+     * @param procesador
+     * @param placaBase
+     * @param grafica
+     * @param RAM
+     * @param discoDuro
+     * @param fuenteAlimentacion
+     * @throws SQLException
+     */
+    public void altaOrdenadorBD(int ID, String procesador, String placaBase, String grafica, String RAM, String discoDuro, String fuenteAlimentacion) throws SQLException{
+        ResultSet crearOrdenador = ConexionBD.instancia().getStatement().executeQuery(
+            "insert into ordenadores values ('"+ID+"', '"+procesador+"', '"+placaBase+"', '"+grafica+"', '"+RAM+"', '"+discoDuro+"', '"+fuenteAlimentacion+"')");
     }
     
-    public void bajaOrdenadorBD(){
-        
+    /**
+     * Método para dar de baja un ordenador
+     * @param ID
+     * @throws SQLException
+     */
+    public void bajaOrdenadorBD(int ID) throws SQLException{
+        ResultSet eliminarOrdenador = ConexionBD.instancia().getStatement().executeQuery(
+            "delete from ordenadores where IdOrdenador = '"+ID+"'");
     }
     
-    public void modificarOrdenadorBD(){
-        
+    /**
+     * Método para modificar un ordenador
+     * @param IDOrdenador
+     * @param ID
+     * @param procesador
+     * @param placaBase
+     * @param grafica
+     * @param RAM
+     * @param discoDuro
+     * @param fuenteAlimentacion
+     * @throws SQLException
+     */
+    public void modificarOrdenadorBD(int IDOrdenador, String ID, String procesador, String placaBase, String grafica, String RAM, String discoDuro, String fuenteAlimentacion) throws SQLException{
+        ResultSet seleccionarOrdenador = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from ordenadores where IdOrdenador = "+IDOrdenador);
+        if(ID!=null){
+            ResultSet cambiarID = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET IdOrdenadores="+ID+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(procesador!=null){
+            ResultSet cambiarProcesador = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET procesador="+procesador+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(placaBase!=null){
+            ResultSet cambiarPlaca = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET placaBase="+placaBase+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(grafica!=null){
+            ResultSet cambiarGrafica = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET grafica="+grafica+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(RAM!=null){
+            ResultSet cambiarRAM = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET ram="+RAM+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(discoDuro!=null){
+            ResultSet cambiarDisco = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET discoDuroGB="+discoDuro+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
+        if(fuenteAlimentacion!=null){
+            ResultSet cambiarFuente = ConexionBD.instancia().getStatement().executeQuery(
+            "UPDATE ordenadores SET fuente="+fuenteAlimentacion+" WHERE IdOrdenadores = "+IDOrdenador);
+        }
     }
     
-    public void consultarOrdenadorBD(){
-        
-    }
-    
-    //Método para ver todos los archivos que son propiedad del usuario
-    public void verArchivos(){
-        
-    }
-    
-    //Método para borrar los archivos que se quiera (SOLO si son de su propiedad)
-    public void borrarArchivo(){
-        
-    }
-    
-    
-    
+    /**
+     * Método para consultar un ordenador
+     * @param ID
+     * @throws SQLException
+     */
+    public void consultarOrdenadorBD(String ID) throws SQLException{
+        ResultSet seleccionarOrdenador = ConexionBD.instancia().getStatement().executeQuery(
+            "select * from ordenadores where IdOrdenadores = "+ID);
+    } 
 }
