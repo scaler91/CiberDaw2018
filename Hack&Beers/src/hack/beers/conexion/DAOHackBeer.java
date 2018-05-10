@@ -8,7 +8,6 @@ import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ventasbd.dao.exception.ErrorConexionBD;
 
 public class DAOHackBeer {
 

@@ -11,10 +11,10 @@ package hack.beers.vista;
  */
 public class annadirConsumible extends javax.swing.JDialog {
 
-    int id;
-    String nombre;
-    int cantidad;
-    double precio;
+    private int id;
+    private String nombre;
+    private int cantidad;
+    private double precio;
 
     /**
      * Creates new form annadirConsumible

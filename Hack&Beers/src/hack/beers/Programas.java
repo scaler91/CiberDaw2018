@@ -17,6 +17,4 @@ public class Programas {
     public Programas(String nombre) {
         listaProgramas = new LinkedList();
     }
-    
-    
 }

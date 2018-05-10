@@ -8,8 +8,6 @@ package hack.beers;
 import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import static java.util.Collections.list;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
