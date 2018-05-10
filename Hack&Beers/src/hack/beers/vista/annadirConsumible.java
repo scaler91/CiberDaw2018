@@ -129,7 +129,7 @@ public class annadirConsumible extends javax.swing.JDialog {
         cantidad = Integer.parseInt(jTextField3.getText());
         precio = Double.parseDouble(jTextField4.getText());
 
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     public int getId() {

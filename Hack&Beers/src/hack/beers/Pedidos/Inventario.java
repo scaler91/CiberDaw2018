@@ -5,6 +5,8 @@
  */
 package hack.beers.Pedidos;
 
+import hack.beers.conexion.DAOHackBeer;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +19,9 @@ public class Inventario {
 
     protected List<Consumible> listaConsumibles;
 
-    public Inventario() {
+    public Inventario() throws SQLException {
         listaConsumibles = new LinkedList<>();
+        DAOHackBeer.instancia().verConsumible(this);
     }
 
     public void annadirConsumible(Consumible c) {

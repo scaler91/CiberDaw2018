@@ -8,7 +8,10 @@ package hack.beers.vista;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
+import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,13 +25,13 @@ public class VentanaPedido extends javax.swing.JFrame {
     /**
      * Creates new form Tabla
      */
-    public VentanaPedido() {
+    public VentanaPedido() throws SQLException {
         initComponents();
 
         annadirComboBox();
     }
 
-    private void annadirComboBox() {
+    private void annadirComboBox() throws SQLException {
 
         I = new Inventario();
 
@@ -194,7 +197,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPedido().setVisible(true);
+                try {
+                    new VentanaPedido().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });
