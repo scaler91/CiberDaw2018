@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class controlCibercafe {
     
-    public void añadirConsumible(Consumible c) throws SQLException{
+    public void annadirConsumible(Consumible c) throws SQLException{
         DAOHackBeer.instancia().annadirConsumible(c);
     }
     

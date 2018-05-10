@@ -20,7 +20,9 @@ public class InventarioV extends javax.swing.JFrame {
     /**
      * Creates new form InventarioV
      */
-    public InventarioV() {
+    public InventarioV() { 
+        controlCibercafe ccc = new controlCibercafe();
+        
         initComponents();
     }
 
@@ -92,7 +94,7 @@ public class InventarioV extends javax.swing.JFrame {
         controlCibercafe ccc = new controlCibercafe();
         
         try {
-            ccc.añadirConsumible(c);
+            ccc.annadirConsumible(c);
         } catch (SQLException ex) {
             Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
         }
