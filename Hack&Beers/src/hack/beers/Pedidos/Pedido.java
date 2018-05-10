@@ -16,16 +16,16 @@ public class Pedido {
     double precioTotal;
     int ordenador;
     double precio;
-    protected List<Consumibles> pedido;
+    protected List<Consumible> pedido;
 
     public Pedido(int ordenador) {
         this.ordenador = ordenador;
-        pedido = new LinkedList<Consumibles>();
+        pedido = new LinkedList<Consumible>();
 
     }
 
     public void nuevoPedido(int id, String nombre, int cantidad, double precio) {
-        pedido.add(new Consumibles(id, nombre, cantidad, precio));
+        pedido.add(new Consumible(id, nombre, cantidad, precio));
     }
 
 //    public void calcularPrecio(){

@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Inventario {
 
-    protected List<Consumibles> listaConsumibles;
+    protected List<Consumible> listaConsumibles;
 
     public Inventario() {
         listaConsumibles = new LinkedList<>();
@@ -21,7 +21,7 @@ public class Inventario {
 
     public void annadirConsumibles() {
 
-        listaConsumibles.add(new Consumibles(1, "Cocacola", 3, 2));
+        listaConsumibles.add(new Consumible(1, "Cocacola", 3, 2));
 
     }
 

@@ -5,7 +5,7 @@
  */
 package hack.beers.vista;
 
-import hack.beers.Pedidos.Consumibles;
+import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import java.util.Iterator;
@@ -35,7 +35,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         Iterator it = I.getInventario().iterator();
 
         while (it.hasNext()) {
-            Consumibles nextElement = (Consumibles) it.next();
+            Consumible nextElement = (Consumible) it.next();
             jComboBox1.addItem(nextElement.getNombre());
         }
     }
