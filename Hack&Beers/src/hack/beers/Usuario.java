@@ -48,7 +48,7 @@ public class Usuario extends Persona {
 
     //MÉTODOS
     
-    public void crearPedido(int id, int cantidad) throws SQLException{
+    public void crearPedido(int id, int mesa, int cantidad) throws SQLException{
         ConexionBD.instancia().getStatement().execute(
                 "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
