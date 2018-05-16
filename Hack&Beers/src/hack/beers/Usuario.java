@@ -71,9 +71,6 @@ public class Usuario extends Persona {
  
     @Override
     public void verArchivos() throws SQLException{
-        if(VIP==false){
-            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
-        } else {
             LinkedList<Archivo> archivosPropios = new LinkedList<>();
         Archivo a;
         ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
@@ -92,15 +89,10 @@ public class Usuario extends Persona {
             ia.next().getFecha();
             ia.next().getPropietario();
         }
-
-        }
     }
 
     @Override
     public void borrarArchivo(String nombreArchivo) throws SQLException{
-        if(VIP==false){
-            System.out.println("Lo sentimos, esta función solo está reservada a usuarios VIP");
-        } else {
         //Visualiza la lista de archivos que tiene el usuario
         verArchivos();
         //Elimina el archivo con el nombre dado
@@ -108,7 +100,6 @@ public class Usuario extends Persona {
                 "delete from almacenamiento where NombreArchivo = '" + nombreArchivo + "'");
         //Visualiza los archivos restantes
         verArchivos();
-        }
     }
     
     @Override
