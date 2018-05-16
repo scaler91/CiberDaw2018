@@ -1,0 +1,19 @@
+LoginV: La secuencia SQL tendrá que buscar en las tablar usuarios y administradores para dar el login.
+
+InventarioV: En la interfaz gráfica hay que quitar el número de filas que hay.
+
+ModificarV: Mesa y ordenador son lo mismo. Como imagino que esto es una representación de la tabla "Conexiones" y el DNI está reflejado ya arriba, 
+	    en la tabla solo habrá que dejar los campos de Ordenador y Fecha.
+
+
+POR TERMINAR:
+
+- AdministradorV
+- ClienteV
+- CienteVIP
+- InventarioV
+- LoginV
+- ModificarV
+- ProgramasV
+- VentanaPedido
+- annadirConsumible
