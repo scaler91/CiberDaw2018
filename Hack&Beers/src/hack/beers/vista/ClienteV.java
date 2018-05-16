@@ -289,7 +289,6 @@ public class ClienteV extends javax.swing.JFrame {
         VentanaPedido vp;
         try {
             vp = new VentanaPedido();
-            this.setVisible(false);
             vp.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);

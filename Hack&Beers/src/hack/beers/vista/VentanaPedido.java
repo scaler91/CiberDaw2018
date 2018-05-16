@@ -25,7 +25,7 @@ public class VentanaPedido extends javax.swing.JFrame {
     Inventario I;
     controlCibercafe ccc;
     boolean ciclo = false;
-
+    double precioActual;
     /**
      * Creates new form Tabla
      */
@@ -33,6 +33,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         I = new Inventario();
         I.annadirLista();
         ccc = new controlCibercafe();
+        
         
         initComponents();
         annadirComboBox();
@@ -45,6 +46,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         while (it.hasNext()) {
             Consumible nextElement = (Consumible) it.next();
             jComboBox1.addItem(nextElement.getNombre());
+            
         }
     }
 
@@ -55,8 +57,9 @@ public class VentanaPedido extends javax.swing.JFrame {
             while (it.hasNext()) {
                 Consumible nextElement = (Consumible) it.next();
                 if (jComboBox1.getSelectedItem() == nextElement.getNombre()) {
-                    for (int i = 0; i < nextElement.getPrecio(); i++) {
-                        jComboBox2.addItem("" + i);
+                    for (int i = 0; i < nextElement.getCantidad(); i++) {
+                        jComboBox2.addItem("" + (i + 1));
+                        precioActual =  nextElement.getPrecio();
                     }
                 }
                 ciclo = true;
@@ -65,6 +68,12 @@ public class VentanaPedido extends javax.swing.JFrame {
             jComboBox2.removeAllItems();
             ciclo = false;
         }
+    }
+    
+    public void calculo(){
+        double multi = 0;
+        multi = ((jComboBox2.getSelectedIndex()+1) * precioActual) ;
+       dinerito.setText("" + multi);
     }
 
     /**
@@ -196,6 +205,7 @@ public class VentanaPedido extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+        calculo();
 
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
