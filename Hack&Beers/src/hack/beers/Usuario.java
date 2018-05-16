@@ -21,12 +21,12 @@ public class Usuario extends Persona {
 
     private boolean VIP;
     private LinkedList registroConexiones;
-    
+
     public Usuario(String nombre, String apellidos, String DNI, String contraseña, boolean VIP) {
         super(nombre, apellidos, DNI, contraseña);
-        this.VIP=VIP;
+        this.VIP = VIP;
 
-        registroConexiones=new LinkedList();
+        registroConexiones = new LinkedList();
     }
 
     public boolean isVIP() {
@@ -45,33 +45,30 @@ public class Usuario extends Persona {
         this.registroConexiones = registroConexiones;
     }
 
-
-
     //MÉTODOS
-
     /**
      * Método para crear un pedido (Bebidas, comida, etc)
+     *
      * @param id
      * @param mesa
      * @param cantidad
      * @throws SQLException
      */
-    
-    public void crearPedido(int id, int mesa, int cantidad) throws SQLException{
+    public void crearPedido(int id, int mesa, int cantidad) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
                 "insert into pedidos values ('" + getDNI() + "', '" + mesa + "', '" + id + "', '" + cantidad + "')");
     }
-    
+
     /**
      * Método para poner una queja en el establecimiento
      */
-    public void ponerQueja(){
-        
+    public void ponerQueja() {
+
     }
- 
+
     @Override
-    public void verArchivos() throws SQLException{
-            LinkedList<Archivo> archivosPropios = new LinkedList<>();
+    public void verArchivos() throws SQLException {
+        LinkedList<Archivo> archivosPropios = new LinkedList<>();
         Archivo a;
         ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from almacenamiento where dni = '" + DNI + "'");
@@ -92,7 +89,7 @@ public class Usuario extends Persona {
     }
 
     @Override
-    public void borrarArchivo(String nombreArchivo) throws SQLException{
+    public void borrarArchivo(String nombreArchivo) throws SQLException {
         //Visualiza la lista de archivos que tiene el usuario
         verArchivos();
         //Elimina el archivo con el nombre dado
@@ -101,21 +98,21 @@ public class Usuario extends Persona {
         //Visualiza los archivos restantes
         verArchivos();
     }
-    
+
     @Override
-   public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
-       boolean conexionCorrecta=false;
+    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
+        boolean conexionCorrecta = false;
         ConexionBD.crearConexion();
         //Comprobar contraseña
         ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-            "select Contraseña from usuarios where Contraseña = '"+contraseña+"'");
+                "select Contraseña from usuarios where Contraseña = '" + contraseña + "'");
         //Comprobar usuario
         ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
-            "select dni from usuarios where dni = '"+usuario+"'"+"and Contraseña = '"+contraseña+"'");
-        if(validarContraseña.toString()==contraseña&&validarUsuario.toString()==usuario){
-            conexionCorrecta=true;
+                "select dni from usuarios where dni = '" + usuario + "'" + "and Contraseña = '" + contraseña + "'");
+        if (validarContraseña.toString() == contraseña && validarUsuario.toString() == usuario) {
+            conexionCorrecta = true;
         }
-       return conexionCorrecta;
-   }
+        return conexionCorrecta;
+    }
 
 }

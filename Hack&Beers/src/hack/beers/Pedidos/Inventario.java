@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
  *
  * @author Alumno
@@ -34,6 +33,19 @@ public class Inventario {
 
     public void deleteConsumibles(int i) {
         listaConsumibles.remove(i);
+    }
+
+    public String[][] getStock() {
+        //OJO con size al agregar campos nuevos.
+        String[][] arrayConsumibles = new String[listaConsumibles.size()][4];
+        for (int i = 0; i < listaConsumibles.size(); i++) {
+            Consumible esteConsumible = (Consumible) listaConsumibles.get(i);
+            arrayConsumibles[i][0] = "" + esteConsumible.getId();
+            arrayConsumibles[i][1] = esteConsumible.getNombre();
+            arrayConsumibles[i][2] = "" + esteConsumible.getCantidad();
+            arrayConsumibles[i][3] = esteConsumible.getPrecio() + " €";
+        }
+        return arrayConsumibles;
     }
 
 }
