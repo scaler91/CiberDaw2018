@@ -13,7 +13,7 @@ POR TERMINAR:
 - CienteVIP -En proceso Victor
 - InventarioV -En proceso Javi
 - LoginV -En proceso Alejandro
-- ModificarV
+- ModificarV -En proceso Victor
 - ProgramasV
 - VentanaPedido -En proceso pipe y Saul
 - annadirConsumible -Revisar
