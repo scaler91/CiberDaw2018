@@ -6,7 +6,6 @@
 package hack.beers.vista;
 
 import hack.beers.Pedidos.Consumible;
-import hack.beers.conexion.DAOHackBeer;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,6 +21,7 @@ public class InventarioV extends javax.swing.JFrame {
     controlCibercafe ccc;
     /**
      * Creates new form InventarioV
+     * @throws ventasbd.dao.exception.ErrorConexionBD
      */
 
     public InventarioV() throws ErrorConexionBD, ErrorConexionBD { 
