@@ -10,6 +10,12 @@ import java.awt.Window;
 import hack.beers.Persona;
 import hack.beers.Usuario;
 import hack.beers.Administrador;
+import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -118,6 +124,81 @@ public class LoginV extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        
+        String usuarioID = jTextField1.getText();
+        String contraseña = jPasswordField1.getText();
+        boolean vip=false;
+        
+        try {
+            ConexionBD.crearConexion();
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ResultSet validarContraseña = null;
+        ResultSet validarUsuario = null;
+        
+        //PARTE USUARIO
+        //Comprobar contraseña
+        try {
+            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+                    "select Contraseña from usuarios where Contraseña = '" + contraseña + "'");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Comprobar usuario
+        try {
+            validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+                    "select dni from usuarios where dni = '" + usuarioID + "'" + "and Contraseña = '" + contraseña + "'");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (validarContraseña.toString() == contraseña && validarUsuario.toString() == usuarioID) {
+            ResultSet validarVIP;
+            try {
+                validarVIP = ConexionBD.instancia().getStatement().executeQuery(
+                        "select vip from usuarios where dni = '" + usuarioID + "'" + "and Contraseña = '" + contraseña + "'");
+                
+                if(validarVIP.getBoolean(ICONIFIED) == vip){
+                    ClienteV cn = new ClienteV();
+                    cn.setVisible(true);
+                    this.setVisible(false);
+                }
+                else{
+                    ClienteVIP cv = new ClienteVIP();
+                    cv.setVisible(true);
+                    this.setVisible(false);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ErrorConexionBD ex) {
+                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        //PARTE ADMINISTRADOR
+       
+        //Comprobar contraseña
+        try {
+            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+                    "select Contraseña from administradores where Contraseña = '"+contraseña+"'");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Comprobar administrador
+        ResultSet validarAdmin = null;
+        try {
+            validarAdmin = ConexionBD.instancia().getStatement().executeQuery(
+                    "select dni from administradores where dni = '"+usuarioID+"'"+"and Contraseña = '"+contraseña+"'");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(validarContraseña.toString()==contraseña&&validarAdmin.toString()==usuarioID){
+            AdministradorV admin = new AdministradorV();
+            admin.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
