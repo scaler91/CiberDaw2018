@@ -21,6 +21,8 @@ public class ProgramasV extends javax.swing.JFrame {
     public ProgramasV() {
 
         initComponents();
+        iconLogo = new ImageIcon("imagenes/firefox.png");
+        jLabel1.setIcon(iconLogo);
 
     }
 
@@ -96,7 +98,7 @@ public class ProgramasV extends javax.swing.JFrame {
 
         switch (jComboBox1.getSelectedIndex()) {
             case 0:
-                
+
                 //Felipee si no pones la imagen esta se queda en blanco
                 iconLogo = new ImageIcon("imagenes/firefox.png");
                 jLabel1.setIcon(iconLogo);
