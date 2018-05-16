@@ -9,6 +9,7 @@ import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -177,5 +178,21 @@ public class Administrador extends Persona{
     public void consultarOrdenadorBD(String ID) throws SQLException{
         ResultSet seleccionarOrdenador = ConexionBD.instancia().getStatement().executeQuery(
             "select * from ordenadores where IdOrdenadores = "+ID);
-    } 
+    }
+    
+    @Override
+    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
+       boolean conexionCorrecta=false;
+        ConexionBD.crearConexion();
+        //Comprobar contraseña
+        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+            "select Contraseña from administradores where Contraseña = '"+contraseña+"'");
+        //Comprobar usuario
+        ResultSet validarAdmin = ConexionBD.instancia().getStatement().executeQuery(
+            "select dni from administradores where dni = '"+usuario+"'"+"and Contraseña = '"+contraseña+"'");
+        if(validarContraseña.toString()==contraseña&&validarAdmin.toString()==usuario){
+            conexionCorrecta=true;
+        }
+       return conexionCorrecta;
+   }
 }
