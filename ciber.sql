@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2018 a las 09:58:43
+-- Tiempo de generación: 16-05-2018 a las 09:11:50
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `cibercafedb`
+-- Base de datos: `ciber`
 --
 
 -- --------------------------------------------------------
@@ -72,6 +72,17 @@ CREATE TABLE `consumibles` (
   `Precio` double NOT NULL,
   `Cantidad` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `consumibles`
+--
+
+INSERT INTO `consumibles` (`idConsumible`, `Nombre`, `Precio`, `Cantidad`) VALUES
+(0, 'Coca-cola', 2, 50),
+(1, 'Fanta', 2, 55),
+(2, 'Cerveza', 1.5, 60),
+(3, 'Jamon', 50, 1),
+(4, 'Galletitas', 1, 70);
 
 -- --------------------------------------------------------
 
@@ -163,28 +174,6 @@ ALTER TABLE `pedidos`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`dni`);
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `almacenamiento`
---
-ALTER TABLE `almacenamiento`
-  ADD CONSTRAINT `almacenamiento_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `consumibles`
---
-ALTER TABLE `consumibles`
-  ADD CONSTRAINT `consumibles_ibfk_1` FOREIGN KEY (`idConsumible`) REFERENCES `pedidos` (`idConsumible`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `usuarios` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
