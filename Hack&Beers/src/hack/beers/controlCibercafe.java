@@ -7,20 +7,26 @@ package hack.beers;
 
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
+import hack.beers.conexion.ConexionBD;
 import hack.beers.conexion.DAOHackBeer;
 import java.sql.SQLException;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
  * @author Alumno
  */
 public class controlCibercafe {
-    
-    public void annadirConsumible(Consumible c) throws SQLException{
+
+    public controlCibercafe() throws ErrorConexionBD {
+        ConexionBD.crearConexion();
+    }
+
+    public void annadirConsumible(Consumible c) throws SQLException {
         DAOHackBeer.instancia().annadirConsumible(c);
     }
-    
-    public void verConsumible (Inventario i) throws SQLException{
+
+    public void verConsumible(Inventario i) throws SQLException {
         DAOHackBeer.instancia().verConsumible(i);
     }
 }

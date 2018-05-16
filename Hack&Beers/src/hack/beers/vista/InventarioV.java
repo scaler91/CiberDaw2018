@@ -10,6 +10,7 @@ import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -17,11 +18,12 @@ import java.util.logging.Logger;
  */
 public class InventarioV extends javax.swing.JFrame {
 
+    controlCibercafe ccc;
     /**
      * Creates new form InventarioV
      */
-    public InventarioV() { 
-        controlCibercafe ccc = new controlCibercafe();
+    public InventarioV() throws ErrorConexionBD { 
+    ccc = new controlCibercafe();
         
         initComponents();
     }
@@ -89,10 +91,7 @@ public class InventarioV extends javax.swing.JFrame {
         // TODO add your handling code here:
         annadirConsumible ac = new annadirConsumible(this, true);
         ac.setVisible(true);
-
         Consumible c = new Consumible(ac.getId(), ac.getNombre(), ac.getCantidad(), ac.getPrecio());
-        controlCibercafe ccc = new controlCibercafe();
-        
         try {
             ccc.annadirConsumible(c);
         } catch (SQLException ex) {
@@ -130,7 +129,11 @@ public class InventarioV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InventarioV().setVisible(true);
+                try {
+                    new InventarioV().setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
