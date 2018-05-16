@@ -13,6 +13,8 @@ public class AdministradorV extends javax.swing.JDialog {
 
     /**
      * Creates new form Administrador
+     * @param parent
+     * @param modal
      */
     public AdministradorV(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
