@@ -113,7 +113,6 @@ public class Usuario extends Persona {
     
     @Override
    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException{
-       //super.conectarse(String usuario, String contraseña);
        boolean conexionCorrecta=false;
         ConexionBD.crearConexion();
         //Comprobar contraseña
