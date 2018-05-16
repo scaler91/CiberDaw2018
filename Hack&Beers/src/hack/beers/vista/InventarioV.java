@@ -6,10 +6,12 @@
 package hack.beers.vista;
 
 import hack.beers.Pedidos.Consumible;
+import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -19,14 +21,21 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class InventarioV extends javax.swing.JFrame {
 
     controlCibercafe ccc;
+    String cabeceraInventario[] = {"ID", "Nombre", "Cantidad", "Precio"};
+    String[][] vaciaInventario = {};
+    DefaultTableModel tablaInventario;
+
     /**
      * Creates new form InventarioV
+     *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      */
-
-    public InventarioV() throws ErrorConexionBD, ErrorConexionBD { 
-    ccc = new controlCibercafe();        
+    public InventarioV() throws ErrorConexionBD, ErrorConexionBD {
+        ccc = new controlCibercafe();
         initComponents();
+
+        tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
+        jTable1.setModel(tablaInventario);
     }
 
     /**
@@ -41,6 +50,7 @@ public class InventarioV extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         annadirConsumible = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,13 +74,22 @@ public class InventarioV extends javax.swing.JFrame {
             }
         });
 
+        jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(annadirConsumible)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(annadirConsumible)
+                    .addComponent(jButtonActualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -82,7 +101,9 @@ public class InventarioV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(annadirConsumible)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonActualizar)
+                .addGap(58, 58, 58))
         );
 
         pack();
@@ -99,6 +120,33 @@ public class InventarioV extends javax.swing.JFrame {
             Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_annadirConsumibleActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
+            jTable1.setModel(tablaInventario);
+
+            Inventario I = new Inventario();
+            ccc.verConsumible(I);
+
+            String[][] inventarioTabla = I.getStock();
+
+            int linea = 0;
+            while (linea < inventarioTabla.length) {
+                tablaInventario.addRow(vaciaInventario);
+                jTable1.setValueAt(inventarioTabla[linea][0], linea, 0);
+                jTable1.setValueAt(inventarioTabla[linea][1], linea, 1);
+                jTable1.setValueAt(inventarioTabla[linea][2], linea, 2);
+                jTable1.setValueAt(inventarioTabla[linea][3], linea, 3);
+                linea++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,6 +189,7 @@ public class InventarioV extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton annadirConsumible;
+    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

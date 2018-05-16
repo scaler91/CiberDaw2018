@@ -8,50 +8,72 @@ package hack.beers.vista;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
+import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
  * @author saulm
  */
 public class VentanaPedido extends javax.swing.JFrame {
-
+    
     Pedido p;
     Inventario I;
+    controlCibercafe ccc;
+    boolean ciclo = false;
+    double precioActual;
 
     /**
      * Creates new form Tabla
      */
-    public VentanaPedido() throws SQLException {
+    public VentanaPedido() throws SQLException, ErrorConexionBD {
+        I = new Inventario();
+        I.annadirLista();
+        ccc = new controlCibercafe();
+        
         initComponents();
-
         annadirComboBox();
     }
-
+    
     private void annadirComboBox() throws SQLException {
-
-        I = new Inventario();
-
+        
         Iterator it = I.getInventario().iterator();
-
+        
         while (it.hasNext()) {
             Consumible nextElement = (Consumible) it.next();
             jComboBox1.addItem(nextElement.getNombre());
+            
         }
     }
-
+    
     private void cantidadPedida() {
-//        annadirComboBox();
-//        switch (jComboBox1.getSelected()) {
-//            case 0:
-//                
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
+        if (ciclo == false) {
+            Iterator it = I.getInventario().iterator();
+            
+            while (it.hasNext()) {
+                Consumible nextElement = (Consumible) it.next();
+                if (jComboBox1.getSelectedItem() == nextElement.getNombre()) {
+                    for (int i = 0; i < nextElement.getCantidad(); i++) {
+                        jComboBox2.addItem("" + (i + 1));
+                        precioActual = nextElement.getPrecio();
+                    }
+                }
+                ciclo = true;
+            }
+        } else {
+            jComboBox2.removeAllItems();
+            ciclo = false;
+        }
+    }
+    
+    public void calculo() {
+        double multi = 0;
+        multi = ((jComboBox2.getSelectedIndex() + 1) * precioActual);
+        dinerito.setText("" + multi);
     }
 
     /**
@@ -83,6 +105,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         });
 
         Aceptar.setText("Aceptar");
+        Aceptar.setEnabled(false);
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarActionPerformed(evt);
@@ -90,6 +113,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         });
 
         jComboBox1.setMaximumRowCount(200);
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -99,6 +127,16 @@ public class VentanaPedido extends javax.swing.JFrame {
         jLabel2.setText("X");
 
         jComboBox2.setMaximumRowCount(200);
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         dinerito.setEditable(false);
         dinerito.setText("0.0 €");
@@ -162,7 +200,25 @@ public class VentanaPedido extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        cantidadPedida();
+        Aceptar.enable(false);
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        calculo();
+        Aceptar.enable(true);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox2MouseClicked
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -201,8 +257,10 @@ public class VentanaPedido extends javax.swing.JFrame {
                     new VentanaPedido().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(VentanaPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(VentanaPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
             }
         });
     }

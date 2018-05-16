@@ -171,6 +171,8 @@ public class LoginV extends javax.swing.JFrame {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ErrorConexionBD ex) {
+                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
