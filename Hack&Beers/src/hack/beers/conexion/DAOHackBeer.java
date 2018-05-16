@@ -21,7 +21,7 @@ public class DAOHackBeer {
     }
 
     public void annadirConsumible(Consumible c) throws SQLException {
-        ConexionBD.instancia().getStatement().execute("insert into consumibles values (" + c.getId() + ", '" + c.getNombre() + "', " + c.getPrecio() + ", " + c.getCantidad() + ")");
+        ConexionBD.instancia().getStatement().execute("INSERT INTO `consumibles`(`idConsumible`, `Nombre`, `Precio`, `Cantidad`) VALUES  (" + c.getId() + ", '" + c.getNombre() + "', " + c.getPrecio() + ", " + c.getCantidad() + ")");
     }
 
     public void verConsumible(Inventario i) throws SQLException {

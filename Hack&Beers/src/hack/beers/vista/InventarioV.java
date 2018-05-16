@@ -6,6 +6,7 @@
 package hack.beers.vista;
 
 import hack.beers.Pedidos.Consumible;
+import hack.beers.conexion.DAOHackBeer;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class InventarioV extends javax.swing.JFrame {
      * Creates new form InventarioV
      */
     public InventarioV() { 
+        DAOHackBeer dao = new DAOHackBeer();
         controlCibercafe ccc = new controlCibercafe();
         
         initComponents();
