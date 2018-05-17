@@ -14,6 +14,7 @@ import hack.beers.conexion.ConexionBD;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -238,6 +239,8 @@ public class ClienteVIP extends javax.swing.JFrame {
 //        this.setVisible(false);
 //        vp.setVisible(true);
         } catch (SQLException ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
             Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
         }
        
