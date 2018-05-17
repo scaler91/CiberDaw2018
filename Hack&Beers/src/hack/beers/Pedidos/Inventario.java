@@ -40,7 +40,6 @@ public class Inventario {
     }
 
     public String[][] getStock() {
-        //OJO con size al agregar campos nuevos.
         String[][] arrayConsumibles = new String[listaConsumibles.size()][4];
         for (int i = 0; i < listaConsumibles.size(); i++) {
             Consumible esteConsumible = (Consumible) listaConsumibles.get(i);

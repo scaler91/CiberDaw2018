@@ -128,6 +128,10 @@ public class InventarioV extends javax.swing.JFrame {
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         // TODO add your handling code here:
+        annadirTabla();
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    private void annadirTabla() {
         try {
             // TODO add your handling code here:
             tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
@@ -151,7 +155,7 @@ public class InventarioV extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonActualizarActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -169,15 +173,11 @@ public class InventarioV extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InventarioV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InventarioV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InventarioV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InventarioV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
