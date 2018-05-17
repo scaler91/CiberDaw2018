@@ -29,6 +29,8 @@ public class VentanaPedido extends javax.swing.JFrame {
 
     /**
      * Creates new form Tabla
+     * @throws java.sql.SQLException
+     * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public VentanaPedido() throws SQLException, ErrorConexionBD {
         I = new Inventario();
@@ -71,8 +73,7 @@ public class VentanaPedido extends javax.swing.JFrame {
     }
     
     public void calculo() {
-        double multi = 0;
-        multi = ((jComboBox2.getSelectedIndex() + 1) * precioActual);
+        double multi = ((jComboBox2.getSelectedIndex() + 1) * precioActual);
         dinerito.setText("" + multi);
     }
 
@@ -201,13 +202,13 @@ public class VentanaPedido extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         cantidadPedida();
-        Aceptar.enable(false);
+        Aceptar.setEnabled(false);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
         calculo();
-        Aceptar.enable(true);
+        Aceptar.setEnabled(true);
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
@@ -236,15 +237,14 @@ public class VentanaPedido extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -252,12 +252,11 @@ public class VentanaPedido extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new VentanaPedido().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(VentanaPedido.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ErrorConexionBD ex) {
+                } catch (SQLException | ErrorConexionBD ex) {
                     Logger.getLogger(VentanaPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
