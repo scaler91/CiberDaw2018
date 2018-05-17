@@ -99,20 +99,20 @@ public class Usuario extends Persona {
         verArchivos();
     }
 
-    @Override
-    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
-        boolean conexionCorrecta = false;
-        ConexionBD.crearConexion();
-        //Comprobar contraseña
-        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-                "select Contraseña from usuarios where Contraseña = '" + contraseña + "'");
-        //Comprobar usuario
-        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
-                "select dni from usuarios where dni = '" + usuario + "'" + "and Contraseña = '" + contraseña + "'");
-        if (validarContraseña.toString() == contraseña && validarUsuario.toString() == usuario) {
-            conexionCorrecta = true;
-        }
-        return conexionCorrecta;
-    }
+//    @Override
+//    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
+//        boolean conexionCorrecta = false;
+//        ConexionBD.crearConexion();
+//        //Comprobar contraseña
+//        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+//                "select Contraseña from usuarios where Contraseña = '" + contraseña + "'");
+//        //Comprobar usuario
+//        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+//                "select dni from usuarios where dni = '" + usuario + "'" + "and Contraseña = '" + contraseña + "'");
+//        if (validarContraseña.toString() == contraseña && validarUsuario.toString() == usuario) {
+//            conexionCorrecta = true;
+//        }
+//        return conexionCorrecta;
+//    }
 
 }

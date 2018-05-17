@@ -11,6 +11,11 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
+import hack.beers.controlCibercafe;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -30,8 +35,8 @@ public class ClienteV extends javax.swing.JFrame {
     /**
      * Creates new form Cliente
      */
-    public ClienteV() {
-
+    public ClienteV() throws ErrorConexionBD {
+        controlCibercafe ccc = new controlCibercafe();
         // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
             @Override
@@ -281,10 +286,16 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-//        VentanaPedido vp = new VentanaPedido();
-//        this.setVisible(false);
-//        vp.setVisible(true);
+        VentanaPedido vp;
+        try {
+            vp = new VentanaPedido();
+            vp.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -318,7 +329,11 @@ public class ClienteV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteV().setVisible(true);
+                try {
+                    new ClienteV().setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

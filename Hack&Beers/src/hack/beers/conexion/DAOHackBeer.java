@@ -26,7 +26,7 @@ public class DAOHackBeer {
 
     public void verConsumible(Inventario i) throws SQLException {
         Consumible c = null;
-        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles");
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM `consumibles`");
 
         while (rs.next()) {
             c = new Consumible(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
