@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2018 a las 09:11:50
+-- Tiempo de generación: 17-05-2018 a las 09:07:33
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -32,9 +32,15 @@ CREATE TABLE `administradores` (
   `dni` varchar(9) NOT NULL,
   `Nombre` varchar(10) NOT NULL,
   `Apellidos` varchar(10) NOT NULL,
-  `Contraseña` varchar(20) NOT NULL,
-  `esAdministrador` tinyint(1) NOT NULL
+  `Contraseña` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `administradores`
+--
+
+INSERT INTO `administradores` (`dni`, `Nombre`, `Apellidos`, `Contraseña`) VALUES
+('9999', 'Administra', 'Administer', 'aaa111!!!');
 
 -- --------------------------------------------------------
 
@@ -69,20 +75,20 @@ CREATE TABLE `conexiones` (
 CREATE TABLE `consumibles` (
   `idConsumible` int(4) NOT NULL,
   `Nombre` varchar(10) NOT NULL,
-  `Precio` double NOT NULL,
-  `Cantidad` int(4) NOT NULL
+  `Cantidad` int(4) NOT NULL,
+  `Precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `consumibles`
 --
 
-INSERT INTO `consumibles` (`idConsumible`, `Nombre`, `Precio`, `Cantidad`) VALUES
-(0, 'Coca-cola', 2, 50),
-(1, 'Fanta', 2, 55),
-(2, 'Cerveza', 1.5, 60),
-(3, 'Jamon', 50, 1),
-(4, 'Galletitas', 1, 70);
+INSERT INTO `consumibles` (`idConsumible`, `Nombre`, `Cantidad`, `Precio`) VALUES
+(0, 'Coca-cola', 50, 2),
+(1, 'Fanta', 55, 2),
+(2, 'Cerveza', 60, 1.5),
+(3, 'Jamon', 1, 50),
+(4, 'Galletitas', 70, 1);
 
 -- --------------------------------------------------------
 
