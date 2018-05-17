@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -222,10 +225,22 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        try {
+            VentanaPedido p=new VentanaPedido();
+            p.setVisible(true);
+            
+            
+// TODO add your handling code here:
+        
 //        VentanaPedido vp = new VentanaPedido();
 //        this.setVisible(false);
 //        vp.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
