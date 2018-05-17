@@ -24,6 +24,7 @@ public class annadirConsumible extends javax.swing.JDialog {
     public annadirConsumible(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Añadir Consumible");
     }
 
     /**

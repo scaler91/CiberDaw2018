@@ -40,6 +40,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         ccc = new controlCibercafe();
 
         initComponents();
+        setTitle("Pedidos");
         annadirComboBox();
     }
 

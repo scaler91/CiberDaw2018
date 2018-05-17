@@ -23,7 +23,7 @@ public class ProgramasV extends javax.swing.JFrame {
         initComponents();
         iconLogo = new ImageIcon("imagenes/firefox.png");
         jLabel1.setIcon(iconLogo);
-
+        setTitle("Programas");
     }
 
     /**

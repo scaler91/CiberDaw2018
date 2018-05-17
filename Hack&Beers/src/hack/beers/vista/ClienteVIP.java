@@ -35,6 +35,7 @@ public class ClienteVIP extends javax.swing.JFrame {
 
 
         initComponents();
+        setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
 
