@@ -16,6 +16,7 @@ public class AdministradorV extends javax.swing.JFrame {
      */
     public AdministradorV() {
         initComponents();
+        setTitle("Administerador");
     }
 
     /**
