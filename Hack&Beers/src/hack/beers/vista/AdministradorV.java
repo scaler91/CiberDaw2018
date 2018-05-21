@@ -9,14 +9,14 @@ package hack.beers.vista;
  *
  * @author Alumno
  */
-public class AdministradorV extends javax.swing.JDialog {
+public class AdministradorV extends javax.swing.JFrame {
 
     /**
-     * Creates new form Administrador
+     * Creates new form AdministradoV2
      */
-    public AdministradorV(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public AdministradorV() {
         initComponents();
+        setTitle("Administerador");
     }
 
     /**
@@ -28,10 +28,9 @@ public class AdministradorV extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Usuario = new javax.swing.JLabel();
-        Fecha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         inventario = new javax.swing.JButton();
@@ -39,16 +38,12 @@ public class AdministradorV extends javax.swing.JDialog {
         almacenamiento = new javax.swing.JButton();
         añadir = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
+        Usuario = new javax.swing.JLabel();
         delete = new javax.swing.JButton();
+        Fecha = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Administrador");
-
-        Usuario.setText("Administrador:");
-
-        Fecha.setText("01/01/1990");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,6 +67,14 @@ public class AdministradorV extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        cerrar.setText("X");
+        cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Pedidos:");
 
@@ -108,18 +111,14 @@ public class AdministradorV extends javax.swing.JDialog {
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        Usuario.setText("Administrador:");
+
         delete.setText("Borrar");
         delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel2.setText("Gestion  Usuarios");
+        Fecha.setText("01/01/1990");
 
-        cerrar.setText("X");
-        cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Gestion  Usuarios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,7 +145,7 @@ public class AdministradorV extends javax.swing.JDialog {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cerrar)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -172,7 +171,7 @@ public class AdministradorV extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(almacenamiento)
                         .addComponent(inventario)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -193,21 +192,21 @@ public class AdministradorV extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
+    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmarPedidoActionPerformed
+    }//GEN-LAST:event_cerrarActionPerformed
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inventarioActionPerformed
 
+    private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmarPedidoActionPerformed
+
     private void almacenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_almacenamientoActionPerformed
-
-    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,18 +235,13 @@ public class AdministradorV extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AdministradorV dialog = new AdministradorV(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new AdministradorV().setVisible(true);
             }
         });
     }

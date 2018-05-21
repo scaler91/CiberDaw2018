@@ -24,6 +24,7 @@ public class annadirConsumible extends javax.swing.JDialog {
     public annadirConsumible(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Añadir Consumible");
     }
 
     /**
@@ -47,6 +48,12 @@ public class annadirConsumible extends javax.swing.JDialog {
         jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("ID:");
 
@@ -131,6 +138,10 @@ public class annadirConsumible extends javax.swing.JDialog {
 
         dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     public int getId() {
         return id;

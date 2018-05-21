@@ -76,10 +76,10 @@ public abstract class Persona {
      * @throws SQLException
      */
     
-    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
-        boolean conexionCorrecta = false;
-        return conexionCorrecta;
-    }
+//    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
+//        boolean conexionCorrecta = false;
+//        return conexionCorrecta;
+//    }
 
     
 //    /**

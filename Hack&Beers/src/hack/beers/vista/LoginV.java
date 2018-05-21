@@ -5,11 +5,18 @@
  */
 package hack.beers.vista;
 
-import com.mysql.jdbc.jmx.LoadBalanceConnectionGroupManager;
 import java.awt.Window;
 import hack.beers.Persona;
 import hack.beers.Usuario;
 import hack.beers.Administrador;
+import hack.beers.conexion.ConexionBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -117,7 +124,7 @@ public class LoginV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -128,6 +135,87 @@ public class LoginV extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        String usuarioID = jTextField1.getText();
+        char [] contraseña = jPasswordField1.getPassword();
+        
+        boolean vip=false;
+        
+        try {
+            ConexionBD.crearConexion();
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ResultSet validarContraseña = null;
+        ResultSet validarUsuario = null;
+        
+        //Sacar la contraseña del array de CHARS
+        String contraseñaCompleta = "";
+        for(int i=0;i<contraseña.length;i++){
+            contraseñaCompleta=contraseñaCompleta+contraseña[i];
+        }
+        
+        //PARTE USUARIO
+        //Comprobar contraseña
+        try {
+            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+                    "select Contraseña from usuarios where Contraseña = `" + contraseñaCompleta + "`");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Comprobar usuario
+        try {
+            validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
+                    "select dni from usuarios where dni = `" + usuarioID + "`" + "and Contraseña = `" + contraseñaCompleta + "`");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (validarContraseña.toString() == contraseñaCompleta && validarUsuario.toString() == usuarioID) {
+            ResultSet validarVIP;
+            try {
+                validarVIP = ConexionBD.instancia().getStatement().executeQuery(
+                        "select vip from usuarios where dni = `" + usuarioID + "`" + "and Contraseña = `" + contraseñaCompleta + "`");
+                
+                if(validarVIP.getBoolean(5) == vip){
+                    ClienteV cn = new ClienteV();
+                    cn.setVisible(true);
+                    this.setVisible(false);
+                }
+                else{
+                    ClienteVIP cv = new ClienteVIP();
+                    cv.setVisible(true);
+                    this.setVisible(false);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ErrorConexionBD ex) {
+                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        //PARTE ADMINISTRADOR
+       
+        //Comprobar contraseña
+        try {
+            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+                    "select Contraseña from administradores where Contraseña = `"+contraseñaCompleta+"`");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Comprobar administrador
+        ResultSet validarAdmin = null;
+        try {
+            validarAdmin = ConexionBD.instancia().getStatement().executeQuery(
+                    "select dni from administradores where dni = `"+usuarioID+"` and Contraseña = `"+contraseñaCompleta+"`");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(validarContraseña.toString()==contraseñaCompleta&&validarAdmin.toString()==usuarioID){
+            AdministradorV admin = new AdministradorV();
+            admin.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
