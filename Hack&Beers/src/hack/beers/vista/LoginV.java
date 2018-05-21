@@ -156,21 +156,23 @@ public class LoginV extends javax.swing.JFrame {
         }
         
         //PARTE USUARIO
-        //Comprobar contraseña
-        try {
-            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-                    "select Contraseña from usuarios where Contraseña = `" + contraseñaCompleta + "`");
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         //Comprobar usuario
         try {
             validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
-                    "select dni from usuarios where dni = `" + usuarioID + "`" + "and Contraseña = `" + contraseñaCompleta + "`");
+                    "select dni from usuarios where Contraseña = `" + contraseñaCompleta + "`" /*+ "and Contraseña = `" + contraseñaCompleta + "`"*/);
         } catch (SQLException ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (validarContraseña.toString() == contraseñaCompleta && validarUsuario.toString() == usuarioID) {
+        //Comprobar contraseña
+        try {
+            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+                    "select Contraseña from usuarios where dni = `" + usuarioID + "`");
+            System.out.println(validarContraseña.getString(0));
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (validarContraseña.toString().equals(contraseñaCompleta) && validarUsuario.toString().equals(usuarioID)) {
             ResultSet validarVIP;
             try {
                 validarVIP = ConexionBD.instancia().getStatement().executeQuery(
