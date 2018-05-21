@@ -23,15 +23,18 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author Alumno
  */
 public class LoginV extends javax.swing.JFrame {
-    
+
+    Persona persona;
+    Usuario u;
+    Administrador a;
+
     /**
      * Creates new form Login
      */
     public LoginV() {
+
         initComponents();
-        
-        
-        
+
     }
 
     /**
@@ -124,7 +127,7 @@ public class LoginV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -134,89 +137,104 @@ public class LoginV extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         String usuarioID = jTextField1.getText();
-        char [] contraseña = jPasswordField1.getPassword();
+        char[] contraseña = jPasswordField1.getPassword();
+
         
-        boolean vip=false;
-        
+
         try {
             ConexionBD.crearConexion();
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ResultSet validarContraseña = null;
         ResultSet validarUsuario = null;
-        
+
         //Sacar la contraseña del array de CHARS
         String contraseñaCompleta = "";
-        for(int i=0;i<contraseña.length;i++){
-            contraseñaCompleta=contraseñaCompleta+contraseña[i];
+        for (int i = 0; i < contraseña.length; i++) {
+            contraseñaCompleta = contraseñaCompleta + contraseña[i];
         }
-        
+
         //PARTE USUARIO
-        
         //Comprobar usuario
         try {
             validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
-                    "select dni from usuarios where Contraseña = `" + contraseñaCompleta + "`" /*+ "and Contraseña = `" + contraseñaCompleta + "`"*/);
+                    "select dni from usuarios where dni = '" + usuarioID + "'" /*+ "and Contraseña = `" + contraseñaCompleta + "`"*/);
         } catch (SQLException ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
+//          try {
+//              persona.crearPersona(new Persona(validarUsuario.getString(1),validarUsuario.getString(2),validarUsuario.getString(3), validarUsuario.getString(4)));
+//          } catch (SQLException ex) {
+//              Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+
+//            try {
+//              u = new Usuario(validarUsuario.getString(1),validarUsuario.getString(2),validarUsuario.getString(3), validarUsuario.getString(4), validarUsuario.getBoolean(5));
+//            } catch (SQLException ex) {
+//                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+//            
+//          }
         //Comprobar contraseña
+//        try {
+//            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
+//                    "select Contraseña from usuarios where dni = `" + usuarioID + "`");
+//            System.out.println(validarContraseña.getString(0));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        ResultSet validarVIP;
         try {
-            validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-                    "select Contraseña from usuarios where dni = `" + usuarioID + "`");
-            System.out.println(validarContraseña.getString(0));
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (validarContraseña.toString().equals(contraseñaCompleta) && validarUsuario.toString().equals(usuarioID)) {
-            ResultSet validarVIP;
-            try {
-                validarVIP = ConexionBD.instancia().getStatement().executeQuery(
-                        "select vip from usuarios where dni = `" + usuarioID + "`" + "and Contraseña = `" + contraseñaCompleta + "`");
+            if (validarUsuario.getString(1).equals(usuarioID)) {
                 
-                if(validarVIP.getBoolean(5) == vip){
-                    ClienteV cn = new ClienteV();
-                    cn.setVisible(true);
-                    this.setVisible(false);
+                try {
+                    validarVIP = ConexionBD.instancia().getStatement().executeQuery(
+                            "select vip from usuarios where dni = '" + usuarioID + "'"/* + "and Contraseña = `" + contraseñaCompleta + "`"*/);
+                    System.out.println(validarVIP.getInt(1));
+                    if (validarVIP.getInt(0) == 0) {
+                        ClienteV cn = new ClienteV();
+                        cn.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        ClienteVIP cv = new ClienteVIP();
+                        cv.setVisible(true);
+                        this.setVisible(false);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                else{
-                    ClienteVIP cv = new ClienteVIP();
-                    cv.setVisible(true);
-                    this.setVisible(false);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ErrorConexionBD ex) {
-                Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
-        
-        //PARTE ADMINISTRADOR
-       
-        //Comprobar contraseña
-        try {
+            
+            /*
+            //PARTE ADMINISTRADOR
+            
+            //Comprobar contraseña
+            try {
             validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-                    "select Contraseña from administradores where Contraseña = `"+contraseñaCompleta+"`");
-        } catch (SQLException ex) {
+            "select Contraseña from administradores where Contraseña = `"+contraseñaCompleta+"`");
+            } catch (SQLException ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Comprobar administrador
-        ResultSet validarAdmin = null;
-        try {
+            }
+            //Comprobar administrador
+            ResultSet validarAdmin = null;
+            try {
             validarAdmin = ConexionBD.instancia().getStatement().executeQuery(
-                    "select dni from administradores where dni = `"+usuarioID+"` and Contraseña = `"+contraseñaCompleta+"`");
-        } catch (SQLException ex) {
+            "select dni from administradores where dni = `"+usuarioID+"` and Contraseña = `"+contraseñaCompleta+"`");
+            } catch (SQLException ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(validarContraseña.toString()==contraseñaCompleta&&validarAdmin.toString()==usuarioID){
+            }
+            if(validarContraseña.toString()==contraseñaCompleta&&validarAdmin.toString()==usuarioID){
             AdministradorV admin = new AdministradorV();
             admin.setVisible(true);
             this.setVisible(false);
+            }*/
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

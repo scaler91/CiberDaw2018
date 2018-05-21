@@ -19,17 +19,20 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class Usuario extends Persona {
 
-    private boolean VIP;
+    private int VIP;
     private LinkedList registroConexiones;
 
-    public Usuario(String nombre, String apellidos, String DNI, String contraseña, boolean VIP) {
+    public Usuario(String nombre, String apellidos, String DNI, String contraseña, int VIP) {
         super(nombre, apellidos, DNI, contraseña);
         this.VIP = VIP;
 
         registroConexiones = new LinkedList();
     }
 
-    public boolean isVIP() {
+    
+    
+
+    public int isVIP() {
         return VIP;
     }
 
@@ -37,7 +40,7 @@ public class Usuario extends Persona {
         return registroConexiones;
     }
 
-    public void setVIP(boolean VIP) {
+    public void setVIP(int VIP) {
         this.VIP = VIP;
     }
 

@@ -17,7 +17,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
  *
  * @author alxayu97
  */
-public abstract class Persona {
+public class Persona {
 
     String DNI;
     private String nombre;
@@ -65,6 +65,9 @@ public abstract class Persona {
         this.contraseña = contraseña;
     }
 
+    public Persona crearPersona(Persona p){
+        return p;
+    }
     //MÉTODOS
 
     /**
