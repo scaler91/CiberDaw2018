@@ -36,6 +36,17 @@ public class ConexionBD {
         return conn;
     }
     
+    //ESTO ES LO QUE HE AÑADIDO
+    public static Connection getConnectio() throws ClassNotFoundException, SQLException{
+        Connection cn = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            cn = DriverManager.getConnection("jdb");
+        } catch (Exception e){  
+        }
+        return cn;
+    }
+    
     public Statement getStatement() {
         return stmt;
     }
