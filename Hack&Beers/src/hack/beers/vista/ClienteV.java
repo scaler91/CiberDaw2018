@@ -5,6 +5,7 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,9 +36,10 @@ public class ClienteV extends javax.swing.JFrame {
     /**
      * Creates new form Cliente
      */
-    public ClienteV() throws ErrorConexionBD {
+    public ClienteV() throws ErrorConexionBD, SQLException {
         
         controlCibercafe ccc = new controlCibercafe();
+        Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
         // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
             @Override
@@ -78,10 +80,11 @@ public class ClienteV extends javax.swing.JFrame {
         timer.start();
 
         initComponents();
+        
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");
-
+        jLabel2.setText(u.getNombre());
     }
 
     public void fin() {
@@ -345,7 +348,7 @@ public class ClienteV extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ClienteV().setVisible(true);
-                } catch (ErrorConexionBD ex) {
+                } catch (ErrorConexionBD | SQLException ex) {
                     Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

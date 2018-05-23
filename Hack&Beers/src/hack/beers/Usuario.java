@@ -29,6 +29,18 @@ public class Usuario extends Persona {
         registroConexiones = new LinkedList();
     }
 
+    public int getVIP() {
+        return VIP;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
     
     
 
