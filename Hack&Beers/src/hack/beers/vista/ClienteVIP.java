@@ -276,7 +276,11 @@ public class ClienteVIP extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteVIP().setVisible(true);
+               try {
+                    new ClienteV().setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
