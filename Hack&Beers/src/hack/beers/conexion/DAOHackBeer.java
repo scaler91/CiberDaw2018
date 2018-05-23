@@ -6,6 +6,7 @@ package hack.beers.conexion;
 
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
+import hack.beers.vista.AdministradorV;
 import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
 import java.sql.ResultSet;
@@ -46,13 +47,15 @@ public class DAOHackBeer {
      * @throws ErrorConexionBD
      */
     public void pedirUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD{
-        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM `usuarios`");
-        while (rs.next()) {
-            String dni = rs.getString(1);
-            String nombre = rs.getString(2);
-            String apellidos = rs.getString(3);
-            String contraseñaU = rs.getString(4);
-            int vip = rs.getInt(5);
+        int contador=0;
+        if(contador==0){
+        ResultSet rsu = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM `usuarios`");
+        while (rsu.next()) {
+            String dni = rsu.getString(1);
+            String nombre = rsu.getString(2);
+            String apellidos = rsu.getString(3);
+            String contraseñaU = rsu.getString(4);
+            int vip = rsu.getInt(5);
             if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                 //JOptionPane.showMessageDialog(this, "Bienvenido: " + nombre + " " + apellidos);
                 if (vip == 1) {
@@ -64,7 +67,25 @@ public class DAOHackBeer {
                 }
             } else {
                 // JOptionPane.showMessageDialog(this, "Contraseña o usuario incorrectos");
+                contador++;
             }
+        }
+        if(contador==1){
+            ResultSet rsa = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM `administradores`");
+        while (rsa.next()) {
+            String dni = rsa.getString(1);
+            String nombre = rsa.getString(2);
+            String apellidos = rsa.getString(3);
+            String contraseñaU = rsa.getString(4);
+            if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
+                AdministradorV adm = new AdministradorV();
+                adm.setVisible(true);
+            }
+            else{
+                contador--;
+            }
+            }
+        }
         }
     }
 }
