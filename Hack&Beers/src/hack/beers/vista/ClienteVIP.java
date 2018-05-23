@@ -22,9 +22,9 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class ClienteVIP extends javax.swing.JFrame {
 
-    LoginV v = new LoginV();
+    LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
-    
+
 // Import ImageIcon     
     ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
 
@@ -32,7 +32,6 @@ public class ClienteVIP extends javax.swing.JFrame {
      * Creates new form Cliente
      */
     public ClienteVIP() {
-
 
         initComponents();
         setTitle("Eres el puto AMO!!");
@@ -204,7 +203,14 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            v = new LoginV();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ConexionBD.desconectar();
         this.setVisible(false);
         v.setVisible(true);
@@ -218,15 +224,12 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        
+
         try {
-            VentanaPedido p=new VentanaPedido();
+            VentanaPedido p = new VentanaPedido();
             p.setVisible(true);
-            
-            
+
 // TODO add your handling code here:
-        
 //        VentanaPedido vp = new VentanaPedido();
 //        this.setVisible(false);
 //        vp.setVisible(true);
@@ -235,7 +238,7 @@ public class ClienteVIP extends javax.swing.JFrame {
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

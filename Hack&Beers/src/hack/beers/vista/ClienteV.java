@@ -23,7 +23,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class ClienteV extends javax.swing.JFrame {
 
-    LoginV v = new LoginV();
+    LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
     int tiempo = 60000 /*500000*/;
@@ -36,6 +36,7 @@ public class ClienteV extends javax.swing.JFrame {
      * Creates new form Cliente
      */
     public ClienteV() throws ErrorConexionBD {
+        
         controlCibercafe ccc = new controlCibercafe();
         // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
@@ -59,6 +60,13 @@ public class ClienteV extends javax.swing.JFrame {
                 }
                 if ("0:00".equals(jLabel7.getText())) {
                     ConexionBD.desconectar();
+                    try {
+                        v=new LoginV();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     v.setVisible(true);
                     fin();
                 }
@@ -269,7 +277,14 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConexionBD.desconectar();
         this.setVisible(false);
-        LoginV v = new LoginV();
+        try {
+            LoginV v;
+            v = new LoginV();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
