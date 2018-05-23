@@ -66,6 +66,8 @@ public class ClienteV extends javax.swing.JFrame {
                         Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
                         Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ErrorConexionBD ex) {
+                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     v.setVisible(true);
                     fin();
@@ -283,6 +285,8 @@ public class ClienteV extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
         v.setVisible(true);

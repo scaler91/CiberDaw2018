@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -32,7 +33,7 @@ public class HackBeers extends JFrame {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, ErrorConexionBD {
         // TODO code application logic here
         new HackBeers();
         LoginV log = new LoginV();
