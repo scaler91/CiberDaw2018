@@ -29,4 +29,8 @@ public class controlCibercafe {
     public void verConsumible(Inventario i) throws SQLException {
         DAOHackBeer.instancia().verConsumible(i);
     }
+    
+    public void verUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD{
+        DAOHackBeer.instancia().pedirUsuarios(usuario, contraseña);
+    }
 }

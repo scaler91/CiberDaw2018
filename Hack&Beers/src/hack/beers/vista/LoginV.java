@@ -9,12 +9,11 @@ import hack.beers.Persona;
 import hack.beers.Usuario;
 import hack.beers.Administrador;
 import hack.beers.conexion.ConexionBD;
+import hack.beers.conexion.DAOHackBeer;
+import hack.beers.controlCibercafe;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,14 +29,18 @@ public class LoginV extends javax.swing.JFrame {
     Persona persona;
     Usuario u;
     Administrador a;
+    controlCibercafe ccc;
 
     /**
      * Creates new form Login
+     *
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public LoginV() throws ClassNotFoundException, SQLException {
-        
-        initComponents();
+    public LoginV() throws ClassNotFoundException, SQLException, ErrorConexionBD {
 
+        initComponents();
+        ccc = new controlCibercafe();
     }
 
     /**
@@ -141,45 +144,42 @@ public class LoginV extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        String usuario = jTextField1.getText();
-        String contraseña = jPasswordField1.getText();
-        
-        
-        
-        
         try {
-            String mysql = "SELECT * from usuarios";
-            PreparedStatement pstm = cn.prepareStatement(mysql);
-            ResultSet rs = pstm.executeQuery();
-            while(rs.next()){
-                String dni = rs.getString(1);
-                String nombre = rs.getString(2);
-                String apellidos = rs.getString(3);
-                String contraseñaU = rs.getString(4);
-                int vip = rs.getInt(5);
-                if(usuario.equals(dni) && contraseña.equals(contraseñaU)){
-                    JOptionPane.showMessageDialog(this, "Bienvenido: " + nombre + " " + apellidos);
-                    if(vip == 1){
-                        ClienteVIP cliNuV = new ClienteVIP();
-                        cliNuV.setVisible(true);
-                    }else{
-                        ClienteV cliNu = new ClienteV();
-                        cliNu.setVisible(true);
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(this, "Contraseña o usuario incorrectos");
-                }  
-            }
-        } catch(Exception e){
-            
-        }
-        
-        
-        
+            String usuario = jTextField1.getText();
+            String contraseña = jPasswordField1.getText();
+            ccc.verUsuarios(usuario, contraseña);
+
+//        try {
+//            String mysql = "SELECT * FROM `usuarios`";
+//peta aqui
+//            PreparedStatement pstm = cn.prepareStatement(mysql);
+//            ResultSet rs = dao.pedirUsuarios();
+//            while(rs.next()){
+//                String dni = rs.getString(1);
+//                String nombre = rs.getString(2);
+//                String apellidos = rs.getString(3);
+//                String contraseñaU = rs.getString(4);
+//                int vip = rs.getInt(5);
+//                if(usuario.equals(dni) && contraseña.equals(contraseñaU)){
+//                    JOptionPane.showMessageDialog(this, "Bienvenido: " + nombre + " " + apellidos);
+//                    if(vip == 1){
+//                        ClienteVIP cliNuV = new ClienteVIP();
+//                        cliNuV.setVisible(true);
+//                    }else{
+//                        ClienteV cliNu = new ClienteV();
+//                        cliNu.setVisible(true);
+//                    }
+//                }else{
+//                    JOptionPane.showMessageDialog(this, "Contraseña o usuario incorrectos");
+//                }  
+//            }
+//        } catch(Exception e){
+//            
+//        }
 //        String usuarioID = jTextField1.getText();
 //        char[] contraseña = jPasswordField1.getPassword();
 //
-//        
+//
 //
 //        try {
 //            ConexionBD.crearConexion();
@@ -274,6 +274,11 @@ public class LoginV extends javax.swing.JFrame {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -314,8 +319,10 @@ public class LoginV extends javax.swing.JFrame {
                     Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             }
         });
     }
