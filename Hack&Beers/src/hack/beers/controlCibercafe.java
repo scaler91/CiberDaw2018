@@ -22,8 +22,8 @@ public class controlCibercafe {
         ConexionBD.crearConexion();
     }
 
-    public void annadirConsumible(Consumible c) throws SQLException {
-        DAOHackBeer.instancia().annadirConsumible(c);
+    public void annadirConsumibles(Consumible c) throws SQLException, ErrorConexionBD {
+        DAOHackBeer.instancia().annadirConsumibles(c);
     }
 
     public void verConsumible(Inventario i) throws SQLException {
@@ -33,6 +33,18 @@ public class controlCibercafe {
     public void verUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD{
         DAOHackBeer.instancia().pedirUsuarios(usuario, contraseña);
     }
+    
+    public Usuario verDatosUsuario() throws SQLException{
+    return DAOHackBeer.instancia().verDatosUsuario();
+    }
+    
+    public String getUsuario(Usuario u){
+        String usuario = u.getNombre();
+        return usuario;
+    }
+    
+    
+    /*
     public static String getNombre() throws SQLException{
         return DAOHackBeer.instancia().getNombre();
     }
@@ -48,5 +60,6 @@ public class controlCibercafe {
     public static int getVip() throws SQLException{
         return DAOHackBeer.instancia().getVip();
     }
+*/
     
 }

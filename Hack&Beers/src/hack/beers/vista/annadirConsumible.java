@@ -5,12 +5,21 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Consumible;
+import hack.beers.controlCibercafe;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
+
 /**
  *
  * @author Alumno
  */
 public class annadirConsumible extends javax.swing.JDialog {
 
+    controlCibercafe ccc;
+    
     private int id;
     private String nombre;
     private int cantidad;
@@ -21,9 +30,10 @@ public class annadirConsumible extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public annadirConsumible(java.awt.Frame parent, boolean modal) {
+    public annadirConsumible(java.awt.Frame parent, boolean modal) throws ErrorConexionBD {
         super(parent, modal);
         initComponents();
+        ccc = new controlCibercafe();
         setTitle("Añadir Consumible");
     }
 
@@ -129,14 +139,24 @@ public class annadirConsumible extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
-
-        id = Integer.parseInt(jTextField1.getText());
-        nombre = jTextField2.getText();
-        cantidad = Integer.parseInt(jTextField3.getText());
-        precio = Double.parseDouble(jTextField4.getText());
-
-        dispose();
+        try {
+            // TODO add your handling code here:
+            
+            id = Integer.parseInt(jTextField1.getText());
+            nombre = jTextField2.getText();
+            cantidad = Integer.parseInt(jTextField3.getText());
+            precio = Double.parseDouble(jTextField4.getText());
+            
+            Consumible c = new Consumible(id, nombre, cantidad, precio);
+            
+            ccc.annadirConsumibles(c);
+            
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(annadirConsumible.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(annadirConsumible.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -189,14 +209,18 @@ public class annadirConsumible extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                annadirConsumible dialog = new annadirConsumible(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                try {
+                    annadirConsumible dialog = new annadirConsumible(new javax.swing.JFrame(), true);
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(annadirConsumible.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

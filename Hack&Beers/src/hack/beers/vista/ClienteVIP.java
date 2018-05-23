@@ -35,7 +35,7 @@ public class ClienteVIP extends javax.swing.JFrame {
      */
     public ClienteVIP() throws ErrorConexionBD, SQLException {
         controlCibercafe ccc = new controlCibercafe();
-        Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
+        Usuario u = ccc.verDatosUsuario();
         initComponents();
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);

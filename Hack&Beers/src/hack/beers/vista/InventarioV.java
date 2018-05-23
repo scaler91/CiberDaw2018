@@ -115,15 +115,14 @@ public class InventarioV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void annadirConsumibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annadirConsumibleActionPerformed
-        // TODO add your handling code here:
-        annadirConsumible ac = new annadirConsumible(this, true);
-        ac.setVisible(true);
-        Consumible c = new Consumible(ac.getId(), ac.getNombre(), ac.getCantidad(), ac.getPrecio());
         try {
-            ccc.annadirConsumible(c);
-        } catch (SQLException ex) {
+            // TODO add your handling code here:
+            annadirConsumible ac = new annadirConsumible(this, true);
+            ac.setVisible(true);
+        } catch (ErrorConexionBD ex) {
             Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_annadirConsumibleActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed

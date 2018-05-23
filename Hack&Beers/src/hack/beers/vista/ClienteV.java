@@ -39,8 +39,13 @@ public class ClienteV extends javax.swing.JFrame {
     public ClienteV() throws ErrorConexionBD, SQLException {
         
         controlCibercafe ccc = new controlCibercafe();
-        Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
-        // In init() method write this code
+        
+        Usuario u = ccc.verDatosUsuario();
+        
+       // Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
+        
+
+    // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
