@@ -280,6 +280,8 @@ public class ClienteVIP extends javax.swing.JFrame {
                     new ClienteV().setVisible(true);
                 } catch (ErrorConexionBD ex) {
                     Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
