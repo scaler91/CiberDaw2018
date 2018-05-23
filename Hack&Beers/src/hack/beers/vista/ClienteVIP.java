@@ -5,12 +5,14 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
+import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +33,14 @@ public class ClienteVIP extends javax.swing.JFrame {
     /**
      * Creates new form Cliente
      */
-    public ClienteVIP() {
-
+    public ClienteVIP() throws ErrorConexionBD, SQLException {
+        controlCibercafe ccc = new controlCibercafe();
+        Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
         initComponents();
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
+        jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
 
     }
 
@@ -276,7 +280,7 @@ public class ClienteVIP extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               try {
+                try {
                     new ClienteV().setVisible(true);
                 } catch (ErrorConexionBD ex) {
                     Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);

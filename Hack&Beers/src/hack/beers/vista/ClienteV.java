@@ -27,7 +27,7 @@ public class ClienteV extends javax.swing.JFrame {
     LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
-    int tiempo = 60000 /*500000*/;
+    int tiempo = 500000;
     int minuto = tiempo / 60000;
     int segundo = tiempo % 60000;
 // Import ImageIcon     
@@ -84,7 +84,7 @@ public class ClienteV extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");
-        jLabel2.setText(u.getNombre());
+        jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
     }
 
     public void fin() {
