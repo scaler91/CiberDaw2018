@@ -21,7 +21,6 @@ public class DAOHackBeer {
     static DAOHackBeer instancia = null;
     Usuario u;
     Administrador a;
-
     //VAYA COJONAZOS 
     /*
     String dni;
@@ -89,27 +88,19 @@ public class DAOHackBeer {
                 contraseñaU = rs.getString(4);
                 vip = rs.getInt(5);
 
-                System.out.println("aaaaa");
-
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
-
-                System.out.println(usuario + " " + dni);
-                System.out.println(contraseña + " " + contraseñaU);
 
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-                    System.out.println("bienvenido");
+
                     if (vip == 1) {
-                        System.out.println("hehe");
                         ClienteVIP cliNuV = new ClienteVIP();
                         cliNuV.setVisible(true);
                     } else {
-                        System.out.println("hihi");
                         ClienteV cliNu = new ClienteV();
                         cliNu.setVisible(true);
                     }
                 } else {
-                    System.out.println("holiiii");
                     JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     contador++;
                 }
@@ -119,20 +110,23 @@ public class DAOHackBeer {
         if (contador == 1) {
             ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'");
             while (rs.next()) {
-                System.out.println("hola");
+
                 dni = rs.getString(1);
                 nombre = rs.getString(2);
                 apellidos = rs.getString(3);
                 contraseñaU = rs.getString(4);
-                System.out.println("hola 2");
+
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
+                    a = new Administrador(nombre, apellidos, dni, contraseñaU);
                     AdministradorV adm = new AdministradorV();
+                    
                     adm.setVisible(true);
                 } else {
                     contador--;
                 }
             }
-        }
+        } 
+        
     }
 
 
