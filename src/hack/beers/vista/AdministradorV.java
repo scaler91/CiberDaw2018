@@ -7,12 +7,8 @@ package hack.beers.vista;
 
 import hack.beers.Administrador;
 import hack.beers.controlCibercafe;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.util.calendar.BaseCalendar;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
