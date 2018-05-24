@@ -4,6 +4,7 @@
  */
 package hack.beers.conexion;
 
+import hack.beers.Administrador;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Usuario;
@@ -20,7 +21,7 @@ public class DAOHackBeer {
 
     static DAOHackBeer instancia = null;
     Usuario u;
-
+    Administrador a;
     //VAYA COJONAZOS 
     /*
     String dni;
@@ -30,7 +31,6 @@ public class DAOHackBeer {
     int vip;
      */
     ///////////////
-    
     public static DAOHackBeer instancia() {
         if (instancia == null) {
             instancia = new DAOHackBeer();
@@ -39,16 +39,16 @@ public class DAOHackBeer {
     }
 
     public void annadirConsumibles(Consumible c) throws SQLException, ErrorConexionBD {
-        
-        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles where idConsumible="+c.getId());
-        
-        if (rs.next()){
-        JOptionPane.showMessageDialog(null, "El ID del Consumible introducido ya está siendo usado.");
+
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles where idConsumible=" + c.getId());
+
+        if (rs.next()) {
+            JOptionPane.showMessageDialog(null, "El ID del Consumible introducido ya está siendo usado.");
         } else {
-        ConexionBD.instancia().getStatement().execute(
-                "INSERT INTO consumibles VALUES (" + c.getId() + ", '" + c.getNombre() + "', " + c.getPrecio() + ", " + c.getCantidad() + ")"
-        );
-        JOptionPane.showMessageDialog(null, "Consumible introducido.");
+            ConexionBD.instancia().getStatement().execute(
+                    "INSERT INTO consumibles VALUES (" + c.getId() + ", '" + c.getNombre() + "', " + c.getPrecio() + ", " + c.getCantidad() + ")"
+            );
+            JOptionPane.showMessageDialog(null, "Consumible introducido.");
         }
     }
 
@@ -80,61 +80,56 @@ public class DAOHackBeer {
         if (contador == 0) {
             ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                     "SELECT * FROM usuarios WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'"
-            ) ;
-            
+            );
+
             while (rs.next()) {
                 dni = rs.getString(1);
                 nombre = rs.getString(2);
                 apellidos = rs.getString(3);
                 contraseñaU = rs.getString(4);
                 vip = rs.getInt(5);
-                
-                System.out.println("aaaaa");
-                
+
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
-                
-                System.out.println(usuario + " " + dni);
-                System.out.println(contraseña + " " + contraseñaU);
-                
+
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-                    System.out.println("bienvenido");
+
                     if (vip == 1) {
-                        System.out.println("hehe");
                         ClienteVIP cliNuV = new ClienteVIP();
                         cliNuV.setVisible(true);
                     } else {
-                        System.out.println("hihi");
                         ClienteV cliNu = new ClienteV();
                         cliNu.setVisible(true);
                     }
                 } else {
-                    System.out.println("holiiii");
                     JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     contador++;
                 }
             }
-            contador ++;
+            contador++;
         }
         if (contador == 1) {
-               ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'");
-                while (rs.next()) {
-                    System.out.println("hola");
-                    dni = rs.getString(1);
-                    nombre = rs.getString(2);
-                    apellidos = rs.getString(3);
-                    contraseñaU = rs.getString(4);
-                    System.out.println("hola 2");
-                    if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
-                        AdministradorV adm = new AdministradorV();
-                        adm.setVisible(true);
-                    } else {
-                        contador--;
-                    }
+            ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'");
+            while (rs.next()) {
+
+                dni = rs.getString(1);
+                nombre = rs.getString(2);
+                apellidos = rs.getString(3);
+                contraseñaU = rs.getString(4);
+
+                if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
+                    a = new Administrador(nombre, apellidos, dni, contraseñaU);
+                    AdministradorV adm = new AdministradorV();
+                    
+                    adm.setVisible(true);
+                } else {
+                    contador--;
                 }
             }
-        }
-    
+        } 
+        
+    }
+
 
     /*
     public String getDni() {
