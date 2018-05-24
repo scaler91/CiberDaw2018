@@ -96,7 +96,7 @@ public class DAOHackBeer {
                 System.out.println(usuario + " " + dni);
                 System.out.println(contraseña + " " + contraseñaU);
                 
-                if (usuario.equals(dni) && contraseña.equals(contraseñaU) && (vip<=1)) {
+                if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
                     System.out.println("bienvenido");
                     if (vip == 1) {
