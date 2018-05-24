@@ -22,6 +22,7 @@ public class DAOHackBeer {
     static DAOHackBeer instancia = null;
     Usuario u;
     Administrador a;
+
     //VAYA COJONAZOS 
     /*
     String dni;
@@ -90,7 +91,7 @@ public class DAOHackBeer {
                 vip = rs.getInt(5);
 
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
-
+                contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
 
@@ -101,14 +102,12 @@ public class DAOHackBeer {
                         ClienteV cliNu = new ClienteV();
                         cliNu.setVisible(true);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
-                    contador++;
                 }
             }
             contador++;
         }
         if (contador == 1) {
+            contador--;
             ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'");
             while (rs.next()) {
 
@@ -120,14 +119,15 @@ public class DAOHackBeer {
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     a = new Administrador(nombre, apellidos, dni, contraseñaU);
                     AdministradorV adm = new AdministradorV();
-                    
                     adm.setVisible(true);
-                } else {
-                    contador--;
+                    contador++;
                 }
             }
-        } 
-        
+        }
+        if (contador == 0) {
+            JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
+        }
+
     }
 
 
