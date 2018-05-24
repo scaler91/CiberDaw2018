@@ -7,8 +7,12 @@ package hack.beers.vista;
 
 import hack.beers.Administrador;
 import hack.beers.controlCibercafe;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.util.calendar.BaseCalendar;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -19,11 +23,15 @@ public class AdministradorV extends javax.swing.JFrame {
 
     /**
      * Creates new form AdministradoV2
+     *
+     * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public AdministradorV() throws ErrorConexionBD {
         controlCibercafe ccc = new controlCibercafe();
         Administrador a = ccc.verDatosAdministrador();
+
         initComponents();
+
         setTitle("Administerador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
     }
