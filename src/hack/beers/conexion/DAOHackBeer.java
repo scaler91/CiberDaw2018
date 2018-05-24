@@ -11,7 +11,6 @@ import hack.beers.Usuario;
 import hack.beers.vista.AdministradorV;
 import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
-import hack.beers.vista.annadirConsumible;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -154,6 +153,10 @@ public class DAOHackBeer {
      */
     public Usuario verDatosUsuario() throws SQLException {
         return u;
+    }
+
+    public Administrador verDatosAdministrador() {
+        return a;
     }
 
 }
