@@ -5,6 +5,12 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Administrador;
+import hack.beers.controlCibercafe;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
+
 /**
  *
  * @author Alumno
@@ -14,9 +20,12 @@ public class AdministradorV extends javax.swing.JFrame {
     /**
      * Creates new form AdministradoV2
      */
-    public AdministradorV() {
+    public AdministradorV() throws ErrorConexionBD {
+        controlCibercafe ccc = new controlCibercafe();
+        Administrador a = ccc.verDatosAdministrador();
         initComponents();
         setTitle("Administerador");
+        jLabel2.setText(a.getNombre() + " " + a.getApellidos());
     }
 
     /**
@@ -42,6 +51,7 @@ public class AdministradorV extends javax.swing.JFrame {
         delete = new javax.swing.JButton();
         Fecha = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabelNombreAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +130,8 @@ public class AdministradorV extends javax.swing.JFrame {
 
         jLabel2.setText("Gestion  Usuarios");
 
+        jLabelNombreAdmin.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +147,8 @@ public class AdministradorV extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(modificar)
                             .addComponent(añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelNombreAdmin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -176,7 +189,9 @@ public class AdministradorV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Usuario)
-                .addGap(26, 26, 26)
+                .addGap(1, 1, 1)
+                .addComponent(jLabelNombreAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Fecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -241,7 +256,11 @@ public class AdministradorV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministradorV().setVisible(true);
+                try {
+                    new AdministradorV().setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -257,6 +276,7 @@ public class AdministradorV extends javax.swing.JFrame {
     private javax.swing.JButton inventario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelNombreAdmin;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;

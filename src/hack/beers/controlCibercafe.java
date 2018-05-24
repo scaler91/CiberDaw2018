@@ -38,6 +38,10 @@ public class controlCibercafe {
     return DAOHackBeer.instancia().verDatosUsuario();
     }
     
+    public Administrador verDatosAdministrador(){
+        return DAOHackBeer.instancia().verDatosAdministrador();
+    }
+    
     public String getUsuario(Usuario u){
         String usuario = u.getNombre();
         return usuario;
