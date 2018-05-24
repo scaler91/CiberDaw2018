@@ -5,6 +5,7 @@
  */
 package hack.beers.vista;
 
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
 /**
@@ -145,7 +146,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;
@@ -155,7 +156,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;
@@ -165,7 +166,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;
@@ -175,7 +176,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;
@@ -185,7 +186,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
                     Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;

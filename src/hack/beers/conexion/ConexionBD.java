@@ -42,7 +42,7 @@ public class ConexionBD {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             cn = DriverManager.getConnection("jdb");
-        } catch (Exception e){  
+        } catch (ClassNotFoundException | SQLException e){  
         }
         return cn;
     }

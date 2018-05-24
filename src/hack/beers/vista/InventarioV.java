@@ -5,7 +5,6 @@
  */
 package hack.beers.vista;
 
-import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;

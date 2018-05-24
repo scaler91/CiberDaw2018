@@ -9,14 +9,11 @@ import hack.beers.Persona;
 import hack.beers.Usuario;
 import hack.beers.Administrador;
 import hack.beers.conexion.ConexionBD;
-import hack.beers.conexion.DAOHackBeer;
 import hack.beers.controlCibercafe;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -36,6 +33,7 @@ public class LoginV extends javax.swing.JFrame {
      *
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
+     * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public LoginV() throws ClassNotFoundException, SQLException, ErrorConexionBD {
 
@@ -148,9 +146,7 @@ public class LoginV extends javax.swing.JFrame {
             String contraseña = jPasswordField1.getText();
             ccc.verUsuarios(usuario, contraseña);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorConexionBD ex) {
+        } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();

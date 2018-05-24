@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.plaf.basic.ComboPopup;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -56,36 +55,7 @@ public class VentanaPedido extends javax.swing.JFrame {
     }
 
     private void cantidadPedida() {
-//        if (ciclo == false) {
-//            Iterator it = I.getInventario().iterator();
-//
-//            while (it.hasNext()) {
-//                Consumible nextElement = (Consumible) it.next();
-//                if (jComboBox1.getSelectedItem() == nextElement.getNombre()) {
-//                    for (int i = 0; i < nextElement.getCantidad(); i++) {
-//                        jComboBox2.addItem("" + (i + 1));
-//                        precioActual = nextElement.getPrecio();
-//                    }
-//                }
-//                ciclo = true;
-//            }
-//        } else {
-//            jComboBox2.removeAllItems();
-//
-//            Iterator it = I.getInventario().iterator();
-//
-//            while (it.hasNext()) {
-//                Consumible nextElement = (Consumible) it.next();
-//                if (jComboBox1.getSelectedItem() == nextElement.getNombre()) {
-//                    for (int i = 0; i < nextElement.getCantidad(); i++) {
-//                        jComboBox2.addItem("" + (i + 1));
-//                        precioActual = nextElement.getPrecio();
-//                    }
-//                }
-//
-//                ciclo = false;
-//            }
-//        }
+
         jComboBox2.removeAllItems();
 
         Iterator it = I.getInventario().iterator();

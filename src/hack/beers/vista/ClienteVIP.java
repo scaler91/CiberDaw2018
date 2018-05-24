@@ -7,10 +7,7 @@ package hack.beers.vista;
 
 import hack.beers.Usuario;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
@@ -32,6 +29,8 @@ public class ClienteVIP extends javax.swing.JFrame {
 
     /**
      * Creates new form Cliente
+     * @throws ventasbd.dao.exception.ErrorConexionBD
+     * @throws java.sql.SQLException
      */
     public ClienteVIP() throws ErrorConexionBD, SQLException {
         controlCibercafe ccc = new controlCibercafe();
@@ -210,11 +209,7 @@ public class ClienteVIP extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             v = new LoginV();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorConexionBD ex) {
+        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
         }
         ConexionBD.desconectar();
@@ -235,13 +230,7 @@ public class ClienteVIP extends javax.swing.JFrame {
             VentanaPedido p = new VentanaPedido();
             p.setVisible(true);
 
-// TODO add your handling code here:
-//        VentanaPedido vp = new VentanaPedido();
-//        this.setVisible(false);
-//        vp.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorConexionBD ex) {
+        } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
         }
 

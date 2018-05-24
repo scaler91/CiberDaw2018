@@ -22,15 +22,6 @@ public class DAOHackBeer {
     Usuario u;
     Administrador a;
 
-    //VAYA COJONAZOS 
-    /*
-    String dni;
-    String nombre;
-    String apellidos;
-    String contraseñaU;
-    int vip;
-     */
-    ///////////////
     public static DAOHackBeer instancia() {
         if (instancia == null) {
             instancia = new DAOHackBeer();
@@ -128,29 +119,7 @@ public class DAOHackBeer {
         }
 
     }
-
-
-    /*
-    public String getDni() {
-        return dni;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellidos;
-    }
-
-    public String getContraseña() {
-        return contraseñaU;
-    }
-
-    public int getVip() {
-        return vip;
-    }
-     */
+    
     public Usuario verDatosUsuario() throws SQLException {
         return u;
     }

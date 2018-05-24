@@ -35,6 +35,8 @@ public class ClienteV extends javax.swing.JFrame {
 
     /**
      * Creates new form Cliente
+     * @throws ventasbd.dao.exception.ErrorConexionBD
+     * @throws java.sql.SQLException
      */
     public ClienteV() throws ErrorConexionBD, SQLException {
         
@@ -288,13 +290,8 @@ public class ClienteV extends javax.swing.JFrame {
         ConexionBD.desconectar();
         this.setVisible(false);
         try {
-            LoginV v;
-            v = new LoginV();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorConexionBD ex) {
+            LoginV v = new LoginV();
+        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
         v.setVisible(true);
@@ -312,9 +309,7 @@ public class ClienteV extends javax.swing.JFrame {
         try {
             vp = new VentanaPedido();
             vp.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ErrorConexionBD ex) {
+        } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
 
