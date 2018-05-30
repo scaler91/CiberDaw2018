@@ -5,11 +5,14 @@
  */
 package hack.beers;
 
+import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -17,14 +20,23 @@ import java.util.LinkedList;
  */
 public class Usuario extends Persona {
 
+    private controlCibercafe ccc;
     private int VIP;
     private LinkedList registroConexiones;
+    private List pedido;
 
-    public Usuario(String nombre, String apellidos, String DNI, String contraseña, int VIP) {
+    public Usuario(String nombre, String apellidos, String DNI, String contraseña, int VIP) throws ErrorConexionBD {
         super(nombre, apellidos, DNI, contraseña);
         this.VIP = VIP;
 
+        ccc = new controlCibercafe();
         registroConexiones = new LinkedList();
+        pedido = new LinkedList();
+    }
+
+    public void añadirPedido(int ordenadorId, int idConsumible, int cantidad, float precio) {
+        ccc.annadirPedido(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
+        pedido.add(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
     }
 
     public int getVIP() {
@@ -38,9 +50,6 @@ public class Usuario extends Persona {
     public String getContraseña() {
         return contraseña;
     }
-
-    
-    
 
     public int isVIP() {
         return VIP;
@@ -58,6 +67,9 @@ public class Usuario extends Persona {
         this.registroConexiones = registroConexiones;
     }
 
+    public void annadirPedido(Pedido p) {
+        pedido.add(p);
+    }
     //MÉTODOS
     /**
      * Método para crear un pedido (Bebidas, comida, etc)
@@ -127,5 +139,4 @@ public class Usuario extends Persona {
 //        }
 //        return conexionCorrecta;
 //    }
-
 }

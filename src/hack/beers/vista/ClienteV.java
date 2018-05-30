@@ -5,6 +5,7 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,8 @@ import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -24,6 +27,9 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class ClienteV extends javax.swing.JFrame {
 
+    private List pedido;
+    controlCibercafe ccc;
+    Usuario u;
     LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
     Timer timer;
@@ -35,19 +41,19 @@ public class ClienteV extends javax.swing.JFrame {
 
     /**
      * Creates new form Cliente
+     *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      * @throws java.sql.SQLException
      */
     public ClienteV() throws ErrorConexionBD, SQLException {
-        
-        controlCibercafe ccc = new controlCibercafe();
-        
-        Usuario u = ccc.verDatosUsuario();
-        
-       // Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
-        
 
-    // In init() method write this code
+        ccc = new controlCibercafe();
+
+        u = ccc.verDatosUsuario();
+        pedido = new LinkedList();
+
+        // Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
+        // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +76,7 @@ public class ClienteV extends javax.swing.JFrame {
                 if ("0:00".equals(jLabel7.getText())) {
                     ConexionBD.desconectar();
                     try {
-                        v=new LoginV();
+                        v = new LoginV();
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
@@ -87,7 +93,7 @@ public class ClienteV extends javax.swing.JFrame {
         timer.start();
 
         initComponents();
-        
+
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");
@@ -307,12 +313,14 @@ public class ClienteV extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         VentanaPedido vp;
         try {
-            vp = new VentanaPedido();
+            vp = new PedidoV();
             vp.setVisible(true);
+
+            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
+//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

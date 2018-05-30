@@ -6,9 +6,12 @@
 package hack.beers.vista;
 
 import hack.beers.Administrador;
+import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -17,6 +20,9 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class AdministradorV extends javax.swing.JFrame {
 
+    String cabeceraInventario[] = {"ID", "Nombre", "Cantidad", "Precio"};
+    String[][] vaciaInventario = {};
+    DefaultTableModel tablaInventario;
     /**
      * Creates new form AdministradoV2
      *
@@ -31,6 +37,32 @@ public class AdministradorV extends javax.swing.JFrame {
         setTitle("Administerador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
     }
+    
+//        private void annadirTabla() {
+//        try {
+//            // TODO add your handling code here:
+//            tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
+//            jTable1.setModel(tablaInventario);
+//
+//            Inventario I = new Inventario();
+//            ccc.verPedidos();
+//
+//            String[][] inventarioTabla = I.getStock();
+//
+//            int linea = 0;
+//            while (linea < inventarioTabla.length) {
+//                tablaInventario.addRow(vaciaInventario);
+//                jTable1.setValueAt(inventarioTabla[linea][0], linea, 0);
+//                jTable1.setValueAt(inventarioTabla[linea][1], linea, 1);
+//                jTable1.setValueAt(inventarioTabla[linea][2], linea, 2);
+//                jTable1.setValueAt(inventarioTabla[linea][3], linea, 3);
+//                linea++;
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

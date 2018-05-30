@@ -7,6 +7,7 @@ package hack.beers.conexion;
 import hack.beers.Administrador;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
+import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import hack.beers.vista.AdministradorV;
 import hack.beers.vista.ClienteV;
@@ -19,6 +20,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class DAOHackBeer {
 
     static DAOHackBeer instancia = null;
+
     Usuario u;
     Administrador a;
 
@@ -119,13 +121,43 @@ public class DAOHackBeer {
         }
 
     }
-    
+
     public Usuario verDatosUsuario() throws SQLException {
         return u;
     }
 
     public Administrador verDatosAdministrador() {
         return a;
+    }
+
+//    public void verPedidos(String dni, Pedido p) throws SQLException {
+//        Consumible c = null;
+//        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM pedidos where dni = " + dni);
+//        ResultSet rp = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles where idConsumbible = "+ rs.getString(3));
+//
+//        while (rp.next()) {
+//            c = new Consumible(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+//            p.annadirConsumible(c);
+//        }
+//    }
+    public void annadirPedido(Pedido p) throws SQLException {
+        ConexionBD.instancia().getStatement().execute(
+                "INSERT INTO `pedidos` VALUES ('" + p.getDni() + "'," + p.getOrdenador() + "," + p.getIdConsumible() + "," + p.getCantidad() + "," + p.getPrecio() + "," + p.isRealizado() + ")"
+        );
+    }
+
+    public void verPedidosUsuario(String dni) throws SQLException {
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from pedidos where dni='" + dni + "'"
+        );
+        while (rs.next()){
+            Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
+            u.annadirPedido(p);
+        }
+    }
+
+    public void verTodosPedidos() {
+
     }
 
 }

@@ -20,7 +20,6 @@ public class Inventario {
 
     public Inventario() throws SQLException {
         listaConsumibles = new LinkedList<>();
-
     }
 
     public void annadirLista() throws SQLException {

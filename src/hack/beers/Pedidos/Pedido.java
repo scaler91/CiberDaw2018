@@ -5,7 +5,8 @@
  */
 package hack.beers.Pedidos;
 
-import java.util.*;
+import java.awt.List;
+import java.util.LinkedList;
 
 /**
  *
@@ -13,29 +14,48 @@ import java.util.*;
  */
 public class Pedido {
 
-    double precioTotal;
+    String dni;
     int ordenador;
-    double precio;
-    protected List<Consumible> pedido;
+    int idConsumible;
+    int cantidad;
+    boolean realizado;
+    float precio;
 
-    public Pedido(int ordenador) {
+    public Pedido(String dni, int ordenador, int idConsumible, int cantidad, float precio, boolean realizado) {
+
+        this.dni = dni;
         this.ordenador = ordenador;
-        pedido = new LinkedList<Consumible>();
-
+        this.idConsumible = idConsumible;
+        this.cantidad = cantidad;
+        this.realizado = realizado;
+        this.precio = precio;
+        
     }
 
-    public void nuevoPedido(int id, String nombre, int cantidad, double precio) {
-        pedido.add(new Consumible(id, nombre, cantidad, precio));
+    
+
+    public String getDni() {
+        return dni;
     }
 
-//    public void calcularPrecio(){
-//        precioTotal=0;
-//        Iterator <Consumibles> it=pedido.iterator();
-//        while(it.hasNext()){
-//           precioTotal=precioTotal+(precio*cantidad); 
-//            
-//        }
-//        
-//        
-//    }
+    public int getOrdenador() {
+        return ordenador;
+    }
+
+    public int getIdConsumible() {
+        return idConsumible;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public boolean isRealizado() {
+        return realizado;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
 }

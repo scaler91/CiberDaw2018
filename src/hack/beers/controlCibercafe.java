@@ -7,6 +7,7 @@ package hack.beers;
 
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
+import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.conexion.DAOHackBeer;
 import java.sql.SQLException;
@@ -29,6 +30,10 @@ public class controlCibercafe {
     public void verConsumible(Inventario i) throws SQLException {
         DAOHackBeer.instancia().verConsumible(i);
     }
+    
+//    public void verPedidos(){
+//        DAOHackBeer.instancia().verPedidos();
+//    }
     
     public void verUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD{
         DAOHackBeer.instancia().pedirUsuarios(usuario, contraseña);
@@ -65,5 +70,9 @@ public class controlCibercafe {
         return DAOHackBeer.instancia().getVip();
     }
 */
+
+    public void annadirPedido(Pedido p) throws SQLException {
+        DAOHackBeer.instancia().annadirPedido(p);
+    }
     
 }
