@@ -121,6 +121,28 @@ public class DAOHackBeer {
         }
 
     }
+    
+    public Usuario buscarUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD{
+        String dni;
+        String nombre;
+        String apellidos;
+        String contraseñaU;
+        int vip;
+        
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                    "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
+        );
+        
+        while (rs.next()) {
+                dni = rs.getString(1);
+                nombre = rs.getString(2);
+                apellidos = rs.getString(3);
+                contraseñaU = rs.getString(4);
+                vip = rs.getInt(5);
+            u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
+        }
+        return u;
+    }
 
     public Usuario verDatosUsuario() throws SQLException {
         return u;

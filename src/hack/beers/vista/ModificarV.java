@@ -5,7 +5,13 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Usuario;
+import hack.beers.controlCibercafe;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
@@ -13,13 +19,15 @@ import java.awt.Color;
  */
 public class ModificarV extends javax.swing.JDialog {
     public String DNI;
+    controlCibercafe ccc;
     
     /**
      * Creates new form ModificarV
      */
-    public ModificarV(java.awt.Frame parent, boolean modal) {
+    public ModificarV(java.awt.Frame parent, boolean modal) throws ErrorConexionBD {
         super(parent, modal);
         DNI = "Vacio";
+        ccc = new controlCibercafe();
         initComponents();
     }
 
@@ -216,6 +224,18 @@ public class ModificarV extends javax.swing.JDialog {
         // TODO add your handling code here:
         DNI = jTextBuscarUsuario.getText();
         usuarioActual.setText(DNI);
+        try {
+            Usuario u = ccc.verUsuarioModificar(DNI);
+            JTextNombre.setText(u.getNombre());
+            JTextApellidos.setText(u.getApellidos());
+            if(u.getVIP()==1){
+                JCheckboxVIP1.setSelected(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonBusquedaActionPerformed
 
     /**
@@ -248,14 +268,18 @@ public class ModificarV extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModificarV dialog = new ModificarV(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                try {
+                    ModificarV dialog = new ModificarV(new javax.swing.JFrame(), true);
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                } catch (ErrorConexionBD ex) {
+                    Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
