@@ -34,7 +34,7 @@ public class AdministradorV extends javax.swing.JFrame {
 
         initComponents();
 
-        setTitle("Administerador");
+        setTitle("Administrador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
     }
     
