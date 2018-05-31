@@ -34,7 +34,7 @@ public class Usuario extends Persona {
         pedido = new LinkedList();
     }
 
-    public void añadirPedido(int ordenadorId, int idConsumible, int cantidad, float precio) {
+    public void añadirPedido(int ordenadorId, int idConsumible, int cantidad, float precio) throws SQLException {
         ccc.annadirPedido(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
         pedido.add(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
     }
