@@ -40,6 +40,10 @@ public class controlCibercafe {
 //ZOPOTAMADRE
     public Usuario verConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
         return DAOHackBeer.instancia().buscarConexionesUsuario(DNI);
+        }
+    
+    public void añadirConexion(Usuario u) throws SQLException{
+        DAOHackBeer.instancia().añadirConexion(u);
     }
 
     public Usuario verDatosUsuario() throws SQLException {

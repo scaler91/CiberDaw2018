@@ -156,6 +156,11 @@ public class AdministradorV extends javax.swing.JFrame {
 
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         Usuario.setText("Administrador:");
 
@@ -258,6 +263,18 @@ public class AdministradorV extends javax.swing.JFrame {
     private void almacenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_almacenamientoActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+        ModificarV mv;
+        try {
+            mv = new ModificarV(this, rootPaneCheckingEnabled);
+            mv.setVisible(rootPaneCheckingEnabled);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_modificarActionPerformed
 
     /**
      * @param args the command line arguments

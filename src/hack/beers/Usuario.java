@@ -5,6 +5,7 @@
  */
 package hack.beers;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -23,6 +25,7 @@ public class Usuario extends Persona {
 
     private controlCibercafe ccc;
     private int VIP;
+    private int idOrdenador;
     private LinkedList pedido;
     private ArrayList<Conexion> registroConexiones;
 
@@ -30,6 +33,7 @@ public class Usuario extends Persona {
         super(nombre, apellidos, DNI, contraseña);
         this.VIP = VIP;
 
+        idOrdenador = (int) (Math.random() * 10) + 1;
         ccc = new controlCibercafe();
         pedido = new LinkedList();
         registroConexiones = new ArrayList<>();
@@ -77,6 +81,11 @@ public class Usuario extends Persona {
     public void annadirPedido(Pedido p) {
         pedido.add(p);
     }
+
+    public int getIdOrdenador() {
+        return idOrdenador;
+    }
+    
 
     //MÉTODOS
     /**

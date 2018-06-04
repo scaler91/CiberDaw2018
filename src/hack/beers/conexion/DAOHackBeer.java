@@ -5,6 +5,7 @@
 package hack.beers.conexion;
 
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import hack.beers.Administrador;
 import hack.beers.Conexion;
 import hack.beers.Pedidos.Consumible;
@@ -16,6 +17,7 @@ import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.time.Instant.now;
 import javax.swing.JOptionPane;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -24,6 +26,8 @@ public class DAOHackBeer {
     static DAOHackBeer instancia = null;
 
     Usuario u = null;
+
+    //java.util.Date fecha = new Date();
     Administrador a;
 
     public static DAOHackBeer instancia() {
@@ -125,8 +129,14 @@ public class DAOHackBeer {
     }
 //ZOPOTAMADRE
 
-    public Usuario buscarConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
+    public void añadirConexion(Usuario u) throws SQLException {
+        ConexionBD.instancia().getStatement().execute(
+                "INSERT INTO conexiones (dni, idOrdenador) VALUES('" + u.getDNI() + "','" + u.getIdOrdenador() + "')"
+        );
 
+    }
+
+    public Usuario buscarConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
         String dni;
         String nombre;
         String apellidos;
