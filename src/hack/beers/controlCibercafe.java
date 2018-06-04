@@ -79,5 +79,9 @@ public class controlCibercafe {
     public void annadirPedido(Pedido p) throws SQLException {
         DAOHackBeer.instancia().annadirPedido(p);
     }
+
+    public int pedirIdConsumible(String nombreConsumible) throws SQLException {
+        return DAOHackBeer.instancia().pedirIdConsumible(nombreConsumible);
+    }
     
 }

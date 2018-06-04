@@ -227,7 +227,7 @@ public class ClienteVIP extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         try {
-            VentanaPedido p = new VentanaPedido();
+            PedidoV p = new PedidoV(this, true);
             p.setVisible(true);
 
         } catch (SQLException | ErrorConexionBD ex) {

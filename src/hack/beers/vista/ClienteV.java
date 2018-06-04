@@ -311,9 +311,9 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        VentanaPedido vp;
+        PedidoV vp;
         try {
-            vp = new PedidoV();
+            vp = new PedidoV(this, true);
             vp.setVisible(true);
 
             ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));

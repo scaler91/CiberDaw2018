@@ -8,6 +8,7 @@ package hack.beers.vista;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
+import hack.beers.Usuario;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -20,13 +21,17 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author Alumno
  */
 public class PedidoV extends javax.swing.JDialog {
+
     Pedido p;
     Inventario I;
     controlCibercafe ccc;
-    boolean ciclo = false;
+
     double precioActual;
     int cantidad;
     int idConsumible;
+    String nombreConsumible;
+    private Usuario u;
+
     /**
      * Creates new form PedidoV
      */
@@ -34,6 +39,7 @@ public class PedidoV extends javax.swing.JDialog {
         I = new Inventario();
         I.annadirLista();
         ccc = new controlCibercafe();
+        u = ccc.verDatosUsuario();
 
         initComponents();
         setTitle("Pedidos");
@@ -78,9 +84,15 @@ public class PedidoV extends javax.swing.JDialog {
     }
 
     public void devuelvePedido() {
-        cantidad = jComboBox2.getSelectedIndex() + 1;
-        System.out.println(jComboBox1.getSelectedItem());
-        idConsumible = (int) jComboBox1.getSelectedItem();
+        try {
+            cantidad = (int) jComboBox2.getSelectedIndex() + 1;
+            nombreConsumible = (String) jComboBox1.getSelectedItem();
+            idConsumible = ccc.pedirIdConsumible(nombreConsumible);
+            ccc.annadirPedido(new Pedido(u.getDNI(), 1, getIdConsumible(), getCantidad(), calculo(), false));
+            //add(new Pedido(u.getDNI(), 1, getIdConsumible(), getCantidad(), calculo(), false));
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -241,6 +253,18 @@ public class PedidoV extends javax.swing.JDialog {
         calculo();
         Aceptar.setEnabled(true);
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    public double getPrecioActual() {
+        return precioActual;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public int getIdConsumible() {
+        return idConsumible;
+    }
 
     /**
      * @param args the command line arguments

@@ -121,24 +121,24 @@ public class DAOHackBeer {
         }
 
     }
-    
-    public Usuario buscarUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD{
+
+    public Usuario buscarUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD {
         String dni;
         String nombre;
         String apellidos;
         String contraseñaU;
         int vip;
-        
+
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
-                    "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
+                "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
         );
-        
+
         while (rs.next()) {
-                dni = rs.getString(1);
-                nombre = rs.getString(2);
-                apellidos = rs.getString(3);
-                contraseñaU = rs.getString(4);
-                vip = rs.getInt(5);
+            dni = rs.getString(1);
+            nombre = rs.getString(2);
+            apellidos = rs.getString(3);
+            contraseñaU = rs.getString(4);
+            vip = rs.getInt(5);
             u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
         }
         return u;
@@ -172,7 +172,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where dni='" + dni + "'"
         );
-        while (rs.next()){
+        while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             u.annadirPedido(p);
         }
@@ -182,4 +182,12 @@ public class DAOHackBeer {
 
     }
 
+    public int pedirIdConsumible(String nombreConsumible) throws SQLException {
+        int idConsumible = 0;
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT idConsumible FROM consumibles WHERE Nombre ='" + nombreConsumible + "'");
+        while (rs.next()) {
+            idConsumible = rs.getInt(1);
+        }
+        return idConsumible;
+    }
 }
