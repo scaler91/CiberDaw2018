@@ -9,6 +9,7 @@ import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,21 +23,35 @@ public class Usuario extends Persona {
 
     private controlCibercafe ccc;
     private int VIP;
-    private LinkedList registroConexiones;
-    private List pedido;
+    private LinkedList pedido;
+    private ArrayList<Conexion> registroConexiones;
 
     public Usuario(String nombre, String apellidos, String DNI, String contraseña, int VIP) throws ErrorConexionBD {
         super(nombre, apellidos, DNI, contraseña);
         this.VIP = VIP;
 
         ccc = new controlCibercafe();
-        registroConexiones = new LinkedList();
         pedido = new LinkedList();
+        registroConexiones = new ArrayList<>();
     }
 
     public void añadirPedido(int ordenadorId, int idConsumible, int cantidad, float precio) throws SQLException {
         ccc.annadirPedido(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
         pedido.add(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
+    }
+
+    public void añadirConexion(Conexion c) {
+        registroConexiones.add(c);
+    }
+
+    public String[][] crearArrayConexiones() {
+        String[][] misConexiones = new String[registroConexiones.size()][3];
+        for (int i = 0; i <= registroConexiones.size(); i++) {
+            misConexiones[i][0] = registroConexiones.get(i).getDNI();
+            misConexiones[i][1] = registroConexiones.get(i).obtenerIdOrdenador();
+            misConexiones[i][2] = registroConexiones.get(i).getFecha();
+        }
+        return misConexiones;
     }
 
     public int getVIP() {
@@ -55,21 +70,14 @@ public class Usuario extends Persona {
         return VIP;
     }
 
-    public LinkedList getRegistroConexiones() {
-        return registroConexiones;
-    }
-
     public void setVIP(int VIP) {
         this.VIP = VIP;
-    }
-
-    public void setRegistroConexiones(LinkedList registroConexiones) {
-        this.registroConexiones = registroConexiones;
     }
 
     public void annadirPedido(Pedido p) {
         pedido.add(p);
     }
+
     //MÉTODOS
     /**
      * Método para crear un pedido (Bebidas, comida, etc)

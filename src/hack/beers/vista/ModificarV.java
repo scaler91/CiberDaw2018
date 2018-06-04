@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -20,6 +21,12 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class ModificarV extends javax.swing.JDialog {
     public String DNI;
     controlCibercafe ccc;
+    Usuario u;
+    
+    String [] cabecera = {"DNI", "idOrdenador", "FechaConexion"};
+    String [] vacia = {};
+    
+    DefaultTableModel tablaConexiones;
     
     /**
      * Creates new form ModificarV
@@ -71,13 +78,13 @@ public class ModificarV extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Mesa", "Ordenador", "Fecha"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -225,12 +232,20 @@ public class ModificarV extends javax.swing.JDialog {
         DNI = jTextBuscarUsuario.getText();
         usuarioActual.setText(DNI);
         try {
-            Usuario u = ccc.verUsuarioModificar(DNI);
+            u = ccc.verUsuarioModificar(DNI);
             JTextNombre.setText(u.getNombre());
             JTextApellidos.setText(u.getApellidos());
             if(u.getVIP()==1){
                 JCheckboxVIP1.setSelected(true);
             }
+            
+            String [][] conexiones = u.crearArrayConexiones();
+            
+            int linea = 0;
+            for (linea=0; linea<=conexiones.length; linea ++){
+                
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ErrorConexionBD ex) {
@@ -285,7 +300,6 @@ public class ModificarV extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox JCheckboxVIP;
     private javax.swing.JCheckBox JCheckboxVIP1;
     private javax.swing.JTextField JTextApellidos;
     private javax.swing.JTextField JTextNombre;

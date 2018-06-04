@@ -311,12 +311,12 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        VentanaPedido vp;
+        PedidoV p;
         try {
-            vp = new PedidoV();
-            vp.setVisible(true);
+            p = new PedidoV(this, true);
+            p.setVisible(true);
 
-            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
+            ccc.annadirPedido(new Pedido(u.getDNI(), 1, p.getIdConsumible(), p.getCantidad(), p.calculo(), false));
 //            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);

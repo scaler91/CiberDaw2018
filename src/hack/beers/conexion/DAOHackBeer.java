@@ -5,6 +5,7 @@
 package hack.beers.conexion;
 
 import hack.beers.Administrador;
+import hack.beers.Conexion;
 import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
@@ -128,7 +129,6 @@ public class DAOHackBeer {
         String apellidos;
         String contraseñaU;
         int vip;
-        
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                     "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
         );
@@ -141,6 +141,16 @@ public class DAOHackBeer {
                 vip = rs.getInt(5);
             u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
         }
+        
+        ResultSet rs1 = ConexionBD.instancia().getStatement().executeQuery(
+                "Select * from conexiones where dni='"+DNI+"'"
+        );
+        
+        while (rs1.next()){
+            Conexion c = new Conexion(rs1.getString(1), rs1.getInt(2), rs1.getString(3));
+            u.añadirConexion(c);
+        }
+        
         return u;
     }
 

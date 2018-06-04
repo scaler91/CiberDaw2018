@@ -81,7 +81,18 @@ public class PedidoV extends javax.swing.JDialog {
         cantidad = jComboBox2.getSelectedIndex() + 1;
         System.out.println(jComboBox1.getSelectedItem());
         idConsumible = (int) jComboBox1.getSelectedItem();
+    }
 
+    public boolean isCiclo() {
+        return ciclo;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public int getIdConsumible() {
+        return idConsumible;
     }
 
     /**

@@ -30,34 +30,32 @@ public class controlCibercafe {
     public void verConsumible(Inventario i) throws SQLException {
         DAOHackBeer.instancia().verConsumible(i);
     }
-    
+
 //    public void verPedidos(){
 //        DAOHackBeer.instancia().verPedidos();
 //    }
-    
-    public void verUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD{
+    public void verUsuarios(String usuario, String contraseña) throws SQLException, ErrorConexionBD {
         DAOHackBeer.instancia().pedirUsuarios(usuario, contraseña);
     }
-    
-    public Usuario verUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD{
-        Usuario u = DAOHackBeer.instancia().buscarUsuarioModificar(DNI);
-        return u;
+
+    public Usuario verUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD {
+        return DAOHackBeer.instancia().buscarUsuarioModificar(DNI);
+
     }
-    
-    public Usuario verDatosUsuario() throws SQLException{
-    return DAOHackBeer.instancia().verDatosUsuario();
+
+    public Usuario verDatosUsuario() throws SQLException {
+        return DAOHackBeer.instancia().verDatosUsuario();
     }
-    
-    public Administrador verDatosAdministrador(){
+
+    public Administrador verDatosAdministrador() {
         return DAOHackBeer.instancia().verDatosAdministrador();
     }
-    
-    public String getUsuario(Usuario u){
+
+    public String getUsuario(Usuario u) {
         String usuario = u.getNombre();
         return usuario;
     }
-    
-    
+
     /*
     public static String getNombre() throws SQLException{
         return DAOHackBeer.instancia().getNombre();
@@ -74,10 +72,9 @@ public class controlCibercafe {
     public static int getVip() throws SQLException{
         return DAOHackBeer.instancia().getVip();
     }
-*/
-
+     */
     public void annadirPedido(Pedido p) throws SQLException {
         DAOHackBeer.instancia().annadirPedido(p);
     }
-    
+
 }
