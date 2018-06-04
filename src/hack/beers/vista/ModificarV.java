@@ -23,7 +23,7 @@ public class ModificarV extends javax.swing.JDialog {
     public String DNI;
     controlCibercafe ccc;
     Usuario u;
-
+//ZOPOTAMADRE
     String cabecera[] = {"DNI", "idOrdenador", "FechaConexion"};
     String vacia[][] = {};
 
@@ -242,16 +242,17 @@ public class ModificarV extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_jTextBuscarUsuarioKeyTyped
-
+//ZOPOTAMADRE
     private void jButtonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBusquedaActionPerformed
         // TODO add your handling code here:
-        DNI = jTextBuscarUsuario.getText();
-        usuarioActual.setText(DNI);
-
-        tablaConexiones = new DefaultTableModel(vacia, cabecera);
-        jTable1.setModel(tablaConexiones);
 
         try {
+            DNI = jTextBuscarUsuario.getText();
+            usuarioActual.setText(DNI);
+
+            tablaConexiones = new DefaultTableModel(vacia, cabecera);
+            jTable1.setModel(tablaConexiones);
+
             u = ccc.verConexionesUsuario(DNI);
 
             if (u.getApellidos().equals("null")) {
@@ -273,7 +274,7 @@ public class ModificarV extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonBusquedaActionPerformed
-
+//ZOPOTAMADRE
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
@@ -283,8 +284,12 @@ public class ModificarV extends javax.swing.JDialog {
             }
             u = new Usuario(JTextNombre.getText(), JTextApellidos.getText(), jTextBuscarUsuario.getText(), "contraseña", vip);
             ccc.annadirUsuario(u);
-        } catch (ErrorConexionBD | SQLException ex) {
+            
+            jButton1.setEnabled(false);
+        } catch (SQLException ex) {
             ex.printStackTrace();
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
