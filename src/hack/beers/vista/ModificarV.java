@@ -19,15 +19,16 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author alxayu97
  */
 public class ModificarV extends javax.swing.JDialog {
+
     public String DNI;
     controlCibercafe ccc;
     Usuario u;
-    
-    String [] cabecera = {"DNI", "idOrdenador", "FechaConexion"};
-    String [] vacia = {};
-    
+
+    String cabecera[] = {"DNI", "idOrdenador", "FechaConexion"};
+    String vacia[][] = {};
+
     DefaultTableModel tablaConexiones;
-    
+
     /**
      * Creates new form ModificarV
      */
@@ -35,7 +36,10 @@ public class ModificarV extends javax.swing.JDialog {
         super(parent, modal);
         DNI = "Vacio";
         ccc = new controlCibercafe();
+
         initComponents();
+
+        jButton1.setEnabled(false);
     }
 
     /**
@@ -61,6 +65,7 @@ public class ModificarV extends javax.swing.JDialog {
         jButtonBusqueda = new javax.swing.JButton();
         JTextNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -133,6 +138,13 @@ public class ModificarV extends javax.swing.JDialog {
 
         jLabel5.setText("Registro del Usuario");
 
+        jButton1.setText("Crear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,13 +153,15 @@ public class ModificarV extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(JCheckboxVIP1)
-                    .addComponent(JTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                    .addComponent(JTextApellidos))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(JCheckboxVIP1)
+                        .addComponent(JTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                        .addComponent(JTextApellidos))
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -169,13 +183,13 @@ public class ModificarV extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(usuarioActual)
-                        .addComponent(jTextBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonBusqueda))
-                    .addComponent(jButtonCerrar))
+                        .addComponent(jTextBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(7, 7, 7)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -192,6 +206,8 @@ public class ModificarV extends javax.swing.JDialog {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JCheckboxVIP1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                 .addContainerGap())
@@ -231,27 +247,46 @@ public class ModificarV extends javax.swing.JDialog {
         // TODO add your handling code here:
         DNI = jTextBuscarUsuario.getText();
         usuarioActual.setText(DNI);
+
+        tablaConexiones = new DefaultTableModel(vacia, cabecera);
+        jTable1.setModel(tablaConexiones);
+
         try {
-            u = ccc.verUsuarioModificar(DNI);
-            JTextNombre.setText(u.getNombre());
-            JTextApellidos.setText(u.getApellidos());
-            if(u.getVIP()==1){
-                JCheckboxVIP1.setSelected(true);
+            u = ccc.verConexionesUsuario(DNI);
+
+            if (u.getApellidos().equals("null")) {
+                jButton1.setEnabled(true);
+            } else {
+
+                JTextNombre.setText(u.getNombre());
+                JTextApellidos.setText(u.getApellidos());
+                if (u.getVIP() == 1) {
+                    JCheckboxVIP1.setSelected(true);
+                }
+
+                tablaConexiones = new DefaultTableModel(u.crearArrayConexiones(), cabecera);
+                jTable1.setModel(tablaConexiones);
             }
-            
-            String [][] conexiones = u.crearArrayConexiones();
-            
-            int linea = 0;
-            for (linea=0; linea<=conexiones.length; linea ++){
-                
-            }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (ErrorConexionBD ex) {
-            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonBusquedaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            int vip = 0;
+            if (JCheckboxVIP1.isSelected()) {
+                vip = 1;
+            }
+            u = new Usuario(JTextNombre.getText(), JTextApellidos.getText(), jTextBuscarUsuario.getText(), "contraseña", vip);
+            ccc.annadirUsuario(u);
+        } catch (ErrorConexionBD | SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,13 +305,13 @@ public class ModificarV extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         //</editor-fold>
 
@@ -293,7 +328,7 @@ public class ModificarV extends javax.swing.JDialog {
                     });
                     dialog.setVisible(true);
                 } catch (ErrorConexionBD ex) {
-                    Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             }
         });
@@ -303,6 +338,7 @@ public class ModificarV extends javax.swing.JDialog {
     private javax.swing.JCheckBox JCheckboxVIP1;
     private javax.swing.JTextField JTextApellidos;
     private javax.swing.JTextField JTextNombre;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBusqueda;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabel1;

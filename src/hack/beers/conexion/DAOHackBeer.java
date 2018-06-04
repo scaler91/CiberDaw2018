@@ -4,6 +4,7 @@
  */
 package hack.beers.conexion;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import hack.beers.Administrador;
 import hack.beers.Conexion;
 import hack.beers.Pedidos.Consumible;
@@ -22,7 +23,7 @@ public class DAOHackBeer {
 
     static DAOHackBeer instancia = null;
 
-    Usuario u;
+    Usuario u = null;
     Administrador a;
 
     public static DAOHackBeer instancia() {
@@ -123,16 +124,19 @@ public class DAOHackBeer {
 
     }
 
-    public Usuario buscarUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD {
+    public Usuario buscarConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
         String dni;
         String nombre;
         String apellidos;
         String contraseñaU;
         int vip;
-
+        boolean si = false;
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
         );
+
+        if (!rs.next()) {
+        }
 
         while (rs.next()) {
             dni = rs.getString(1);
@@ -141,18 +145,32 @@ public class DAOHackBeer {
             contraseñaU = rs.getString(4);
             vip = rs.getInt(5);
             u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
+            si = true;
         }
-        
+
         ResultSet rs1 = ConexionBD.instancia().getStatement().executeQuery(
-                "Select * from conexiones where dni='"+DNI+"'"
+                "Select * from conexiones where dni='" + DNI + "'"
         );
-        
-        while (rs1.next()){
+
+        while (rs1.next()) {
             Conexion c = new Conexion(rs1.getString(1), rs1.getInt(2), rs1.getString(3));
             u.añadirConexion(c);
         }
-        
+
+        if (si == false) {
+            u = new Usuario("null", "null", DNI, "null", 0);
+        }
         return u;
+    }
+
+    public void annadirUsuario(Usuario u) throws SQLException {
+        try {
+            ConexionBD.instancia().getStatement().execute(
+                    "Insert into usuarios values ('" + u.getDNI() + "', '" + u.getNombre() + "', '" + u.getApellidos() + "', '" + u.getDNI() + "', '" + u.getContraseña() + "', " + u.getVIP() + ", 0)"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Usuario verDatosUsuario() throws SQLException {

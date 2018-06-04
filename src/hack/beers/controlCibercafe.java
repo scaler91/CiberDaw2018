@@ -38,8 +38,8 @@ public class controlCibercafe {
         DAOHackBeer.instancia().pedirUsuarios(usuario, contraseña);
     }
 
-    public Usuario verUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD {
-        return DAOHackBeer.instancia().buscarUsuarioModificar(DNI);
+    public Usuario verConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
+        return DAOHackBeer.instancia().buscarConexionesUsuario(DNI);
 
     }
 
@@ -49,6 +49,10 @@ public class controlCibercafe {
 
     public Administrador verDatosAdministrador() {
         return DAOHackBeer.instancia().verDatosAdministrador();
+    }
+    
+    public void annadirUsuario(Usuario u) throws SQLException{
+        DAOHackBeer.instancia().annadirUsuario(u);
     }
 
     public String getUsuario(Usuario u) {

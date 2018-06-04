@@ -46,7 +46,7 @@ public class Usuario extends Persona {
 
     public String[][] crearArrayConexiones() {
         String[][] misConexiones = new String[registroConexiones.size()][3];
-        for (int i = 0; i <= registroConexiones.size(); i++) {
+        for (int i = 0; i < registroConexiones.size(); i++) {
             misConexiones[i][0] = registroConexiones.get(i).getDNI();
             misConexiones[i][1] = registroConexiones.get(i).obtenerIdOrdenador();
             misConexiones[i][2] = registroConexiones.get(i).getFecha();
