@@ -123,8 +123,10 @@ public class DAOHackBeer {
         }
 
     }
+//ZOPOTAMADRE
 
     public Usuario buscarConexionesUsuario(String DNI) throws SQLException, ErrorConexionBD {
+
         String dni;
         String nombre;
         String apellidos;
@@ -135,10 +137,8 @@ public class DAOHackBeer {
                 "SELECT * FROM usuarios WHERE dni='" + DNI + "'"
         );
 
-        if (!rs.next()) {
-        }
-
         while (rs.next()) {
+
             dni = rs.getString(1);
             nombre = rs.getString(2);
             apellidos = rs.getString(3);
@@ -154,6 +154,7 @@ public class DAOHackBeer {
 
         while (rs1.next()) {
             Conexion c = new Conexion(rs1.getString(1), rs1.getInt(2), rs1.getString(3));
+            System.out.println("conexion creada");
             u.añadirConexion(c);
         }
 
@@ -162,11 +163,12 @@ public class DAOHackBeer {
         }
         return u;
     }
+//ZOPOTAMADRE
 
     public void annadirUsuario(Usuario u) throws SQLException {
         try {
             ConexionBD.instancia().getStatement().execute(
-                    "Insert into usuarios values ('" + u.getDNI() + "', '" + u.getNombre() + "', '" + u.getApellidos() + "', '" + u.getDNI() + "', '" + u.getContraseña() + "', " + u.getVIP() + ", 0)"
+                    "Insert into usuarios values ('" + u.getDNI() + "', '" + u.getNombre() + "', '" + u.getApellidos() + "', '" + u.getContraseña() + "', " + u.getVIP() + ", 0)"
             );
         } catch (SQLException e) {
             e.printStackTrace();
