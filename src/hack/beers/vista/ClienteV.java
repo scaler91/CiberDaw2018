@@ -313,7 +313,7 @@ public class ClienteV extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         PedidoV vp;
         try {
-            vp = new PedidoV(this, true);
+            vp = new PedidoV(this, rootPaneCheckingEnabled);
             vp.setVisible(true);
 
             ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));

@@ -4,6 +4,7 @@
  */
 package hack.beers.conexion;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import hack.beers.Administrador;
 import hack.beers.Conexion;
 import hack.beers.Pedidos.Consumible;
@@ -15,6 +16,7 @@ import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.time.Instant.now;
 import javax.swing.JOptionPane;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -22,6 +24,8 @@ public class DAOHackBeer {
 
     static DAOHackBeer instancia = null;
 
+    //java.util.Date fecha = new Date();
+    
     Usuario u;
     Administrador a;
 
@@ -69,6 +73,7 @@ public class DAOHackBeer {
         String apellidos;
         String contraseñaU;
         int vip;
+        
 
         int contador = 0;
         if (contador == 0) {
@@ -87,7 +92,7 @@ public class DAOHackBeer {
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-
+                    
                     if (vip == 1) {
                         ClienteVIP cliNuV = new ClienteVIP();
                         cliNuV.setVisible(true);
@@ -123,6 +128,13 @@ public class DAOHackBeer {
 
     }
 
+    public void añadirConexion(Usuario u) throws SQLException{
+         ConexionBD.instancia().getStatement().execute(
+                    "INSERT INTO conexiones (dni, idOrdenador) VALUES('" +u.getDNI()+ "','" +u.getIdOrdenador()+ "')"
+                    );
+                    
+    }
+    
     public Usuario buscarUsuarioModificar(String DNI) throws SQLException, ErrorConexionBD {
         String dni;
         String nombre;
