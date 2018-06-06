@@ -5,12 +5,15 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -21,6 +24,9 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class ClienteVIP extends javax.swing.JFrame {
 
+    private List pedido;
+    Usuario u;
+    controlCibercafe ccc;
     LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
 
@@ -29,12 +35,14 @@ public class ClienteVIP extends javax.swing.JFrame {
 
     /**
      * Creates new form Cliente
+     *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      * @throws java.sql.SQLException
      */
     public ClienteVIP() throws ErrorConexionBD, SQLException {
-        controlCibercafe ccc = new controlCibercafe();
-        Usuario u = ccc.verDatosUsuario();
+        ccc = new controlCibercafe();
+        u = ccc.verDatosUsuario();
+        pedido = new LinkedList();
         initComponents();
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
@@ -167,7 +175,7 @@ public class ClienteVIP extends javax.swing.JFrame {
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,14 +214,12 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            v = new LoginV();
-        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ConexionBD.desconectar();
         this.setVisible(false);
+        try {
+            LoginV v = new LoginV();
+        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -225,15 +231,16 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        PedidoV vp;
         try {
-            PedidoV p = new PedidoV(this, true);
-            p.setVisible(true);
+            vp = new PedidoV(this, rootPaneCheckingEnabled);
+            vp.setVisible(true);
 
+            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
+//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
         } catch (SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

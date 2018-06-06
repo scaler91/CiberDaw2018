@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Scanner;
-import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
  *
