@@ -258,7 +258,7 @@ public class DAOHackBeer {
 
     public void actualizarTablaPedidos(Administrador admin) throws SQLException {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
-                "select * from pedidos where completado=0"
+                "select * from pedidos where realizado=0"
         );
 
         while (rs.next()) {
