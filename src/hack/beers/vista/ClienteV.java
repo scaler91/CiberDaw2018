@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
+import hack.beers.mail.QuejaV;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -193,6 +194,11 @@ public class ClienteV extends javax.swing.JFrame {
 
         jButton5.setText("Queja");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("€");
 
@@ -321,6 +327,12 @@ public class ClienteV extends javax.swing.JFrame {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        QuejaV queja = new QuejaV(this, rootPaneCheckingEnabled);
+        queja.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
