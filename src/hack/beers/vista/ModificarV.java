@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -40,6 +41,7 @@ public class ModificarV extends javax.swing.JDialog {
         initComponents();
 
         jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
     }
 
     /**
@@ -66,6 +68,7 @@ public class ModificarV extends javax.swing.JDialog {
         JTextNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,6 +148,13 @@ public class ModificarV extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,7 +171,10 @@ public class ModificarV extends javax.swing.JDialog {
                         .addComponent(JCheckboxVIP1)
                         .addComponent(JTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                         .addComponent(JTextApellidos))
-                    .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -207,7 +220,9 @@ public class ModificarV extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JCheckboxVIP1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                 .addContainerGap())
@@ -218,6 +233,22 @@ public class ModificarV extends javax.swing.JDialog {
 
     private void JCheckboxVIP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckboxVIP1ActionPerformed
         // TODO add your handling code here:
+        try {
+            int vip = 0;
+            if (!u.getNombre().equals("null")) {
+
+                if (JCheckboxVIP1.isSelected()) {
+                    vip = 1;
+                } else {
+                    vip = 0;
+                }
+                
+                ccc.actualizarVip(u, vip);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_JCheckboxVIP1ActionPerformed
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
@@ -257,6 +288,7 @@ public class ModificarV extends javax.swing.JDialog {
 
             if (u.getApellidos().equals("null")) {
                 jButton1.setEnabled(true);
+                jButton2.setEnabled(false);
             } else {
 
                 JTextNombre.setText(u.getNombre());
@@ -265,6 +297,7 @@ public class ModificarV extends javax.swing.JDialog {
                     JCheckboxVIP1.setSelected(true);
                 }
                 jButton1.setEnabled(false);
+                jButton2.setEnabled(true);
                 tablaConexiones = new DefaultTableModel(u.crearArrayConexiones(), cabecera);
                 jTable1.setModel(tablaConexiones);
             }
@@ -278,20 +311,43 @@ public class ModificarV extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-            int vip = 0;
-            if (JCheckboxVIP1.isSelected()) {
-                vip = 1;
+            String[] opcion = {"Si", "No"};
+            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcion, 0);
+            if (seleccion == 0) {
+                int vip = 0;
+                if (JCheckboxVIP1.isSelected()) {
+                    vip = 1;
+                }
+                u = new Usuario(JTextNombre.getText(), JTextApellidos.getText(), jTextBuscarUsuario.getText(), "contraseña", vip);
+                ccc.annadirUsuario(u);
+
+                jButton1.setEnabled(false);
+                jButton2.setEnabled(true);
             }
-            u = new Usuario(JTextNombre.getText(), JTextApellidos.getText(), jTextBuscarUsuario.getText(), "contraseña", vip);
-            ccc.annadirUsuario(u);
-            
-            jButton1.setEnabled(false);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String[] opcion = {"Si", "No"};
+            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, opcion, 0);
+            if (seleccion == 0) {
+                ccc.eliminarUsuario(u);
+                JTextApellidos.setText("");
+                JTextNombre.setText("");
+                jTextBuscarUsuario.setText("");
+                JCheckboxVIP1.setSelected(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModificarV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,6 +400,7 @@ public class ModificarV extends javax.swing.JDialog {
     private javax.swing.JTextField JTextApellidos;
     private javax.swing.JTextField JTextNombre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBusqueda;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabel1;

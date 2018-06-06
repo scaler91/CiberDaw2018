@@ -87,5 +87,13 @@ public class controlCibercafe {
     public int pedirIdConsumible(String nombreConsumible) throws SQLException {
         return DAOHackBeer.instancia().pedirIdConsumible(nombreConsumible);
     }
-    
+
+
+    public void eliminarUsuario(Usuario u) throws SQLException {
+        DAOHackBeer.instancia().eliminarUsuario(u);
+    }    
+
+    public void actualizarVip(Usuario u, int vip) throws SQLException {
+       DAOHackBeer.instancia().actualizarVip(u, vip);
+    }
 }
