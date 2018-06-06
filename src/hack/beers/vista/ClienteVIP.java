@@ -5,6 +5,7 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -24,6 +25,8 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class ClienteVIP extends javax.swing.JFrame {
 
     private List pedido;
+    Usuario u;
+    controlCibercafe ccc;
     LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
 
@@ -32,12 +35,13 @@ public class ClienteVIP extends javax.swing.JFrame {
 
     /**
      * Creates new form Cliente
+     *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      * @throws java.sql.SQLException
      */
     public ClienteVIP() throws ErrorConexionBD, SQLException {
-        controlCibercafe ccc = new controlCibercafe();
-        Usuario u = ccc.verDatosUsuario();
+        ccc = new controlCibercafe();
+        u = ccc.verDatosUsuario();
         pedido = new LinkedList();
         initComponents();
         setTitle("Eres el puto AMO!!");
@@ -210,14 +214,12 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            v = new LoginV();
-        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ConexionBD.desconectar();
         this.setVisible(false);
+        try {
+            LoginV v = new LoginV();
+        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -229,15 +231,16 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        PedidoV vp;
         try {
-            PedidoV p = new PedidoV(this, true);
-            p.setVisible(true);
+            vp = new PedidoV(this, rootPaneCheckingEnabled);
+            vp.setVisible(true);
 
+            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
+//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
         } catch (SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -74,7 +74,7 @@ public class ClienteV extends javax.swing.JFrame {
 
                 }
                 if ("0:00".equals(jLabel7.getText())) {
-                    ConexionBD.desconectar();
+
                     try {
                         v = new LoginV();
                     } catch (ClassNotFoundException ex) {
@@ -293,7 +293,7 @@ public class ClienteV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ConexionBD.desconectar();
+
         this.setVisible(false);
         try {
             LoginV v = new LoginV();
@@ -307,7 +307,6 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProgramasV pv = new ProgramasV();
         pv.setVisible(true);
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
