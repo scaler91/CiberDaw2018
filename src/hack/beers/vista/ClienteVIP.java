@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -21,6 +23,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
  */
 public class ClienteVIP extends javax.swing.JFrame {
 
+    private List pedido;
     LoginV v;
     String[] cabecera = {"Nombre", "Cantidad"};
 
@@ -35,6 +38,7 @@ public class ClienteVIP extends javax.swing.JFrame {
     public ClienteVIP() throws ErrorConexionBD, SQLException {
         controlCibercafe ccc = new controlCibercafe();
         Usuario u = ccc.verDatosUsuario();
+        pedido = new LinkedList();
         initComponents();
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
