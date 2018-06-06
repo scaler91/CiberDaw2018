@@ -266,6 +266,8 @@ public class AdministradorV extends javax.swing.JFrame {
 
     private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
         // TODO add your handling code here:
+        //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
+//        annadirTabla();
     }//GEN-LAST:event_confirmarPedidoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
