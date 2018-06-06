@@ -255,4 +255,15 @@ public class DAOHackBeer {
                 "UPDATE usuarios SET vip=" + vip + " WHERE dni='" + u.getDNI() + "'"
         );
     }
+
+    public void actualizarTablaPedidos(Administrador admin) throws SQLException {
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from pedidos where completado=0"
+        );
+
+        while (rs.next()) {
+            Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
+            admin.añadirPedido(p);
+        }
+    }
 }

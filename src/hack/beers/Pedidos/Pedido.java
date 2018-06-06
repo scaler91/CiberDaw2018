@@ -38,21 +38,41 @@ public class Pedido {
     public int getOrdenador() {
         return ordenador;
     }
+    
+    public String obtenerOrdenador(){
+        return Integer.toString(ordenador);
+    }
 
     public int getIdConsumible() {
         return idConsumible;
+    }
+    
+    public String obtenerIdConsumible(){
+        return Integer.toString(idConsumible);
     }
 
     public int getCantidad() {
         return cantidad;
     }
+    
+    public String obtenerCantidad() {
+        return Integer.toString(cantidad);
+    }
 
     public boolean isRealizado() {
         return realizado;
     }
+    
+    public String obtenerIsRealizado(){
+        return Boolean.toString(realizado);
+    }
 
     public float getPrecio() {
         return precio;
+    }
+    
+    public String obtenerPrecio(){
+        return Float.toString(precio);
     }
 
 }

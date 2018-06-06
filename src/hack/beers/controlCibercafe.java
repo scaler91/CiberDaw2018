@@ -96,4 +96,8 @@ public class controlCibercafe {
     public void actualizarVip(Usuario u, int vip) throws SQLException {
        DAOHackBeer.instancia().actualizarVip(u, vip);
     }
+
+    public void actualizarTablaPedidos(Administrador admin) throws SQLException {
+        DAOHackBeer.instancia().actualizarTablaPedidos(admin);
+    }
 }
