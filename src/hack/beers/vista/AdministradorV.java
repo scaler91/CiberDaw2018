@@ -22,9 +22,9 @@ public class AdministradorV extends javax.swing.JFrame {
     Administrador admin;
     controlCibercafe ccc;
     
-    String cabeceraInventario[] = {"ID", "Nombre", "Cantidad", "Precio"};
-    String[][] vaciaInventario = {};
-    DefaultTableModel tablaInventario;
+    String cabeceraPedidos[] = {"DNI", "Ordenador", "idConsumible", "Cantidad", "Precio"};
+    String[][] vaciaPedidos = {};
+    DefaultTableModel tablaPedidos;
     /**
      * Creates new form AdministradoV2
      *
@@ -96,23 +96,23 @@ public class AdministradorV extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Mesa", "Producto", "Cantidad", "Precio"
+
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,7 +290,12 @@ public class AdministradorV extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
+            
             ccc.actualizarTablaPedidos(admin);
+            
+            tablaPedidos = new DefaultTableModel(admin.crearArrayPedidos(), cabeceraPedidos);
+            jTable1.setModel(tablaPedidos);
+            
         } catch (SQLException ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }
