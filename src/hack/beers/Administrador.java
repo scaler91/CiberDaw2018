@@ -5,7 +5,6 @@
  */
 package hack.beers;
 
-import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -81,10 +81,8 @@ public class AdministradorV extends javax.swing.JFrame {
         inventario = new javax.swing.JButton();
         confirmarPedido = new javax.swing.JButton();
         almacenamiento = new javax.swing.JButton();
-        añadir = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         Usuario = new javax.swing.JLabel();
-        delete = new javax.swing.JButton();
         Fecha = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelNombreAdmin = new javax.swing.JLabel();
@@ -151,9 +149,6 @@ public class AdministradorV extends javax.swing.JFrame {
             }
         });
 
-        añadir.setText("Añadir");
-        añadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,9 +158,6 @@ public class AdministradorV extends javax.swing.JFrame {
         });
 
         Usuario.setText("Administrador:");
-
-        delete.setText("Borrar");
-        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Fecha.setText("01/01/1990");
 
@@ -180,17 +172,17 @@ public class AdministradorV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Fecha)
-                    .addComponent(Usuario)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modificar)
-                            .addComponent(añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabelNombreAdmin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Fecha)
+                            .addComponent(Usuario)
+                            .addComponent(jLabelNombreAdmin))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modificar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,13 +228,9 @@ public class AdministradorV extends javax.swing.JFrame {
                 .addComponent(Fecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(añadir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(modificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(delete)
-                .addGap(22, 22, 22))
+                .addGap(61, 61, 61))
         );
 
         pack();
@@ -322,10 +310,8 @@ public class AdministradorV extends javax.swing.JFrame {
     private javax.swing.JLabel Fecha;
     private javax.swing.JLabel Usuario;
     private javax.swing.JButton almacenamiento;
-    private javax.swing.JButton añadir;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton confirmarPedido;
-    private javax.swing.JButton delete;
     private javax.swing.JButton inventario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

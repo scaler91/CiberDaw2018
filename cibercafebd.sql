@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2018 a las 10:50:32
+-- Tiempo de generación: 06-06-2018 a las 08:56:22
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -77,7 +77,10 @@ INSERT INTO `conexiones` (`dni`, `idOrdenador`, `FechaConexion`) VALUES
 ('555A', 5, '2018-06-04 08:36:36'),
 ('555A', 6, '2018-06-04 08:40:18'),
 ('555A', 6, '2018-06-04 08:44:04'),
-('666A', 10, '2018-06-04 08:44:32');
+('666A', 10, '2018-06-04 08:44:32'),
+('555A', 7, '2018-06-06 06:48:45'),
+('555A', 3, '2018-06-06 06:50:29'),
+('555A', 8, '2018-06-06 06:52:12');
 
 -- --------------------------------------------------------
 
@@ -138,7 +141,9 @@ CREATE TABLE `pedidos` (
   `dni` varchar(9) NOT NULL,
   `mesa` int(11) NOT NULL,
   `idConsumible` int(4) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `precio` float NOT NULL,
+  `realizado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -191,13 +196,6 @@ ALTER TABLE `consumibles`
 --
 ALTER TABLE `ordenadores`
   ADD PRIMARY KEY (`IdOrdenador`);
-
---
--- Indices de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD UNIQUE KEY `dni` (`dni`),
-  ADD UNIQUE KEY `id` (`idConsumible`);
 
 --
 -- Indices de la tabla `usuarios`

@@ -26,20 +26,22 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Fecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="Usuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="modificar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="añadir" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                          <Component id="delete" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="Fecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Usuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNombreAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabelNombreAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="modificar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -96,13 +98,9 @@
               <Component id="Fecha" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="añadir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="modificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="delete" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -189,14 +187,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="almacenamientoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="a&#xf1;adir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Mano"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="modificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
@@ -211,14 +201,6 @@
     <Component class="javax.swing.JLabel" name="Usuario">
       <Properties>
         <Property name="text" type="java.lang.String" value="Administrador:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="delete">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Mano"/>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Fecha">

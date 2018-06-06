@@ -10,3 +10,6 @@ Javier: Base de datos.
 Victor: Pedidos, Inventario, Consumible.
 
 EXTRA: Ordenador y Programas para el primero que termine de premio especial.
+
+enviarquejas@hotmail.com
+recibirquejas@hotmail.com

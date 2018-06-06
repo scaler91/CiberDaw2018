@@ -5,9 +5,6 @@
  */
 package hack.beers.Pedidos;
 
-import java.awt.List;
-import java.util.LinkedList;
-
 /**
  *
  * @author saulm

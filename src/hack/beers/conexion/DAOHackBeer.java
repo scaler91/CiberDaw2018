@@ -106,7 +106,9 @@ public class DAOHackBeer {
         }
         if (contador == 1) {
             contador--;
-            ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'");
+            ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                    "SELECT * FROM administradores WHERE dni='" + usuario + "' AND contraseña='" + contraseña + "'"
+            );
             while (rs.next()) {
 
                 dni = rs.getString(1);
@@ -230,5 +232,27 @@ public class DAOHackBeer {
             idConsumible = rs.getInt(1);
         }
         return idConsumible;
+    }
+
+    public void eliminarUsuario(Usuario u) throws SQLException {
+        ConexionBD.instancia().getStatement().execute(
+                "delete from usuarios where dni='" + u.getDNI() + "'"
+        );
+        ConexionBD.instancia().getStatement().execute(
+                "delete from conexiones where dni='" + u.getDNI() + "'"
+        );
+        ConexionBD.instancia().getStatement().execute(
+                "delete from pedidos where dni='" + u.getDNI() + "'"
+        );
+        ConexionBD.instancia().getStatement().execute(
+                "delete from almacenamiento where dni='" + u.getDNI() + "'"
+        );
+
+    }
+
+    public void actualizarVip(Usuario u, int vip) throws SQLException {
+        ConexionBD.instancia().getStatement().executeUpdate(
+                "UPDATE usuarios SET vip=" + vip + " WHERE dni='" + u.getDNI() + "'"
+        );
     }
 }
