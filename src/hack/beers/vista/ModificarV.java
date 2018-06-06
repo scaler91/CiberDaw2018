@@ -264,7 +264,7 @@ public class ModificarV extends javax.swing.JDialog {
                 if (u.getVIP() == 1) {
                     JCheckboxVIP1.setSelected(true);
                 }
-
+                jButton1.setEnabled(false);
                 tablaConexiones = new DefaultTableModel(u.crearArrayConexiones(), cabecera);
                 jTable1.setModel(tablaConexiones);
             }
