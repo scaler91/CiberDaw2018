@@ -28,8 +28,12 @@ public class Administrador extends Persona {
     }
 
     public void añadirPedido(Pedido p) {
+       // pedidos.clear();
         pedidos.add(p);
     }
+    //public void vaciarLista(){
+      //  pedidos.clear();
+    //}
 
     public String[][] crearArrayPedidos() {
         String[][] misPedidos = new String[pedidos.size()][5];
@@ -40,6 +44,7 @@ public class Administrador extends Persona {
             misPedidos[i][3] = pedidos.get(i).obtenerCantidad();
             misPedidos[i][4] = pedidos.get(i).obtenerPrecio();
         }
+        pedidos.clear();
         return misPedidos;
     }
 //

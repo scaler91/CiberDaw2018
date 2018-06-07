@@ -25,6 +25,7 @@ public class AdministradorV extends javax.swing.JFrame {
     String cabeceraPedidos[] = {"DNI", "Ordenador", "idConsumible", "Cantidad", "Precio"};
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
+    DefaultTableModel tablaVacia;
     /**
      * Creates new form AdministradoV2
      *
@@ -290,6 +291,8 @@ public class AdministradorV extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
+            tablaVacia = new DefaultTableModel(vaciaPedidos, cabeceraPedidos);
+            jTable1.setModel(tablaVacia);
             
             ccc.actualizarTablaPedidos(admin);
             

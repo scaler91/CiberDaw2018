@@ -92,13 +92,15 @@ public class DAOHackBeer {
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-
+                   
                     if (vip == 1) {
                         ClienteVIP cliNuV = new ClienteVIP();
                         cliNuV.setVisible(true);
+                        
                     } else {
                         ClienteV cliNu = new ClienteV();
                         cliNu.setVisible(true);
+                        
                     }
                 }
             }
@@ -260,7 +262,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where realizado=0"
         );
-
+        //admin.vaciarLista();
         while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             admin.añadirPedido(p);

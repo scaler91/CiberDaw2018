@@ -145,7 +145,9 @@ public class LoginV extends javax.swing.JFrame {
             String usuario = jTextField1.getText();
             String contraseña = jPasswordField1.getText();
             ccc.verUsuarios(usuario, contraseña);
-            ccc.añadirConexion(ccc.verDatosUsuario());
+            if (ccc.verDatosUsuario() instanceof Usuario) {
+                ccc.añadirConexion(ccc.verDatosUsuario());
+            }
 
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
