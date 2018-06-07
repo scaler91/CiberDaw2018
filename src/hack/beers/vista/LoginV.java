@@ -148,6 +148,12 @@ public class LoginV extends javax.swing.JFrame {
             if (ccc.verDatosUsuario() instanceof Usuario) {
                 ccc.añadirConexion(ccc.verDatosUsuario());
             }
+            if (ccc.isPrimerLog() == false) {
+                cambioContraseña cContraseña = new cambioContraseña(this, true);
+                cContraseña.setVisible(true);
+
+                ccc.cambiarContraseña(usuario, cContraseña.getContraseña());
+            }
 
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
