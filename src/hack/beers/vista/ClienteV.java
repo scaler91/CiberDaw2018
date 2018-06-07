@@ -240,7 +240,7 @@ public class ClienteV extends javax.swing.JFrame {
                                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(89, 89, 89)
+                                                .addGap(99, 99, 99)
                                                 .addComponent(jButton1)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6))
@@ -322,7 +322,12 @@ public class ClienteV extends javax.swing.JFrame {
             vp.setVisible(true);
 
             ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
-//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
+//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));  
+
+//// REVISAR ESTO, NO FUNCIONA
+            ccc.actualizarTablaPedidos(u);
+
+        
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
