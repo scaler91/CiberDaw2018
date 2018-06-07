@@ -24,7 +24,7 @@ public class ConexionBD {
     
     private ConexionBD() throws ErrorConexionBD {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cibercafebd","root","");
+            conn = DriverManager.getConnection("jdbc:mysql://10.1.3.122:3306/cibercafebd","ciber","");
             stmt = conn.createStatement();
         }
         catch(SQLException e) {
