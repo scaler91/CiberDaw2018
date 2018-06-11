@@ -41,7 +41,6 @@ public class Usuario extends Persona {
         ccc.annadirPedido(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
         pedido.add(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
     }
-//ZOPOTAMADRE
 
     public void añadirConexion(Conexion c) {
         registroConexiones.add(c);
