@@ -13,7 +13,9 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -31,6 +33,8 @@ public class HackBeers extends JFrame {
         frame.add(new Panel());
         frame.pack();
         frame.setVisible(true);
+        frame.setExtendedState(MAXIMIZED_BOTH);	
+
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, ErrorConexionBD {
@@ -44,9 +48,14 @@ public class HackBeers extends JFrame {
 
 class Panel extends JPanel {
 
+    private JLabel JLabel1;
     Timer timer;
+    ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
 
     Panel() {
+        JLabel1 = new JLabel("");
+        JLabel1.setBounds(10, 20, 300, 30);
+        add(JLabel1);
         setBackground(Color.BLACK);
         setForeground(Color.WHITE);
         refreshScreen();
@@ -57,7 +66,8 @@ class Panel extends JPanel {
         super.paintComponent(g);
         g.setFont(new Font("arial", Font.PLAIN, 24));
         g.setColor(Color.yellow);
-        g.drawString("Hack&Beers", 200, 200);
+        g.drawString("", 200, 200);
+        JLabel1.setIcon(iconLogo);
     }
 
     public void refreshScreen() {
