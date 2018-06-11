@@ -32,6 +32,7 @@ public class annadirConsumible extends javax.swing.JDialog {
      */
     public annadirConsumible(java.awt.Frame parent, boolean modal) throws ErrorConexionBD {
         super(parent, modal);
+        this.setUndecorated(true);
         initComponents();
         ccc = new controlCibercafe();
         setTitle("Añadir Consumible");
