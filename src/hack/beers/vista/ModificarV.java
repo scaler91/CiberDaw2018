@@ -72,8 +72,14 @@ public class ModificarV extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellidos");
 
+        JCheckboxVIP1.setBackground(new java.awt.Color(0, 0, 0));
+        JCheckboxVIP1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        JCheckboxVIP1.setForeground(new java.awt.Color(255, 255, 255));
         JCheckboxVIP1.setText("Si / No");
         JCheckboxVIP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JCheckboxVIP1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +88,9 @@ public class ModificarV extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("VIP:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,8 +106,14 @@ public class ModificarV extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario Actual:");
 
+        usuarioActual.setBackground(new java.awt.Color(0, 0, 0));
+        usuarioActual.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        usuarioActual.setForeground(new java.awt.Color(255, 255, 255));
         usuarioActual.setText(DNI);
 
         jButtonCerrar.setBackground(new java.awt.Color(0, 0, 0));
@@ -106,6 +121,7 @@ public class ModificarV extends javax.swing.JDialog {
         jButtonCerrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCerrar.setText("X");
         jButtonCerrar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jButtonCerrar.setBorderPainted(false);
         jButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,9 +129,12 @@ public class ModificarV extends javax.swing.JDialog {
             }
         });
 
-        jTextBuscarUsuario.setForeground(new java.awt.Color(156, 156, 156));
+        jTextBuscarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        jTextBuscarUsuario.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jTextBuscarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         jTextBuscarUsuario.setText("Introduce el DNI");
         jTextBuscarUsuario.setToolTipText("Introduce el DNI");
+        jTextBuscarUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jTextBuscarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextBuscarUsuarioMouseClicked(evt);
@@ -132,6 +151,9 @@ public class ModificarV extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
 
         jButtonBusqueda.setBackground(new java.awt.Color(0, 0, 0));
@@ -139,6 +161,7 @@ public class ModificarV extends javax.swing.JDialog {
         jButtonBusqueda.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBusqueda.setToolTipText("Buscar");
         jButtonBusqueda.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jButtonBusqueda.setBorderPainted(false);
         jButtonBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonBusqueda.setFocusable(false);
         jButtonBusqueda.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +170,9 @@ public class ModificarV extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Registro del Usuario");
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
@@ -154,6 +180,7 @@ public class ModificarV extends javax.swing.JDialog {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Crear");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -164,6 +191,7 @@ public class ModificarV extends javax.swing.JDialog {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Eliminar");
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jButton2.setBorderPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -203,8 +231,8 @@ public class ModificarV extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(usuarioActual)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(jTextBuscarUsuario)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
