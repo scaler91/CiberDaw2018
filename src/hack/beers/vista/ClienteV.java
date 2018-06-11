@@ -325,9 +325,8 @@ public class ClienteV extends javax.swing.JFrame {
 //            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));  
 
 //// REVISAR ESTO, NO FUNCIONA
-            ccc.actualizarTablaPedidos(u);
+            ccc.actualizarTablaPedidosU(u);
 
-        
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }

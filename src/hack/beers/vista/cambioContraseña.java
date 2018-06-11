@@ -5,12 +5,21 @@
  */
 package hack.beers.vista;
 
+import hack.beers.Usuario;
+import hack.beers.controlCibercafe;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventasbd.dao.exception.ErrorConexionBD;
+
 /**
  *
  * @author Alumno
  */
 public class cambioContraseña extends javax.swing.JDialog {
 
+    Usuario u;
+    controlCibercafe ccc;
     private String contraseña;
 
     /**
@@ -18,7 +27,15 @@ public class cambioContraseña extends javax.swing.JDialog {
      */
     public cambioContraseña(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            ccc = new controlCibercafe();
+            u = ccc.verDatosUsuario();
+            initComponents();
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -52,6 +69,11 @@ public class cambioContraseña extends javax.swing.JDialog {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cambio de Contraseña");
 
@@ -105,15 +127,22 @@ public class cambioContraseña extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (jPasswordField1.getText().equals(jPasswordField2.getText())) {
-            contraseña = jPasswordField1.getText();
+        try {
+            // TODO add your handling code here:
+            if (jPasswordField1.getText().equals(jPasswordField2.getText())) {
+                contraseña = jPasswordField1.getText();
+            }
+            ccc.cambiarContraseña(u.getDNI(), contraseña);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public String getContraseña() {
-        return contraseña;
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

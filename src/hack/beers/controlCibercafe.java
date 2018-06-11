@@ -80,6 +80,9 @@ public class controlCibercafe {
     public void actualizarTablaPedidos(Administrador admin) throws SQLException {
         DAOHackBeer.instancia().actualizarTablaPedidos(admin);
     }
+    public void actualizarTablaPedidosU(Usuario u) throws SQLException {
+        DAOHackBeer.instancia().actualizarTablaPedidosU(u);
+    }
 
     public boolean isPrimerLog() {
         return DAOHackBeer.instancia().isPrimerLog();

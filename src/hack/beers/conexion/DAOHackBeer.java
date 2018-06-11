@@ -271,6 +271,17 @@ public class DAOHackBeer {
         }
     }
 
+    public void actualizarTablaPedidosU(Usuario u) throws SQLException {
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from pedidos where dni='" + u.getDNI() + "'"
+        );
+        //admin.vaciarLista();
+        while (rs.next()) {
+            Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
+            u.añadirPedido(p);
+        }
+    }
+
     public boolean isPrimerLog() {
         return primerLog;
     }
