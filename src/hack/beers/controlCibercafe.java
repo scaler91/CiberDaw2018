@@ -100,4 +100,8 @@ public class controlCibercafe {
     public void actualizarTablaPedidos(Administrador admin) throws SQLException {
         DAOHackBeer.instancia().actualizarTablaPedidos(admin);
     }
+
+    public void actualizarTablaPedidos(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
