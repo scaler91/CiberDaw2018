@@ -23,8 +23,9 @@ public class Usuario extends Persona {
     private controlCibercafe ccc;
     private int VIP;
     private int idOrdenador;
-    private LinkedList pedido;
+    private LinkedList<Pedido> pedido;
     private ArrayList<Conexion> registroConexiones;
+    private float precioTotal = 0;
 
     public Usuario(String nombre, String apellidos, String DNI, String contraseña, int VIP) throws ErrorConexionBD {
         super(nombre, apellidos, DNI, contraseña);
@@ -41,11 +42,13 @@ public class Usuario extends Persona {
         pedido.add(new Pedido(DNI, ordenadorId, idConsumible, cantidad, precio, false));
     }
 //ZOPOTAMADRE
+
     public void añadirConexion(Conexion c) {
         registroConexiones.add(c);
     }
+
     public void añadirPedido(Pedido p) {
-       // pedidos.clear();
+        // pedidos.clear();
         pedido.add(p);
     }
 
@@ -59,6 +62,7 @@ public class Usuario extends Persona {
         return misConexiones;
     }
 //
+
     public int getVIP() {
         return VIP;
     }
@@ -86,7 +90,6 @@ public class Usuario extends Persona {
     public int getIdOrdenador() {
         return idOrdenador;
     }
-    
 
     //MÉTODOS
     /**
@@ -142,19 +145,21 @@ public class Usuario extends Persona {
         verArchivos();
     }
 
-//    @Override
-//    public boolean conectarse(String usuario, String contraseña) throws ErrorConexionBD, SQLException {
-//        boolean conexionCorrecta = false;
-//        ConexionBD.crearConexion();
-//        //Comprobar contraseña
-//        ResultSet validarContraseña = ConexionBD.instancia().getStatement().executeQuery(
-//                "select Contraseña from usuarios where Contraseña = '" + contraseña + "'");
-//        //Comprobar usuario
-//        ResultSet validarUsuario = ConexionBD.instancia().getStatement().executeQuery(
-//                "select dni from usuarios where dni = '" + usuario + "'" + "and Contraseña = '" + contraseña + "'");
-//        if (validarContraseña.toString() == contraseña && validarUsuario.toString() == usuario) {
-//            conexionCorrecta = true;
-//        }
-//        return conexionCorrecta;
-//    }
+    public String[][] crearArrayPedidos() {
+        precioTotal = 0;
+        String[][] misPedidos = new String[pedido.size()][5];
+        for (int i = 0; i < pedido.size(); i++) {
+            misPedidos[i][0] = Integer.toString(pedido.get(i).getIdConsumible());
+            misPedidos[i][1] = pedido.get(i).obtenerCantidad();
+            misPedidos[i][2] = pedido.get(i).obtenerPrecio();
+            precioTotal += Float.parseFloat(pedido.get(i).obtenerPrecio());
+        }
+        pedido.clear();
+        return misPedidos;
+    }
+
+    public float getPrecioTotal() {
+        return precioTotal;
+    }
+
 }

@@ -5,14 +5,12 @@
  */
 package hack.beers.vista;
 
-import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
-import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import hack.beers.mail.QuejaV;
 import java.sql.SQLException;
@@ -20,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -32,7 +31,12 @@ public class ClienteV extends javax.swing.JFrame {
     controlCibercafe ccc;
     Usuario u;
     LoginV v;
-    String[] cabecera = {"Nombre", "Cantidad"};
+
+    String[] cabecera = {"Nombre", "Cantidad", "Precio"};
+    String[][] vaciaPedidos = {};
+    DefaultTableModel tablaPedidos;
+    DefaultTableModel tablaVacia;
+    
     Timer timer;
     int tiempo = 300000;
     int minuto = tiempo / 60000;
@@ -60,7 +64,7 @@ public class ClienteV extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 jLabel7.setText(Integer.toString(minuto) + ":" + segundo);
-
+                actualizarTabla();
                 if (segundo < 10 && segundo > 0 || segundo == 0) {
                     jLabel7.setText(Integer.toString(minuto) + ":0" + segundo);
                 }
@@ -315,19 +319,28 @@ public class ClienteV extends javax.swing.JFrame {
         pv.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    public void actualizarTabla() {
+        try {
+            tablaVacia = new DefaultTableModel(vaciaPedidos, cabecera);
+            jTable1.setModel(tablaVacia);
+
+            ccc.actualizarTablaPedidosU(u);
+            jTextField1.setText("" + u.getPrecioTotal());
+            tablaPedidos = new DefaultTableModel(u.crearArrayPedidos(), cabecera);
+            jTable1.setModel(tablaPedidos);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         PedidoV vp;
         try {
-            vp = new PedidoV(this, rootPaneCheckingEnabled);
+            vp = new PedidoV(this, true);
             vp.setVisible(true);
-
-            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
-//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));  
-
-//// REVISAR ESTO, NO FUNCIONA
-            ccc.actualizarTablaPedidosU(u);
-
-        } catch (SQLException | ErrorConexionBD ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed

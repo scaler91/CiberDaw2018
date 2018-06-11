@@ -19,20 +19,22 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author Alumno
  */
 public class AdministradorV extends javax.swing.JFrame {
+
     Administrador admin;
     controlCibercafe ccc;
-    
+
     String cabeceraPedidos[] = {"DNI", "Ordenador", "idConsumible", "Cantidad", "Precio"};
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
     DefaultTableModel tablaVacia;
+
     /**
      * Creates new form AdministradoV2
      *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public AdministradorV() throws ErrorConexionBD {
-        ccc= new controlCibercafe();
+        ccc = new controlCibercafe();
         admin = ccc.verDatosAdministrador();
         Administrador a = ccc.verDatosAdministrador();
 
@@ -41,7 +43,7 @@ public class AdministradorV extends javax.swing.JFrame {
         setTitle("Administrador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
     }
-    
+
 //        private void annadirTabla() {
 //        try {
 //            // TODO add your handling code here:
@@ -67,7 +69,6 @@ public class AdministradorV extends javax.swing.JFrame {
 //            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -266,9 +267,17 @@ public class AdministradorV extends javax.swing.JFrame {
     }//GEN-LAST:event_inventarioActionPerformed
 
     private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
-        // TODO add your handling code here:
-        //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
+        try {
+            // TODO add your handling code here:
+            //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
 //        annadirTabla();
+            String dni = ((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim();
+            int idConsumible = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim());
+            int cantidad = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3)).trim());
+            ccc.confirmarPedido(cantidad, idConsumible, dni);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_confirmarPedidoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -280,12 +289,12 @@ public class AdministradorV extends javax.swing.JFrame {
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_modificarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -293,12 +302,12 @@ public class AdministradorV extends javax.swing.JFrame {
             // TODO add your handling code here:
             tablaVacia = new DefaultTableModel(vaciaPedidos, cabeceraPedidos);
             jTable1.setModel(tablaVacia);
-            
+
             ccc.actualizarTablaPedidos(admin);
-            
+
             tablaPedidos = new DefaultTableModel(admin.crearArrayPedidos(), cabeceraPedidos);
             jTable1.setModel(tablaPedidos);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }

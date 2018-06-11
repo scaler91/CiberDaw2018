@@ -80,6 +80,7 @@ public class controlCibercafe {
     public void actualizarTablaPedidos(Administrador admin) throws SQLException {
         DAOHackBeer.instancia().actualizarTablaPedidos(admin);
     }
+
     public void actualizarTablaPedidosU(Usuario u) throws SQLException {
         DAOHackBeer.instancia().actualizarTablaPedidosU(u);
     }
@@ -90,5 +91,9 @@ public class controlCibercafe {
 
     public void cambiarContraseña(String dni, String contraseña) throws SQLException {
         DAOHackBeer.instancia().cambiarContraseña(dni, contraseña);
+    }
+
+    public void confirmarPedido(int cantidad, int id, String dni) throws SQLException {
+        DAOHackBeer.instancia().confirmarPedido(cantidad, id, dni);
     }
 }
