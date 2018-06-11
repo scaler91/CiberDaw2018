@@ -273,7 +273,7 @@ public class DAOHackBeer {
 
     public void actualizarTablaPedidosU(Usuario u) throws SQLException {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
-                "select * from pedidos where dni='" + u.getDNI() + "'"
+                "select * from pedidos where dni='" + u.getDNI() + "' AND realizado=0"
         );
         //admin.vaciarLista();
         while (rs.next()) {
@@ -288,5 +288,15 @@ public class DAOHackBeer {
 
     public void cambiarContraseña(String dni, String contraseña) throws SQLException {
         ConexionBD.instancia().getStatement().execute("UPDATE `usuarios` SET `Contraseña`='" + contraseña + "',`primerLog`=true WHERE dni='" + dni + "'");
+    }
+
+    public void confirmarPedido(int cantidad, int id, String dni) throws SQLException {
+        int cantidadNueva = 0;
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT cantidad FROM pedidos WHERE idConsumible=" + id);
+        while (rs.next()) {
+            cantidadNueva = rs.getInt(1) - cantidad;
+        }
+        ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad="+cantidadNueva+" where idConsumible=" + id);
+        ConexionBD.instancia().getStatement().execute("");
     }
 }

@@ -319,9 +319,17 @@ public class AdministradorV extends javax.swing.JFrame {
     }//GEN-LAST:event_inventarioActionPerformed
 
     private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
-        // TODO add your handling code here:
-        //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
+        try {
+            // TODO add your handling code here:
+            //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
 //        annadirTabla();
+            String dni = ((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim();
+            int idConsumible = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim());
+            int cantidad = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3)).trim());
+            ccc.confirmarPedido(cantidad, idConsumible, dni);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_confirmarPedidoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed

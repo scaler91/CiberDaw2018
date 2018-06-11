@@ -25,7 +25,6 @@ public class PedidoV extends javax.swing.JDialog {
     Pedido p;
     Inventario I;
     controlCibercafe ccc;
-
     double precioActual;
     int cantidad;
     int idConsumible;
@@ -217,11 +216,11 @@ public class PedidoV extends javax.swing.JDialog {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
+
         this.setVisible(false);
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        // TODO add your handling code here:
         devuelvePedido();
         this.setVisible(false);
     }//GEN-LAST:event_AceptarActionPerformed

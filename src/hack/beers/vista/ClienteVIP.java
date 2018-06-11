@@ -9,14 +9,17 @@ import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import hack.beers.conexion.ConexionBD;
 import hack.beers.controlCibercafe;
 import hack.beers.mail.QuejaV;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -29,8 +32,12 @@ public class ClienteVIP extends javax.swing.JFrame {
     Usuario u;
     controlCibercafe ccc;
     LoginV v;
-    String[] cabecera = {"Nombre", "Cantidad"};
 
+    String[] cabecera = {"Nombre", "Cantidad", "Precio"};
+    String[][] vaciaPedidos = {};
+    DefaultTableModel tablaPedidos;
+    DefaultTableModel tablaVacia;
+    Timer timer;
 // Import ImageIcon     
     ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
 
@@ -44,12 +51,20 @@ public class ClienteVIP extends javax.swing.JFrame {
         ccc = new controlCibercafe();
         u = ccc.verDatosUsuario();
         pedido = new LinkedList();
+
+        this.timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarTabla();
+            }
+        });
+
+        timer.start();
         initComponents();
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
-
     }
 
     public void fin() {
@@ -267,23 +282,40 @@ public class ClienteVIP extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PedidoV vp;
         try {
-            vp = new PedidoV(this, rootPaneCheckingEnabled);
+            PedidoV vp;
+
+            vp = new PedidoV(this, true);
             vp.setVisible(true);
 
-            ccc.annadirPedido(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));
-//            pedido.add(new Pedido(u.getDNI(), 1, vp.getIdConsumible(), vp.getCantidad(), vp.calculo(), false));            
-        } catch (SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+            actualizarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(ClienteVIP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        QuejaV queja = new QuejaV(this, rootPaneCheckingEnabled);
-        queja.setVisible(rootPaneCheckingEnabled);
+        QuejaV queja = new QuejaV(this, true);
+        queja.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    public void actualizarTabla() {
+        try {
+            tablaVacia = new DefaultTableModel(vaciaPedidos, cabecera);
+            jTable1.setModel(tablaVacia);
+
+            ccc.actualizarTablaPedidosU(u);
+            jTextField1.setText("" + u.getPrecioTotal());
+            tablaPedidos = new DefaultTableModel(u.crearArrayPedidos(), cabecera);
+            jTable1.setModel(tablaPedidos);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
