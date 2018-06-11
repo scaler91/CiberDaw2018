@@ -7,6 +7,7 @@ package hack.beers.vista;
 
 import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ public class InventarioV extends javax.swing.JFrame {
     public InventarioV() throws ErrorConexionBD, ErrorConexionBD {
         ccc = new controlCibercafe();
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
         setTitle("Inventario");
 
         tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
@@ -67,14 +69,22 @@ public class InventarioV extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        annadirConsumible.setBackground(new java.awt.Color(0, 0, 0));
+        annadirConsumible.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        annadirConsumible.setForeground(new java.awt.Color(255, 255, 255));
         annadirConsumible.setText("Añadir Consumible");
+        annadirConsumible.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         annadirConsumible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annadirConsumibleActionPerformed(evt);
             }
         });
 
+        jButtonActualizar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonActualizar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonActualizarActionPerformed(evt);
@@ -92,7 +102,7 @@ public class InventarioV extends javax.swing.JFrame {
                         .addComponent(jButtonActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(49, Short.MAX_VALUE)
+                        .addContainerGap(61, Short.MAX_VALUE)
                         .addComponent(annadirConsumible)
                         .addGap(27, 27, 27)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)

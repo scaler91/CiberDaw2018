@@ -26,6 +26,7 @@ public class DAOHackBeer {
     static DAOHackBeer instancia = null;
 
     Usuario u = null;
+    private boolean primerLog;
 
     //java.util.Date fecha = new Date();
     Administrador a;
@@ -87,20 +88,21 @@ public class DAOHackBeer {
                 apellidos = rs.getString(3);
                 contraseñaU = rs.getString(4);
                 vip = rs.getInt(5);
+                primerLog = rs.getBoolean(6);
 
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-                   
+
                     if (vip == 1) {
                         ClienteVIP cliNuV = new ClienteVIP();
                         cliNuV.setVisible(true);
-                        
+
                     } else {
                         ClienteV cliNu = new ClienteV();
                         cliNu.setVisible(true);
-                        
+
                     }
                 }
             }
@@ -267,5 +269,24 @@ public class DAOHackBeer {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             admin.añadirPedido(p);
         }
+    }
+
+    public void actualizarTablaPedidosU(Usuario u) throws SQLException {
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from pedidos where dni='" + u.getDNI() + "'"
+        );
+        //admin.vaciarLista();
+        while (rs.next()) {
+            Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
+            u.añadirPedido(p);
+        }
+    }
+
+    public boolean isPrimerLog() {
+        return primerLog;
+    }
+
+    public void cambiarContraseña(String dni, String contraseña) throws SQLException {
+        ConexionBD.instancia().getStatement().execute("UPDATE `usuarios` SET `Contraseña`='" + contraseña + "',`primerLog`=true WHERE dni='" + dni + "'");
     }
 }

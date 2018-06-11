@@ -44,6 +44,10 @@ public class Usuario extends Persona {
     public void añadirConexion(Conexion c) {
         registroConexiones.add(c);
     }
+    public void añadirPedido(Pedido p) {
+       // pedidos.clear();
+        pedido.add(p);
+    }
 
     public String[][] crearArrayConexiones() {
         String[][] misConexiones = new String[registroConexiones.size()][3];

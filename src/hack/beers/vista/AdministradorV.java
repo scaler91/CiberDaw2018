@@ -8,6 +8,7 @@ package hack.beers.vista;
 import hack.beers.Administrador;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,29 +20,31 @@ import ventasbd.dao.exception.ErrorConexionBD;
  * @author Alumno
  */
 public class AdministradorV extends javax.swing.JFrame {
+
     Administrador admin;
     controlCibercafe ccc;
-    
+
     String cabeceraPedidos[] = {"DNI", "Ordenador", "idConsumible", "Cantidad", "Precio"};
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
     DefaultTableModel tablaVacia;
+
     /**
      * Creates new form AdministradoV2
      *
      * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public AdministradorV() throws ErrorConexionBD {
-        ccc= new controlCibercafe();
+        ccc = new controlCibercafe();
         admin = ccc.verDatosAdministrador();
         Administrador a = ccc.verDatosAdministrador();
 
         initComponents();
-
+        this.getContentPane().setBackground(Color.BLACK);
         setTitle("Administrador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
     }
-    
+
 //        private void annadirTabla() {
 //        try {
 //            // TODO add your handling code here:
@@ -67,7 +70,6 @@ public class AdministradorV extends javax.swing.JFrame {
 //            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +96,12 @@ public class AdministradorV extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
 
+        jTable1.setBackground(new java.awt.Color(0, 0, 0));
+        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jTable1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -123,7 +130,11 @@ public class AdministradorV extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        cerrar.setBackground(new java.awt.Color(0, 0, 0));
+        cerrar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        cerrar.setForeground(new java.awt.Color(255, 255, 255));
         cerrar.setText("X");
+        cerrar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,12 +142,19 @@ public class AdministradorV extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pedidos:");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        inventario.setBackground(new java.awt.Color(0, 0, 0));
+        inventario.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        inventario.setForeground(new java.awt.Color(255, 255, 255));
         inventario.setText("Inventario");
+        inventario.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         inventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +162,11 @@ public class AdministradorV extends javax.swing.JFrame {
             }
         });
 
+        confirmarPedido.setBackground(new java.awt.Color(0, 0, 0));
+        confirmarPedido.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        confirmarPedido.setForeground(new java.awt.Color(255, 255, 255));
         confirmarPedido.setText("Confirmar Pedido");
+        confirmarPedido.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         confirmarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confirmarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +174,11 @@ public class AdministradorV extends javax.swing.JFrame {
             }
         });
 
+        modificar.setBackground(new java.awt.Color(0, 0, 0));
+        modificar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        modificar.setForeground(new java.awt.Color(255, 255, 255));
         modificar.setText("Modificar");
+        modificar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,20 +186,39 @@ public class AdministradorV extends javax.swing.JFrame {
             }
         });
 
+        Usuario.setBackground(new java.awt.Color(0, 0, 0));
+        Usuario.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        Usuario.setForeground(new java.awt.Color(255, 255, 255));
         Usuario.setText("Administrador:");
 
+        Fecha.setBackground(new java.awt.Color(0, 0, 0));
+        Fecha.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        Fecha.setForeground(new java.awt.Color(255, 255, 255));
         Fecha.setText("01/01/1990");
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gestion");
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel3, org.jdesktop.beansbinding.ObjectProperty.create(), jLabel2, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
+        jLabelNombreAdmin.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelNombreAdmin.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabelNombreAdmin.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNombreAdmin.setText("jLabel3");
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("usuarios");
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Actualizar Pedidos");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -188,53 +233,49 @@ public class AdministradorV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Fecha)
-                            .addComponent(Usuario)
-                            .addComponent(jLabelNombreAdmin)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(modificar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelNombreAdmin)
+                            .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))))
+                            .addComponent(jLabel2)))
+                    .addComponent(modificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cerrar)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(confirmarPedido)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inventario)
-                        .addGap(15, 15, 15))))
+                        .addComponent(confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(cerrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmarPedido)
-                    .addComponent(inventario)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8))
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -243,13 +284,13 @@ public class AdministradorV extends javax.swing.JFrame {
                 .addComponent(jLabelNombreAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Fecha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(modificar)
-                .addGap(61, 61, 61))
+                .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         bindingGroup.bind();
@@ -262,7 +303,13 @@ public class AdministradorV extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            InventarioV inventarioV = new InventarioV();
+            inventarioV.setVisible(true);
+        } catch (ErrorConexionBD ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_inventarioActionPerformed
 
     private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
@@ -280,12 +327,12 @@ public class AdministradorV extends javax.swing.JFrame {
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_modificarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -293,12 +340,12 @@ public class AdministradorV extends javax.swing.JFrame {
             // TODO add your handling code here:
             tablaVacia = new DefaultTableModel(vaciaPedidos, cabeceraPedidos);
             jTable1.setModel(tablaVacia);
-            
+
             ccc.actualizarTablaPedidos(admin);
-            
+
             tablaPedidos = new DefaultTableModel(admin.crearArrayPedidos(), cabeceraPedidos);
             jTable1.setModel(tablaPedidos);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }
