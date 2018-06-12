@@ -34,6 +34,7 @@ public class InventarioV extends javax.swing.JFrame {
         ccc = new controlCibercafe();
         this.setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Inventario");
 

@@ -22,6 +22,7 @@ public class ProgramasV extends javax.swing.JFrame {
     public ProgramasV() {
         this.setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         iconLogo = new ImageIcon("imagenes/firefox.png");
         jLabel1.setIcon(iconLogo);
         setTitle("Programas");

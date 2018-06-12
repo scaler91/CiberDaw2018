@@ -40,6 +40,7 @@ public class AdministradorV extends javax.swing.JFrame {
         Administrador a = ccc.verDatosAdministrador();
         this.setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Administrador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());

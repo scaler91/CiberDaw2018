@@ -41,6 +41,7 @@ public class PedidoV extends javax.swing.JDialog {
         u = ccc.verDatosUsuario();
         this.setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         setTitle("Pedidos");
         annadirComboBox();
     }

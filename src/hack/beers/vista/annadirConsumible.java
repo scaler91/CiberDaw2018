@@ -34,6 +34,7 @@ public class annadirConsumible extends javax.swing.JDialog {
         super(parent, modal);
         this.setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
         ccc = new controlCibercafe();
         setTitle("Añadir Consumible");
     }

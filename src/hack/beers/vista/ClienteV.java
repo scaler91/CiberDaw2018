@@ -99,6 +99,7 @@ public class ClienteV extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
 
+        setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");

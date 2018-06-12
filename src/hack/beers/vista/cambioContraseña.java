@@ -31,6 +31,7 @@ public class cambioContraseña extends javax.swing.JDialog {
             ccc = new controlCibercafe();
             u = ccc.verDatosUsuario();
             initComponents();
+            setLocationRelativeTo(null);
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
