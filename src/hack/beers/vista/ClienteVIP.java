@@ -58,7 +58,7 @@ public class ClienteVIP extends javax.swing.JFrame {
                 actualizarTabla();
             }
         });
-
+        this.setUndecorated(true);
         timer.start();
         initComponents();
         setTitle("Eres el puto AMO!!");

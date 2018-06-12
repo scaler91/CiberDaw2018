@@ -38,7 +38,7 @@ public class AdministradorV extends javax.swing.JFrame {
         ccc = new controlCibercafe();
         admin = ccc.verDatosAdministrador();
         Administrador a = ccc.verDatosAdministrador();
-
+        this.setUndecorated(true);
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Administrador");

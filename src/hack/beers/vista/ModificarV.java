@@ -37,7 +37,7 @@ public class ModificarV extends javax.swing.JDialog {
         super(parent, modal);
         DNI = "Vacio";
         ccc = new controlCibercafe();
-
+        this.setUndecorated(true);
         initComponents();
 
         jButton1.setEnabled(false);
@@ -290,7 +290,7 @@ public class ModificarV extends javax.swing.JDialog {
                 } else {
                     vip = 0;
                 }
-                
+
                 ccc.actualizarVip(u, vip);
             }
         } catch (SQLException ex) {

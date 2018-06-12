@@ -37,7 +37,7 @@ public class LoginV extends javax.swing.JFrame {
      * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public LoginV() throws ClassNotFoundException, SQLException, ErrorConexionBD {
-
+        this.setUndecorated(true);
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         ccc = new controlCibercafe();

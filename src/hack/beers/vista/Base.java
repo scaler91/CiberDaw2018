@@ -20,14 +20,22 @@ public class Base extends javax.swing.JFrame {
 
     ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
 
+    @Override
+    public void setUndecorated(boolean undecorated) {
+        super.setUndecorated(undecorated); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Creates new form Base
      */
     public Base() {
+        this.setUndecorated(true);
+        
         initComponents();
+        
         this.getContentPane().setBackground(Color.BLACK);
         jLabel1.setIcon(iconLogo);
-
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -43,37 +51,24 @@ public class Base extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        jLabel1.setAlignmentX(10.0F);
+        jLabel1.setAlignmentY(10.0F);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(540, 370, 305, 239);
+
+        jToggleButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jToggleButton1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Login");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jToggleButton1)))
-                .addContainerGap(187, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+        getContentPane().add(jToggleButton1);
+        jToggleButton1.setBounds(591, 620, 70, 34);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

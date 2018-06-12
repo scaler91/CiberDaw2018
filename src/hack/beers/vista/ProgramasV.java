@@ -20,7 +20,7 @@ public class ProgramasV extends javax.swing.JFrame {
      * Creates new form Programas
      */
     public ProgramasV() {
-
+        this.setUndecorated(true);
         initComponents();
         iconLogo = new ImageIcon("imagenes/firefox.png");
         jLabel1.setIcon(iconLogo);

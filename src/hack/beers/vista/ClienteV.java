@@ -96,7 +96,7 @@ public class ClienteV extends javax.swing.JFrame {
         });
 
         timer.start();
-
+        this.setUndecorated(true);
         initComponents();
 
         this.getContentPane().setBackground(Color.BLACK);

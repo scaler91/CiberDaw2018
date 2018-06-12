@@ -39,7 +39,7 @@ public class PedidoV extends javax.swing.JDialog {
         I.annadirLista();
         ccc = new controlCibercafe();
         u = ccc.verDatosUsuario();
-
+        this.setUndecorated(true);
         initComponents();
         setTitle("Pedidos");
         annadirComboBox();

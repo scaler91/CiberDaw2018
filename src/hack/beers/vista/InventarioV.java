@@ -32,6 +32,7 @@ public class InventarioV extends javax.swing.JFrame {
      */
     public InventarioV() throws ErrorConexionBD, ErrorConexionBD {
         ccc = new controlCibercafe();
+        this.setUndecorated(true);
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Inventario");
