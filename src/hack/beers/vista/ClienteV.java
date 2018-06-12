@@ -347,10 +347,10 @@ public class ClienteV extends javax.swing.JFrame {
         this.setVisible(false);
         try {
             LoginV v = new LoginV();
+            v.setVisible(true);
         } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        v.setVisible(true);
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
