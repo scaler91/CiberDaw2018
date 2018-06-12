@@ -48,7 +48,7 @@ public class Base extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -58,26 +58,27 @@ public class Base extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(540, 370, 305, 239);
 
-        jToggleButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jToggleButton1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Login");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Log In");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(591, 620, 70, 34);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(590, 610, 77, 32);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
             LoginV login = new LoginV();
             login.setVisible(true);
+            jButton1.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -85,8 +86,7 @@ public class Base extends javax.swing.JFrame {
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,7 +124,7 @@ public class Base extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

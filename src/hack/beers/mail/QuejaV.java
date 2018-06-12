@@ -5,6 +5,7 @@
  */
 package hack.beers.mail;
 
+import java.awt.Color;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -26,17 +27,20 @@ public class QuejaV extends javax.swing.JDialog {
     String Mensage = "";
     String To = "";
     String Subject = "";
-    
+
     /**
      * Creates new form QuejaV
+     *
      * @param parent
      * @param modal
      */
     public QuejaV(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.BLACK);
     }
-    
+
     public void SendMail() {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -46,11 +50,11 @@ public class QuejaV extends javax.swing.JDialog {
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(correo, contra);
-                    }
-                });
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(correo, contra);
+            }
+        });
 
         try {
 
@@ -86,12 +90,22 @@ public class QuejaV extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        queja.setBackground(new java.awt.Color(0, 0, 0));
         queja.setColumns(20);
+        queja.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        queja.setForeground(new java.awt.Color(255, 255, 255));
         queja.setRows(5);
+        queja.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jScrollPane1.setViewportView(queja);
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Escriba su queja:");
 
+        enviar.setBackground(new java.awt.Color(0, 0, 0));
+        enviar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        enviar.setForeground(new java.awt.Color(255, 255, 255));
         enviar.setText("Enviar");
         enviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +113,9 @@ public class QuejaV extends javax.swing.JDialog {
             }
         });
 
+        salir.setBackground(new java.awt.Color(0, 0, 0));
+        salir.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +146,7 @@ public class QuejaV extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)

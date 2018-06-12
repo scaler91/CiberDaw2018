@@ -10,6 +10,7 @@ import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
 import hack.beers.controlCibercafe;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -41,6 +42,7 @@ public class PedidoV extends javax.swing.JDialog {
         u = ccc.verDatosUsuario();
         this.setUndecorated(true);
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         setTitle("Pedidos");
         annadirComboBox();
@@ -115,6 +117,9 @@ public class PedidoV extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        Cancelar.setBackground(new java.awt.Color(0, 0, 0));
+        Cancelar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        Cancelar.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar.setText("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +127,9 @@ public class PedidoV extends javax.swing.JDialog {
             }
         });
 
+        Aceptar.setBackground(new java.awt.Color(0, 0, 0));
+        Aceptar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        Aceptar.setForeground(new java.awt.Color(255, 255, 255));
         Aceptar.setText("Aceptar");
         Aceptar.setEnabled(false);
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +138,9 @@ public class PedidoV extends javax.swing.JDialog {
             }
         });
 
+        jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setMaximumRowCount(200);
         jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -150,8 +161,14 @@ public class PedidoV extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("X");
 
+        jComboBox2.setBackground(new java.awt.Color(0, 0, 0));
+        jComboBox2.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox2.setMaximumRowCount(10);
         jComboBox2.setToolTipText("");
         jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,8 +183,14 @@ public class PedidoV extends javax.swing.JDialog {
         });
 
         dinerito.setEditable(false);
+        dinerito.setBackground(new java.awt.Color(0, 0, 0));
+        dinerito.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        dinerito.setForeground(new java.awt.Color(255, 255, 255));
         dinerito.setText("0.0 €");
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleciona tu pedido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,24 +198,28 @@ public class PedidoV extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(Aceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cancelar)
-                .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(dinerito, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(Aceptar)))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Cancelar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(dinerito, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,11 +232,11 @@ public class PedidoV extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dinerito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Aceptar)
-                    .addComponent(Cancelar))
-                .addGap(111, 111, 111))
+                    .addComponent(Cancelar)
+                    .addComponent(Aceptar))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();

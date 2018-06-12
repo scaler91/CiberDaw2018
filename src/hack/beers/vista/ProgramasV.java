@@ -5,6 +5,7 @@
  */
 package hack.beers.vista;
 
+import java.awt.Color;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
@@ -22,6 +23,7 @@ public class ProgramasV extends javax.swing.JFrame {
     public ProgramasV() {
         this.setUndecorated(true);
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         iconLogo = new ImageIcon("imagenes/firefox.png");
         jLabel1.setIcon(iconLogo);
@@ -40,7 +42,11 @@ public class ProgramasV extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
+        jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mozilla Firefox", "Google Chrome", "Microsft Word", "Microsoft PowerPont", "Counter-Strike", " " }));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -60,9 +66,9 @@ public class ProgramasV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,9 +78,9 @@ public class ProgramasV extends javax.swing.JFrame {
                         .addGap(125, 125, 125)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(62, 62, 62)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();

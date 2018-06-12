@@ -39,7 +39,7 @@ public class ModificarV extends javax.swing.JDialog {
         ccc = new controlCibercafe();
         this.setUndecorated(true);
         initComponents();
-
+        this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
