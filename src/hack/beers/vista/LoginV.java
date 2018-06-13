@@ -43,11 +43,11 @@ public class LoginV extends javax.swing.JFrame {
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int altura = pantalla.height;
         int ancho = pantalla.width;
-        
+
         initComponents();
-        
+
         setLocationRelativeTo(null);
-        
+
         this.getContentPane().setBackground(Color.BLACK);
         ccc = new controlCibercafe();
     }
@@ -170,7 +170,7 @@ public class LoginV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -185,7 +185,7 @@ public class LoginV extends javax.swing.JFrame {
                     cambioContraseña cContraseña = new cambioContraseña(this, true);
                     cContraseña.setVisible(true);
                 }
-               
+
             }
 
         } catch (SQLException | ErrorConexionBD ex) {

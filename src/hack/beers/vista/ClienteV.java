@@ -36,7 +36,7 @@ public class ClienteV extends javax.swing.JFrame {
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
     DefaultTableModel tablaVacia;
-    
+
     Timer timer;
     int tiempo = 300000;
     int minuto = tiempo / 60000;
@@ -347,14 +347,14 @@ public class ClienteV extends javax.swing.JFrame {
             v.setVisible(true);
         } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
             Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         ProgramasV pv = new ProgramasV();
         pv.setVisible(true);
-    }                                        
+    }
 
     public void actualizarTabla() {
         try {
@@ -387,7 +387,7 @@ public class ClienteV extends javax.swing.JFrame {
         QuejaV queja = new QuejaV(this, rootPaneCheckingEnabled);
         queja.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton5ActionPerformed
-/*
+    /*
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed

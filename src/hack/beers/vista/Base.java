@@ -78,7 +78,6 @@ public class Base extends javax.swing.JFrame {
             // TODO add your handling code here:
             LoginV login = new LoginV();
             login.setVisible(true);
-            jButton1.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
