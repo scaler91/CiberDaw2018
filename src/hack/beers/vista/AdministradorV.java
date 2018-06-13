@@ -126,7 +126,7 @@ public class AdministradorV extends javax.swing.JFrame {
         cerrar.setBackground(new java.awt.Color(0, 0, 0));
         cerrar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         cerrar.setForeground(new java.awt.Color(255, 255, 255));
-        cerrar.setText("X");
+        cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cruz.png"))); // NOI18N
         cerrar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         cerrar.setBorderPainted(false);
         cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,11 +211,14 @@ public class AdministradorV extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("usuarios");
 
+        jRadioButtonRealizado.setBackground(new java.awt.Color(0, 0, 0));
         buttonGroup1.add(jRadioButtonRealizado);
+        jRadioButtonRealizado.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jRadioButtonRealizado.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonRealizado.setText("Realizados");
 
         buttonGroup1.add(jRadioButtonPendientes);
+        jRadioButtonPendientes.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jRadioButtonPendientes.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonPendientes.setText("Pendientes");
         jRadioButtonPendientes.addActionListener(new java.awt.event.ActionListener() {
