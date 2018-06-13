@@ -118,17 +118,17 @@ public class ProgramasV extends javax.swing.JFrame {
 
                 break;
             case 2:
-                iconLogo = new ImageIcon("imagenes/word.jpg");
+                iconLogo = new ImageIcon("imagenes/word.png");
                 jLabel1.setIcon(iconLogo);
 
                 break;
             case 3:
-                iconLogo = new ImageIcon("imagenes/word.jpg");
+                iconLogo = new ImageIcon("imagenes/powerPoint.png");
                 jLabel1.setIcon(iconLogo);
 
                 break;
             case 4:
-                iconLogo = new ImageIcon("imagenes/counter.jpg");
+                iconLogo = new ImageIcon("imagenes/counter.png");
                 jLabel1.setIcon(iconLogo);
 
                 break;
