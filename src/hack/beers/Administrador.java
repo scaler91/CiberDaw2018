@@ -6,12 +6,7 @@
 package hack.beers;
 
 import hack.beers.Pedidos.Pedido;
-import hack.beers.conexion.ConexionBD;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
@@ -19,32 +14,47 @@ import java.util.List;
  */
 public class Administrador extends Persona {
 
-    private ArrayList<Pedido> pedidos;
+    private ArrayList<Pedido> pendientes;
+    private ArrayList<Pedido> realizados;
 
     //CONSTRUCTOR
     public Administrador(String nombre, String apellidos, String DNI, String contraseña) {
         super(nombre, apellidos, DNI, contraseña);
-        pedidos = new ArrayList<>();
+        pendientes = new ArrayList<>();
+        realizados = new ArrayList<>();
     }
 
     public void añadirPedido(Pedido p) {
-       // pedidos.clear();
-        pedidos.add(p);
+        pendientes.add(p);
     }
-    //public void vaciarLista(){
-      //  pedidos.clear();
-    //}
+
+    public void añadirPedidoRealizado(Pedido p) {
+        realizados.add(p);
+    }
 
     public String[][] crearArrayPedidos() {
-        String[][] misPedidos = new String[pedidos.size()][5];
-        for (int i = 0; i < pedidos.size(); i++) {
-            misPedidos[i][0] = pedidos.get(i).getDni();
-            misPedidos[i][1] = pedidos.get(i).obtenerOrdenador();
-            misPedidos[i][2] = pedidos.get(i).obtenerIdConsumible();
-            misPedidos[i][3] = pedidos.get(i).obtenerCantidad();
-            misPedidos[i][4] = pedidos.get(i).obtenerPrecio();
+        String[][] misPedidos = new String[pendientes.size()][5];
+        for (int i = 0; i < pendientes.size(); i++) {
+            misPedidos[i][0] = pendientes.get(i).getDni();
+            misPedidos[i][1] = pendientes.get(i).obtenerOrdenador();
+            misPedidos[i][2] = pendientes.get(i).obtenerIdConsumible();
+            misPedidos[i][3] = pendientes.get(i).obtenerCantidad();
+            misPedidos[i][4] = pendientes.get(i).obtenerPrecio();
         }
-        pedidos.clear();
+        pendientes.clear();
+        return misPedidos;
+    }
+
+    public String[][] crearArrayPedidosRealizados() {
+        String[][] misPedidos = new String[realizados.size()][5];
+        for (int i = 0; i < realizados.size(); i++) {
+            misPedidos[i][0] = realizados.get(i).getDni();
+            misPedidos[i][1] = realizados.get(i).obtenerOrdenador();
+            misPedidos[i][2] = realizados.get(i).obtenerIdConsumible();
+            misPedidos[i][3] = realizados.get(i).obtenerCantidad();
+            misPedidos[i][4] = realizados.get(i).obtenerPrecio();
+        }
+        realizados.clear();
         return misPedidos;
     }
 //

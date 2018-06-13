@@ -237,6 +237,15 @@ public class DAOHackBeer {
         }
         return idConsumible;
     }
+    
+        public String pedirNombreConsumible(int idConsumible) throws SQLException {
+        String nombreConsumible = null;
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT Nombre FROM consumibles WHERE idConsumible =" + idConsumible);
+        while (rs.next()) {
+            nombreConsumible = rs.getString(1);
+        }
+        return nombreConsumible;
+    }
 
     public void eliminarUsuario(Usuario u) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
@@ -270,6 +279,16 @@ public class DAOHackBeer {
             admin.añadirPedido(p);
         }
     }
+      public void actualizarTablaRealizados(Administrador admin) throws SQLException {
+        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
+                "select * from pedidos where realizado=1"
+        );
+        //admin.vaciarLista();
+        while (rs.next()) {
+            Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
+            admin.añadirPedidoRealizado(p);
+        }
+    }
 
     public void actualizarTablaPedidosU(Usuario u) throws SQLException {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
@@ -296,7 +315,7 @@ public class DAOHackBeer {
         while (rs.next()) {
             cantidadNueva = rs.getInt(1) - cantidad;
         }
-        ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad="+cantidadNueva+" where idConsumible=" + id);
-        ConexionBD.instancia().getStatement().execute("");
+        ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad=" + cantidadNueva + " where idConsumible=" + id);
+        ConexionBD.instancia().getStatement().execute("UPDATE pedidos SET realizado=true where dni='" + dni + "' AND idConsumible=" + id);
     }
 }

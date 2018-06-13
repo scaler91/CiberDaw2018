@@ -6,13 +6,17 @@
 package hack.beers.vista;
 
 import hack.beers.Administrador;
-import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -29,6 +33,7 @@ public class AdministradorV extends javax.swing.JFrame {
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
     DefaultTableModel tablaVacia;
+    Timer timer;
 
     /**
      * Creates new form AdministradoV2
@@ -36,43 +41,35 @@ public class AdministradorV extends javax.swing.JFrame {
      * @throws ventasbd.dao.exception.ErrorConexionBD
      */
     public AdministradorV() throws ErrorConexionBD {
+        Calendar fecha = new GregorianCalendar();
+        int ano = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
         ccc = new controlCibercafe();
         admin = ccc.verDatosAdministrador();
         Administrador a = ccc.verDatosAdministrador();
         this.setUndecorated(true);
+
+        this.timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jRadioButtonRealizado.isSelected()) {
+                    actualizarTablaRealizados();
+                } else if (jRadioButtonPendientes.isSelected()) {
+                    actualizarTablaPendientes();
+                }
+            }
+        });
+        timer.start();
         initComponents();
         getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Administrador");
         jLabelNombreAdmin.setText(a.getNombre() + " " + a.getApellidos());
+        Fecha.setText("" + dia + "/" + mes + "/" + ano);
     }
 
-//        private void annadirTabla() {
-//        try {
-//            // TODO add your handling code here:
-//            tablaInventario = new DefaultTableModel(vaciaInventario, cabeceraInventario);
-//            jTable1.setModel(tablaInventario);
-//
-//            Inventario I = new Inventario();
-//            ccc.verPedidos();
-//
-//            String[][] inventarioTabla = I.getStock();
-//
-//            int linea = 0;
-//            while (linea < inventarioTabla.length) {
-//                tablaInventario.addRow(vaciaInventario);
-//                jTable1.setValueAt(inventarioTabla[linea][0], linea, 0);
-//                jTable1.setValueAt(inventarioTabla[linea][1], linea, 1);
-//                jTable1.setValueAt(inventarioTabla[linea][2], linea, 2);
-//                jTable1.setValueAt(inventarioTabla[linea][3], linea, 3);
-//                linea++;
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +80,7 @@ public class AdministradorV extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         cerrar = new javax.swing.JButton();
@@ -96,7 +94,8 @@ public class AdministradorV extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabelNombreAdmin = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jRadioButtonRealizado = new javax.swing.JRadioButton();
+        jRadioButtonPendientes = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -221,15 +220,16 @@ public class AdministradorV extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("usuarios");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Actualizar Pedidos");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioButtonRealizado);
+        jRadioButtonRealizado.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButtonRealizado.setText("Realizados");
+
+        buttonGroup1.add(jRadioButtonPendientes);
+        jRadioButtonPendientes.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButtonPendientes.setText("Pendientes");
+        jRadioButtonPendientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jRadioButtonPendientesActionPerformed(evt);
             }
         });
 
@@ -259,13 +259,15 @@ public class AdministradorV extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
+                            .addGap(39, 39, 39)
+                            .addComponent(jRadioButtonRealizado)
+                            .addGap(48, 48, 48)
+                            .addComponent(jRadioButtonPendientes)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(confirmarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(192, 192, 192)
                         .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -275,15 +277,15 @@ public class AdministradorV extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonRealizado)
+                    .addComponent(jRadioButtonPendientes))
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmarPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8))
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
@@ -309,6 +311,7 @@ public class AdministradorV extends javax.swing.JFrame {
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
@@ -326,7 +329,8 @@ public class AdministradorV extends javax.swing.JFrame {
             // TODO add your handling code here:
             //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
 //        annadirTabla();
-            String dni = ((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim();
+            String dni = ((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0)).trim();
+            System.out.println(dni);
             int idConsumible = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim());
             int cantidad = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3)).trim());
             ccc.confirmarPedido(cantidad, idConsumible, dni);
@@ -352,9 +356,13 @@ public class AdministradorV extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jRadioButtonPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPendientesActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jRadioButtonPendientesActionPerformed
+
+    public void actualizarTablaPendientes() {
         try {
-            // TODO add your handling code here:
             tablaVacia = new DefaultTableModel(vaciaPedidos, cabeceraPedidos);
             jTable1.setModel(tablaVacia);
 
@@ -366,7 +374,22 @@ public class AdministradorV extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+
+    public void actualizarTablaRealizados() {
+        try {
+            tablaVacia = new DefaultTableModel(vaciaPedidos, cabeceraPedidos);
+            jTable1.setModel(tablaVacia);
+
+            ccc.actualizarTablaPedidosRealizados(admin);
+
+            tablaPedidos = new DefaultTableModel(admin.crearArrayPedidosRealizados(), cabeceraPedidos);
+            jTable1.setModel(tablaPedidos);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -413,14 +436,16 @@ public class AdministradorV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fecha;
     private javax.swing.JLabel Usuario;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton confirmarPedido;
     private javax.swing.JButton inventario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelNombreAdmin;
+    private javax.swing.JRadioButton jRadioButtonPendientes;
+    private javax.swing.JRadioButton jRadioButtonRealizado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
