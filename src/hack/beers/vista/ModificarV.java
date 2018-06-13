@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Usuario;
@@ -16,16 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author alxayu97
- */
 public class ModificarV extends javax.swing.JDialog {
 
     public String DNI;
     controlCibercafe ccc;
     Usuario u;
-//ZOPOTAMADRE
+
     String cabecera[] = {"DNI", "idOrdenador", "FechaConexion"};
     String vacia[][] = {};
 
@@ -324,7 +315,7 @@ public class ModificarV extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_jTextBuscarUsuarioKeyTyped
-//ZOPOTAMADRE
+
     private void jButtonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBusquedaActionPerformed
         // TODO add your handling code here:
 
@@ -352,13 +343,11 @@ public class ModificarV extends javax.swing.JDialog {
                 tablaConexiones = new DefaultTableModel(u.crearArrayConexiones(), cabecera);
                 jTable1.setModel(tablaConexiones);
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ErrorConexionBD ex) {
+        } catch (SQLException | ErrorConexionBD ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonBusquedaActionPerformed
-//ZOPOTAMADRE
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:

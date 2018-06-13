@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Usuario;
@@ -14,10 +9,6 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class cambioContraseña extends javax.swing.JDialog {
 
     Usuario u;
@@ -35,9 +26,7 @@ public class cambioContraseña extends javax.swing.JDialog {
             initComponents();
             getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
             setLocationRelativeTo(null);
-        } catch (ErrorConexionBD ex) {
-            Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ErrorConexionBD | SQLException ex) {
             Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

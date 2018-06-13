@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Administrador;
@@ -20,10 +15,6 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class AdministradorV extends javax.swing.JFrame {
 
     Administrador admin;
@@ -326,9 +317,6 @@ public class AdministradorV extends javax.swing.JFrame {
 
     private void confirmarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoActionPerformed
         try {
-            // TODO add your handling code here:
-            //Seleciona fila en la tabla y modificar el campo realizado de la base de datos, no mostrar pedidos realizados
-//        annadirTabla();
             String dni = ((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0)).trim();
             System.out.println(dni);
             int idConsumible = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim());
@@ -340,7 +328,6 @@ public class AdministradorV extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmarPedidoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
         ModificarV mv;
         try {
             mv = new ModificarV(this, rootPaneCheckingEnabled);
@@ -353,12 +340,10 @@ public class AdministradorV extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jRadioButtonPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPendientesActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jRadioButtonPendientesActionPerformed
 
     public void actualizarTablaPendientes() {

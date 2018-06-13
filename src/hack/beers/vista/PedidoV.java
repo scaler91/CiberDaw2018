@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Pedidos.Consumible;
@@ -18,10 +13,6 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class PedidoV extends javax.swing.JDialog {
 
     Pedido p;
@@ -43,7 +34,7 @@ public class PedidoV extends javax.swing.JDialog {
         u = ccc.verDatosUsuario();
         this.setUndecorated(true);
         initComponents();
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         setTitle("Pedidos");
@@ -93,7 +84,6 @@ public class PedidoV extends javax.swing.JDialog {
             nombreConsumible = (String) jComboBox1.getSelectedItem();
             idConsumible = ccc.pedirIdConsumible(nombreConsumible);
             ccc.annadirPedido(new Pedido(u.getDNI(), 1, getIdConsumible(), getCantidad(), calculo(), false));
-            //add(new Pedido(u.getDNI(), 1, getIdConsumible(), getCantidad(), calculo(), false));
         } catch (SQLException ex) {
             Logger.getLogger(PedidoV.class.getName()).log(Level.SEVERE, null, ex);
         }

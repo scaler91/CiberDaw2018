@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.mail;
 
 import java.awt.Color;
@@ -17,10 +12,6 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author alxayu97
- */
 public class QuejaV extends javax.swing.JDialog {
 
     public static String correo = "enviarquejas@hotmail.com";
@@ -169,7 +160,6 @@ public class QuejaV extends javax.swing.JDialog {
     }//GEN-LAST:event_enviarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_salirActionPerformed
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers;
 
 import hack.beers.Pedidos.Consumible;
@@ -13,10 +8,6 @@ import hack.beers.conexion.DAOHackBeer;
 import java.sql.SQLException;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class controlCibercafe {
 
     public controlCibercafe() throws ErrorConexionBD {
@@ -56,7 +47,6 @@ public class controlCibercafe {
         return DAOHackBeer.instancia().verDatosAdministrador();
     }
 
-    //ZOPOTAMADRE
     public void annadirUsuario(Usuario u) throws SQLException {
         DAOHackBeer.instancia().annadirUsuario(u);
     }

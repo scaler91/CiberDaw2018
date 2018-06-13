@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers;
 
 import hack.beers.Pedidos.Pedido;
 import hack.beers.conexion.ConexionBD;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author alxayu97
- */
 public class Usuario extends Persona {
 
     private controlCibercafe ccc;
@@ -49,7 +38,6 @@ public class Usuario extends Persona {
     }
 
     public void añadirPedido(Pedido p) {
-        // pedidos.clear();
         pedido.add(p);
     }
 
@@ -62,7 +50,6 @@ public class Usuario extends Persona {
         }
         return misConexiones;
     }
-//
 
     public int getVIP() {
         return VIP;
@@ -111,39 +98,6 @@ public class Usuario extends Persona {
      */
     public void ponerQueja() {
 
-    }
-
-    @Override
-    public void verArchivos() throws SQLException {
-        LinkedList<Archivo> archivosPropios = new LinkedList<>();
-        Archivo a;
-        ResultSet misArchivos = ConexionBD.instancia().getStatement().executeQuery(
-                "select * from almacenamiento where dni = '" + DNI + "'");
-        //Pasar la consulta SQL a LinkedList
-        while (misArchivos.next()) {
-            String dniDB = misArchivos.getString("dni");
-            String nombreArchivo = misArchivos.getString("nombre");
-            a = new Archivo(nombreArchivo, dniDB);
-            archivosPropios.add(a);
-        }
-        //Iterador para la lista de archivos
-        Iterator<Archivo> ia = archivosPropios.iterator();
-        while (ia.hasNext()) {
-            ia.next().getNombre();
-            ia.next().getFecha();
-            ia.next().getPropietario();
-        }
-    }
-
-    @Override
-    public void borrarArchivo(String nombreArchivo) throws SQLException {
-        //Visualiza la lista de archivos que tiene el usuario
-        verArchivos();
-        //Elimina el archivo con el nombre dado
-        ResultSet eliminarArchivo = ConexionBD.instancia().getStatement().executeQuery(
-                "delete from almacenamiento where NombreArchivo = '" + nombreArchivo + "'");
-        //Visualiza los archivos restantes
-        verArchivos();
     }
 
     public String[][] crearArrayPedidos() {

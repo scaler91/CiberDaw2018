@@ -4,8 +4,6 @@
  */
 package hack.beers.conexion;
 
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import hack.beers.Administrador;
 import hack.beers.Conexion;
 import hack.beers.Pedidos.Consumible;
@@ -17,7 +15,6 @@ import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.time.Instant.now;
 import javax.swing.JOptionPane;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -27,8 +24,6 @@ public class DAOHackBeer {
 
     Usuario u = null;
     private boolean primerLog;
-
-    //java.util.Date fecha = new Date();
     Administrador a;
 
     public static DAOHackBeer instancia() {
@@ -133,7 +128,6 @@ public class DAOHackBeer {
         }
 
     }
-//ZOPOTAMADRE
 
     public void añadirConexion(Usuario u) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
@@ -179,7 +173,6 @@ public class DAOHackBeer {
         }
         return u;
     }
-//ZOPOTAMADRE
 
     public void annadirUsuario(Usuario u) throws SQLException {
         try {
@@ -199,16 +192,6 @@ public class DAOHackBeer {
         return a;
     }
 
-//    public void verPedidos(String dni, Pedido p) throws SQLException {
-//        Consumible c = null;
-//        ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT * FROM pedidos where dni = " + dni);
-//        ResultSet rp = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles where idConsumbible = "+ rs.getString(3));
-//
-//        while (rp.next()) {
-//            c = new Consumible(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
-//            p.annadirConsumible(c);
-//        }
-//    }
     public void annadirPedido(Pedido p) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
                 "INSERT INTO `pedidos` VALUES ('" + p.getDni() + "'," + p.getOrdenador() + "," + p.getIdConsumible() + "," + p.getCantidad() + "," + p.getPrecio() + "," + p.isRealizado() + ")"
@@ -273,7 +256,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where realizado=0"
         );
-        //admin.vaciarLista();
+
         while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             admin.añadirPedido(p);
@@ -283,7 +266,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where realizado=1"
         );
-        //admin.vaciarLista();
+
         while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             admin.añadirPedidoRealizado(p);
@@ -294,7 +277,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where dni='" + u.getDNI() + "' AND realizado=0"
         );
-        //admin.vaciarLista();
+        
         while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             u.añadirPedido(p);

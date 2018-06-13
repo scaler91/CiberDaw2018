@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Pedidos.Inventario;
@@ -15,10 +10,6 @@ import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class InventarioV extends javax.swing.JFrame {
 
     controlCibercafe ccc;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hack.beers.vista;
 
 import hack.beers.Usuario;
@@ -22,10 +17,6 @@ import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
-/**
- *
- * @author Alumno
- */
 public class ClienteV extends javax.swing.JFrame {
 
     private List pedido;
@@ -58,8 +49,6 @@ public class ClienteV extends javax.swing.JFrame {
         u = ccc.verDatosUsuario();
         pedido = new LinkedList();
 
-        // Usuario u = new Usuario(ccc.getNombre(), ccc.getApellido(), ccc.getDNI(), ccc.getContraseña(), ccc.getVip());
-        // In init() method write this code
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -340,8 +329,6 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
         this.setVisible(false);
         try {
             LoginV v = new LoginV();
@@ -352,7 +339,6 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         ProgramasV pv = new ProgramasV();
         pv.setVisible(true);
     }
@@ -390,7 +376,6 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
     /*
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 */
     /**
