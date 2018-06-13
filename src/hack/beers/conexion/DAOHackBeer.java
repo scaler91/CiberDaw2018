@@ -38,12 +38,12 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("select * from consumibles where idConsumible=" + c.getId());
 
         if (rs.next()) {
-            JOptionPane.showMessageDialog(null, "El ID del Consumible introducido ya está siendo usado.");
+//            JOptionPane.showMessageDialog(null, "El ID del Consumible introducido ya está siendo usado.");
         } else {
             ConexionBD.instancia().getStatement().execute(
                     "INSERT INTO consumibles VALUES (" + c.getId() + ", '" + c.getNombre() + "', " + c.getCantidad() + ", " + c.getPrecio() + ")"
             );
-            JOptionPane.showMessageDialog(null, "Consumible introducido.");
+//            JOptionPane.showMessageDialog(null, "Consumible introducido.");
         }
     }
 
@@ -301,5 +301,9 @@ public class DAOHackBeer {
         }
         ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad=" + cantidadNueva + " where idConsumible=" + id);
         ConexionBD.instancia().getStatement().execute("UPDATE pedidos SET realizado=true where dni='" + dni + "' AND idConsumible=" + id);
+    }
+
+    public void modificarConsumible(int idConsumible, int cantidad, float precio) throws SQLException {
+        ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad=" + cantidad + ", Precio=" + precio + " where idConsumible=" + idConsumible);
     }
 }

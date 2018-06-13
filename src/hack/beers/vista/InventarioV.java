@@ -3,6 +3,7 @@ package hack.beers.vista;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.controlCibercafe;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +28,8 @@ public class InventarioV extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setAlwaysOnTop(true);
-        
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
+
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         setTitle("Inventario");
@@ -51,6 +52,7 @@ public class InventarioV extends javax.swing.JFrame {
         annadirConsumible = new javax.swing.JButton();
         jButtonActualizar = new javax.swing.JButton();
         cerrar = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +106,18 @@ public class InventarioV extends javax.swing.JFrame {
             }
         });
 
+        jButtonGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonGuardar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardar.setText("Guardar Cambios");
+        jButtonGuardar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+        jButtonGuardar.setBorderPainted(false);
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,7 +133,10 @@ public class InventarioV extends javax.swing.JFrame {
                                 .addGap(27, 27, 27))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)))
+                                .addGap(59, 59, 59))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonGuardar)
+                                .addGap(40, 40, 40)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14))
         );
@@ -130,7 +147,9 @@ public class InventarioV extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(annadirConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
+                        .addGap(56, 56, 56)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,6 +204,22 @@ public class InventarioV extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cerrarActionPerformed
 
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        modificarConsumible();
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    public void modificarConsumible() {
+        try {
+            int idConsumible = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0)).trim());
+            int cantidad = Integer.parseInt(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2)).trim());
+            float precio = Float.parseFloat(((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3)).trim());
+
+            ccc.modificarConsumibles(idConsumible, cantidad, precio);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventarioV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -206,7 +241,7 @@ public class InventarioV extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(InventarioV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -225,6 +260,7 @@ public class InventarioV extends javax.swing.JFrame {
     private javax.swing.JButton annadirConsumible;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton jButtonActualizar;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

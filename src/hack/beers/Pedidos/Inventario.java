@@ -36,7 +36,7 @@ public class Inventario {
             arrayConsumibles[i][0] = "" + esteConsumible.getId();
             arrayConsumibles[i][1] = esteConsumible.getNombre();
             arrayConsumibles[i][2] = "" + esteConsumible.getCantidad();
-            arrayConsumibles[i][3] = esteConsumible.getPrecio() + " €";
+            arrayConsumibles[i][3] = esteConsumible.getPrecio() + "";
         }
         return arrayConsumibles;
     }
