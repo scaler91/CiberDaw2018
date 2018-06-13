@@ -295,7 +295,7 @@ public class ModificarV extends javax.swing.JDialog {
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jTextBuscarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextBuscarUsuarioMouseClicked
