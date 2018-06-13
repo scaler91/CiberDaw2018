@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -61,6 +62,7 @@ public class ClienteVIP extends javax.swing.JFrame {
         this.setUndecorated(true);
         timer.start();
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         setLocationRelativeTo(null);
         setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);

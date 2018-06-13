@@ -14,6 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +37,9 @@ public class QuejaV extends javax.swing.JDialog {
      */
     public QuejaV(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setUndecorated(true);
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
     }

@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -35,6 +36,7 @@ public class annadirConsumible extends javax.swing.JDialog {
         super(parent, modal);
         this.setUndecorated(true);
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         ccc = new controlCibercafe();
