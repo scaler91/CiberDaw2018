@@ -37,8 +37,8 @@ public class LoginV extends javax.swing.JFrame {
         int ancho = pantalla.width;
 
         initComponents();
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
-        
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
+
         setLocationRelativeTo(null);
 
         this.getContentPane().setBackground(Color.BLACK);
@@ -163,6 +163,7 @@ public class LoginV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Base.soloUna = false;
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -180,12 +181,16 @@ public class LoginV extends javax.swing.JFrame {
                 }
 
             }
-
+            Base.soloUna = false;
         } catch (SQLException | ErrorConexionBD ex) {
             Logger.getLogger(LoginV.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {       // TODO add your handling code here:
+        Base.soloUna = false;
+    }
 
     /**
      * @param args the command line arguments

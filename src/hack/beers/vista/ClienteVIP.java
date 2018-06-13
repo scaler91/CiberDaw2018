@@ -52,9 +52,9 @@ public class ClienteVIP extends javax.swing.JFrame {
         this.setUndecorated(true);
         timer.start();
         initComponents();
+        this.setAlwaysOnTop(true);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         setLocationRelativeTo(null);
-        setTitle("Eres el puto AMO!!");
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         jLabel2.setText(u.getNombre() + ", " + u.getApellidos());

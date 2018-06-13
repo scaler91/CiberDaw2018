@@ -31,6 +31,7 @@ public class ModificarV extends javax.swing.JDialog {
         ccc = new controlCibercafe();
         this.setUndecorated(true);
         initComponents();
+        this.setAlwaysOnTop(true);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);

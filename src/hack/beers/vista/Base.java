@@ -10,6 +10,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class Base extends javax.swing.JFrame {
 
     ImageIcon iconLogo = new ImageIcon("imagenes/logo.png");
+    public static boolean soloUna = false;
 
     @Override
     public void setUndecorated(boolean undecorated) {
@@ -21,9 +22,9 @@ public class Base extends javax.swing.JFrame {
      */
     public Base() {
         this.setUndecorated(true);
-        
+
         initComponents();
-        
+
         this.getContentPane().setBackground(Color.BLACK);
         jLabel1.setIcon(iconLogo);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -68,7 +69,10 @@ public class Base extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             LoginV login = new LoginV();
-            login.setVisible(true);
+            if (soloUna == false) {
+                login.setVisible(true);
+                soloUna = true;
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

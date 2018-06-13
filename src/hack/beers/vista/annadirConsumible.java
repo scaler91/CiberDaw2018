@@ -27,6 +27,7 @@ public class annadirConsumible extends javax.swing.JDialog {
         super(parent, modal);
         this.setUndecorated(true);
         initComponents();
+        this.setAlwaysOnTop(true);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
@@ -115,6 +116,11 @@ public class annadirConsumible extends javax.swing.JDialog {
         jButtonCancelar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,6 +201,11 @@ public class annadirConsumible extends javax.swing.JDialog {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     public int getId() {
         return id;

@@ -24,6 +24,7 @@ public class cambioContraseña extends javax.swing.JDialog {
             ccc = new controlCibercafe();
             u = ccc.verDatosUsuario();
             initComponents();
+            this.setAlwaysOnTop(true);
             getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
             setLocationRelativeTo(null);
         } catch (ErrorConexionBD | SQLException ex) {

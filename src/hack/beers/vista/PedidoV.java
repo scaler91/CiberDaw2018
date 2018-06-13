@@ -34,6 +34,7 @@ public class PedidoV extends javax.swing.JDialog {
         u = ccc.verDatosUsuario();
         this.setUndecorated(true);
         initComponents();
+        this.setAlwaysOnTop(true);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);

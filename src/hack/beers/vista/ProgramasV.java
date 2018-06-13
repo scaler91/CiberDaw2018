@@ -19,6 +19,7 @@ public class ProgramasV extends javax.swing.JFrame {
     public ProgramasV() {
         this.setUndecorated(true);
         initComponents();
+        this.setAlwaysOnTop(true);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
@@ -139,7 +140,7 @@ public class ProgramasV extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        switch (jComboBox1.getSelectedIndex()) {
+  switch (jComboBox1.getSelectedIndex()) {
             case 0:
                 iconLogo = new ImageIcon("imagenes/firefox.png");
                 jLabel1.setIcon(iconLogo);
@@ -162,7 +163,7 @@ public class ProgramasV extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                iconLogo = new ImageIcon("imagenes/word.jpg");
+                iconLogo = new ImageIcon("imagenes/word.png");
                 jLabel1.setIcon(iconLogo);
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
@@ -172,17 +173,17 @@ public class ProgramasV extends javax.swing.JFrame {
                 }
                 break;
             case 3:
-                iconLogo = new ImageIcon("imagenes/word.jpg");
+                iconLogo = new ImageIcon("imagenes/powerPoint.png");
                 jLabel1.setIcon(iconLogo);
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
-                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+                    Process p = Runtime.getRuntime().exec("C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.EXE");
                 } catch (IOException e) {
                     /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
                 }
                 break;
             case 4:
-                iconLogo = new ImageIcon("imagenes/counter.jpg");
+                iconLogo = new ImageIcon("imagenes/counter.png");
                 jLabel1.setIcon(iconLogo);
                 try {
                     /* directorio/ejecutable es el path del ejecutable y un nombre */
