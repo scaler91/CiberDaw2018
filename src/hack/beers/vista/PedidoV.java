@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -42,6 +43,7 @@ public class PedidoV extends javax.swing.JDialog {
         u = ccc.verDatosUsuario();
         this.setUndecorated(true);
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         setTitle("Pedidos");

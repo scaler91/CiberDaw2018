@@ -7,6 +7,7 @@ package hack.beers.vista;
 
 import java.awt.Color;
 import java.io.IOException;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 /**
@@ -23,6 +24,7 @@ public class ProgramasV extends javax.swing.JFrame {
     public ProgramasV() {
         this.setUndecorated(true);
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         iconLogo = new ImageIcon("imagenes/firefox.png");
@@ -47,7 +49,6 @@ public class ProgramasV extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mozilla Firefox", "Google Chrome", "Microsft Word", "Microsoft PowerPont", "Counter-Strike", " " }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

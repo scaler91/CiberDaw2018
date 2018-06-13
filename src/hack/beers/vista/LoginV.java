@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -45,7 +47,8 @@ public class LoginV extends javax.swing.JFrame {
         int ancho = pantalla.width;
 
         initComponents();
-
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
+        
         setLocationRelativeTo(null);
 
         this.getContentPane().setBackground(Color.BLACK);

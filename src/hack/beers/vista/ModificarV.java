@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
@@ -39,6 +40,7 @@ public class ModificarV extends javax.swing.JDialog {
         ccc = new controlCibercafe();
         this.setUndecorated(true);
         initComponents();
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         jButton1.setEnabled(false);

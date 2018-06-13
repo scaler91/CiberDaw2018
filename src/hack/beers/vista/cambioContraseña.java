@@ -7,9 +7,11 @@ package hack.beers.vista;
 
 import hack.beers.Usuario;
 import hack.beers.controlCibercafe;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import ventasbd.dao.exception.ErrorConexionBD;
 
 /**
@@ -31,6 +33,7 @@ public class cambioContraseña extends javax.swing.JDialog {
             ccc = new controlCibercafe();
             u = ccc.verDatosUsuario();
             initComponents();
+            getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
             setLocationRelativeTo(null);
         } catch (ErrorConexionBD ex) {
             Logger.getLogger(cambioContraseña.class.getName()).log(Level.SEVERE, null, ex);

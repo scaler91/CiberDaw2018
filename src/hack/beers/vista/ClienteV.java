@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 import ventasbd.dao.exception.ErrorConexionBD;
 
@@ -98,7 +99,7 @@ public class ClienteV extends javax.swing.JFrame {
         timer.start();
         this.setUndecorated(true);
         initComponents();
-
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
