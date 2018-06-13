@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2018 a las 08:56:22
+-- Tiempo de generación: 13-06-2018 a las 13:07:49
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -32,28 +32,15 @@ CREATE TABLE `administradores` (
   `dni` varchar(9) NOT NULL,
   `Nombre` varchar(10) NOT NULL,
   `Apellidos` varchar(10) NOT NULL,
-  `Contraseña` varchar(20) NOT NULL,
-  `esAdministrador` tinyint(1) NOT NULL
+  `Contraseña` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administradores`
 --
 
-INSERT INTO `administradores` (`dni`, `Nombre`, `Apellidos`, `Contraseña`, `esAdministrador`) VALUES
-('71964849B', 'javier', 'diego', '1234', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `almacenamiento`
---
-
-CREATE TABLE `almacenamiento` (
-  `dni` varchar(9) NOT NULL,
-  `NombreArchivo` varchar(50) NOT NULL,
-  `Fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `administradores` (`dni`, `Nombre`, `Apellidos`, `Contraseña`) VALUES
+('71964849B', 'Javier', 'Diego', '1234');
 
 -- --------------------------------------------------------
 
@@ -80,7 +67,57 @@ INSERT INTO `conexiones` (`dni`, `idOrdenador`, `FechaConexion`) VALUES
 ('666A', 10, '2018-06-04 08:44:32'),
 ('555A', 7, '2018-06-06 06:48:45'),
 ('555A', 3, '2018-06-06 06:50:29'),
-('555A', 8, '2018-06-06 06:52:12');
+('555A', 8, '2018-06-06 06:52:12'),
+('555A', 4, '2018-06-06 07:08:53'),
+('555A', 9, '2018-06-06 07:09:49'),
+('555A', 3, '2018-06-06 07:10:04'),
+('555A', 6, '2018-06-06 07:10:35'),
+('555A', 2, '2018-06-06 07:10:54'),
+('666A', 9, '2018-06-06 07:11:12'),
+('555A', 4, '2018-06-06 07:16:32'),
+('555A', 9, '2018-06-06 07:17:15'),
+('555A', 2, '2018-06-06 07:18:50'),
+('555A', 10, '2018-06-11 06:42:48'),
+('555A', 3, '2018-06-11 06:50:31'),
+('555A', 2, '2018-06-11 06:51:36'),
+('555A', 5, '2018-06-11 07:06:32'),
+('555A', 7, '2018-06-11 07:08:35'),
+('555A', 2, '2018-06-11 07:12:46'),
+('555A', 5, '2018-06-11 07:20:08'),
+('555A', 6, '2018-06-11 07:21:57'),
+('555A', 7, '2018-06-11 07:29:40'),
+('555A', 1, '2018-06-11 07:35:03'),
+('555A', 6, '2018-06-11 07:35:56'),
+('555A', 8, '2018-06-11 07:39:36'),
+('555A', 2, '2018-06-11 07:40:27'),
+('555A', 10, '2018-06-11 07:44:42'),
+('555A', 2, '2018-06-11 07:46:37'),
+('555A', 7, '2018-06-11 07:53:00'),
+('555A', 7, '2018-06-11 07:54:11'),
+('555A', 3, '2018-06-11 07:58:56'),
+('555A', 9, '2018-06-11 08:00:22'),
+('666A', 10, '2018-06-11 08:04:00'),
+('666A', 6, '2018-06-11 08:06:18'),
+('666A', 8, '2018-06-11 08:07:42'),
+('666A', 9, '2018-06-11 08:12:08'),
+('666A', 7, '2018-06-11 08:15:17'),
+('555A', 8, '2018-06-11 08:33:52'),
+('666A', 4, '2018-06-11 08:39:17'),
+('555A', 6, '2018-06-13 07:08:41'),
+('555A', 5, '2018-06-13 07:09:45'),
+('555A', 5, '2018-06-13 07:13:03'),
+('555A', 8, '2018-06-13 07:32:10'),
+('555A', 2, '2018-06-13 07:37:56'),
+('555A', 2, '2018-06-13 07:41:27'),
+('555A', 2, '2018-06-13 08:13:05'),
+('71946339Q', 4, '2018-06-13 08:16:35'),
+('71946339Q', 10, '2018-06-13 08:28:05'),
+('71946339Q', 7, '2018-06-13 09:48:47'),
+('71946339Q', 8, '2018-06-13 09:53:30'),
+('71946339Q', 3, '2018-06-13 09:58:39'),
+('71946339Q', 9, '2018-06-13 10:11:13'),
+('71946339Q', 1, '2018-06-13 10:13:18'),
+('71951754A', 3, '2018-06-13 10:48:44');
 
 -- --------------------------------------------------------
 
@@ -101,35 +138,11 @@ CREATE TABLE `consumibles` (
 
 INSERT INTO `consumibles` (`idConsumible`, `Nombre`, `Cantidad`, `Precio`) VALUES
 (0, 'Coca-cola', 50, 2),
-(1, 'Fanta', 55, 2),
-(2, 'Cerveza', 60, 1.5),
-(3, 'Jamon', 1, 50),
-(4, 'Galletitas', 70, 1),
-(8, 'sdf', 2, 32),
-(34, 'asd', 6, 7),
-(56, 'ultimo', 4, 6),
-(98, 'pan', 100, 1.2),
-(363, 'Nuevo', 1, 13),
-(543, 'sdfsa', 2, 23),
-(764, 'sdf', 2, 231),
-(1221, 'Pene', 5, 2),
-(4542, 'bv', 5445, 654);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ordenadores`
---
-
-CREATE TABLE `ordenadores` (
-  `IdOrdenador` int(2) NOT NULL,
-  `procesador` varchar(15) NOT NULL,
-  `placaBase` varchar(15) NOT NULL,
-  `grafica` varchar(15) NOT NULL,
-  `ram` int(2) NOT NULL,
-  `discoDuroGB` int(3) NOT NULL,
-  `fuente` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(1, 'Fanta', 0, 2),
+(2, 'Cerveza', 0, 1.5),
+(3, 'Cafe', 1, 100),
+(4, 'Galletitas', 0, 1),
+(5, 'Pan', 0, 1.2);
 
 -- --------------------------------------------------------
 
@@ -145,6 +158,16 @@ CREATE TABLE `pedidos` (
   `precio` float NOT NULL,
   `realizado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`dni`, `mesa`, `idConsumible`, `cantidad`, `precio`, `realizado`) VALUES
+('71946339Q', 1, 1, 1, 2, 1),
+('71946339Q', 1, 5, 3, 3.6, 1),
+('71946339Q', 1, 2, 1, 1.5, 1),
+('71951754A', 1, 0, 9, 18, 0);
 
 -- --------------------------------------------------------
 
@@ -166,8 +189,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`dni`, `Nombre`, `Apellidos`, `Contraseña`, `vip`, `primerLog`) VALUES
-('555A', 'jozé', 'luih', '1234', 0, 0),
-('666A', 'pepe', 'manueh', '1234', 1, 0);
+('71946339Q', 'Saul', 'Monge', '1234', 0, 1),
+('71951754A', 'jony', 'escaño', '12345', 1, 1),
+('71955798E', 'Felipe', 'Ruiz', '1234', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -180,22 +204,10 @@ ALTER TABLE `administradores`
   ADD PRIMARY KEY (`dni`);
 
 --
--- Indices de la tabla `almacenamiento`
---
-ALTER TABLE `almacenamiento`
-  ADD UNIQUE KEY `dni` (`dni`);
-
---
 -- Indices de la tabla `consumibles`
 --
 ALTER TABLE `consumibles`
   ADD UNIQUE KEY `id` (`idConsumible`);
-
---
--- Indices de la tabla `ordenadores`
---
-ALTER TABLE `ordenadores`
-  ADD PRIMARY KEY (`IdOrdenador`);
 
 --
 -- Indices de la tabla `usuarios`
