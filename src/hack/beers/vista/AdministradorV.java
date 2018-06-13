@@ -41,7 +41,7 @@ public class AdministradorV extends javax.swing.JFrame {
         Administrador a = ccc.verDatosAdministrador();
         this.setUndecorated(true);
 
-        this.timer = new Timer(1000, new ActionListener() {
+        this.timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jRadioButtonRealizado.isSelected()) {
@@ -216,6 +216,11 @@ public class AdministradorV extends javax.swing.JFrame {
         jRadioButtonRealizado.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jRadioButtonRealizado.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonRealizado.setText("Realizados");
+        jRadioButtonRealizado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRealizadoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButtonPendientes);
         jRadioButtonPendientes.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
@@ -347,7 +352,13 @@ public class AdministradorV extends javax.swing.JFrame {
 
     private void jRadioButtonPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPendientesActionPerformed
         // TODO add your handling code here:
+        actualizarTablaPendientes();
     }//GEN-LAST:event_jRadioButtonPendientesActionPerformed
+
+    private void jRadioButtonRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRealizadoActionPerformed
+        // TODO add your handling code here:
+        actualizarTablaRealizados();
+    }//GEN-LAST:event_jRadioButtonRealizadoActionPerformed
 
     public void actualizarTablaPendientes() {
         try {
