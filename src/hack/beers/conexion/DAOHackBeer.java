@@ -41,7 +41,7 @@ public class DAOHackBeer {
             JOptionPane.showMessageDialog(null, "El ID del Consumible introducido ya está siendo usado.");
         } else {
             ConexionBD.instancia().getStatement().execute(
-                    "INSERT INTO consumibles VALUES (" + c.getId() + ", '" + c.getNombre() + "', " + c.getPrecio() + ", " + c.getCantidad() + ")"
+                    "INSERT INTO consumibles VALUES (" + c.getId() + ", '" + c.getNombre() + "', " + c.getCantidad() + ", " + c.getPrecio() + ")"
             );
             JOptionPane.showMessageDialog(null, "Consumible introducido.");
         }
@@ -220,8 +220,8 @@ public class DAOHackBeer {
         }
         return idConsumible;
     }
-    
-        public String pedirNombreConsumible(int idConsumible) throws SQLException {
+
+    public String pedirNombreConsumible(int idConsumible) throws SQLException {
         String nombreConsumible = null;
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery("SELECT Nombre FROM consumibles WHERE idConsumible =" + idConsumible);
         while (rs.next()) {
@@ -262,7 +262,8 @@ public class DAOHackBeer {
             admin.añadirPedido(p);
         }
     }
-      public void actualizarTablaRealizados(Administrador admin) throws SQLException {
+
+    public void actualizarTablaRealizados(Administrador admin) throws SQLException {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where realizado=1"
         );
@@ -277,7 +278,7 @@ public class DAOHackBeer {
         ResultSet rs = ConexionBD.instancia().getStatement().executeQuery(
                 "select * from pedidos where dni='" + u.getDNI() + "' AND realizado=0"
         );
-        
+
         while (rs.next()) {
             Pedido p = new Pedido(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getFloat(5), rs.getBoolean(6));
             u.añadirPedido(p);

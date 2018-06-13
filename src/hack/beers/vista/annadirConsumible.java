@@ -12,7 +12,7 @@ import ventasbd.dao.exception.ErrorConexionBD;
 public class annadirConsumible extends javax.swing.JDialog {
 
     controlCibercafe ccc;
-    
+
     private int id;
     private String nombre;
     private int cantidad;
@@ -20,6 +20,7 @@ public class annadirConsumible extends javax.swing.JDialog {
 
     /**
      * Creates new form annadirConsumible
+     *
      * @param parent
      * @param modal
      */
@@ -28,7 +29,7 @@ public class annadirConsumible extends javax.swing.JDialog {
         this.setUndecorated(true);
         initComponents();
         this.setAlwaysOnTop(true);
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         this.getContentPane().setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         ccc = new controlCibercafe();
@@ -180,16 +181,16 @@ public class annadirConsumible extends javax.swing.JDialog {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         try {
             // TODO add your handling code here:
-            
+
             id = Integer.parseInt(jTextField1.getText());
             nombre = jTextField2.getText();
             cantidad = Integer.parseInt(jTextField3.getText());
             precio = Double.parseDouble(jTextField4.getText());
-            
+
             Consumible c = new Consumible(id, nombre, cantidad, precio);
-            
+
             ccc.annadirConsumibles(c);
-            
+
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(annadirConsumible.class.getName()).log(Level.SEVERE, null, ex);
