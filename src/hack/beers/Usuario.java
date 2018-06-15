@@ -120,5 +120,5 @@ public class Usuario extends Persona {
     public float getPrecioTotal() {
         return precioTotal;
     }
-
+    
 }
