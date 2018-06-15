@@ -2,8 +2,6 @@ package hack.beers.vista;
 
 import hack.beers.Usuario;
 import hack.beers.controlCibercafe;
-import hack.beers.jOptionPane.crearUsuario;
-import hack.beers.jOptionPane.eliminarUsuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,8 +16,6 @@ public class ModificarV extends javax.swing.JDialog {
     public String DNI;
     controlCibercafe ccc;
     Usuario u;
-    
-    int seleccion;
 
     String cabecera[] = {"DNI", "idOrdenador", "FechaConexion"};
     String vacia[][] = {};
@@ -177,7 +173,7 @@ public class ModificarV extends javax.swing.JDialog {
 
         JTextNombre.setBackground(new java.awt.Color(0, 0, 0));
         JTextNombre.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        JTextNombre.setForeground(new java.awt.Color(255, 255, 255));
+        JTextNombre.setForeground(new java.awt.Color(255, 0, 0));
         JTextNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
@@ -369,12 +365,8 @@ public class ModificarV extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-//            String[] opcion = {"Si", "No"};
-//            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcion, 0);
-            crearUsuario cu = new crearUsuario(null, true);
-            cu.setVisible(true);
-            seleccion = cu.getSeleccion();
-            
+            String[] opcion = {"Si", "No"};
+            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcion, 0);
             if (seleccion == 0) {
                 int vip = 0;
                 if (JCheckboxVIP1.isSelected()) {
@@ -396,11 +388,8 @@ public class ModificarV extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-//            String[] opcion = {"Si", "No"};
-//            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, opcion, 0);
-            eliminarUsuario eu = new eliminarUsuario(null, true);
-            eu.setVisible(true);
-            seleccion = eu.getSeleccion();
+            String[] opcion = {"Si", "No"};
+            int seleccion = JOptionPane.showOptionDialog(this, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, opcion, 0);
             if (seleccion == 0) {
                 ccc.eliminarUsuario(u);
                 JTextApellidos.setText("");
