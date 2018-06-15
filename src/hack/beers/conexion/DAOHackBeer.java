@@ -10,6 +10,8 @@ import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
+import hack.beers.jOptionPane.Bienvenido;
+import hack.beers.jOptionPane.UoCincorrecto;
 import hack.beers.vista.AdministradorV;
 import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
@@ -88,7 +90,9 @@ public class DAOHackBeer {
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
+                    //           JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
+                    Bienvenido b = new Bienvenido(null, true, nombre, apellidos);
+                    b.setVisible(true);
 
                     if (vip == 1) {
                         ClienteVIP cliNuV = new ClienteVIP();
@@ -124,7 +128,9 @@ public class DAOHackBeer {
             }
         }
         if (contador == 0) {
-            JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
+            UoCincorrecto uoc = new UoCincorrecto(null, true);
+            uoc.setVisible(true);
+//            JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
         }
 
     }
@@ -309,7 +315,7 @@ public class DAOHackBeer {
 
     public void annadirPedidoTiempo(Usuario u) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
-                "Insert into pedidos values('"+u.getDNI()+"', " + u.getIdOrdenador()+", 0, 1, 3, 0)"
+                "Insert into pedidos values('" + u.getDNI() + "', " + u.getIdOrdenador() + ", 0, 1, 3, 0)"
         );
         ConexionBD.instancia().getStatement().executeUpdate(
                 "Update consumibles set cantidad=9999 where idConsumible=0"

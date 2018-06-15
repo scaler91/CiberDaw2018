@@ -1,4 +1,4 @@
-package hack.beers.mail;
+package hack.beers.vista;
 
 import hack.beers.vista.ClienteV;
 import java.awt.Color;

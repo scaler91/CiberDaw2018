@@ -4,7 +4,6 @@ import hack.beers.Usuario;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import hack.beers.controlCibercafe;
-import hack.beers.mail.QuejaV;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
