@@ -34,7 +34,7 @@ public class AdministradorV extends javax.swing.JFrame {
     public AdministradorV() throws ErrorConexionBD {
         Calendar fecha = new GregorianCalendar();
         int ano = fecha.get(Calendar.YEAR);
-        int mes = fecha.get(Calendar.MONTH);
+        int mes = fecha.get(Calendar.MONTH) + 1;
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
         ccc = new controlCibercafe();
         admin = ccc.verDatosAdministrador();
