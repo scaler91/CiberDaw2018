@@ -259,12 +259,6 @@ public class ClienteVIP extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        try {
-            LoginV v = new LoginV();
-        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

@@ -1,5 +1,6 @@
 package hack.beers.mail;
 
+import hack.beers.vista.ClienteV;
 import java.awt.Color;
 import java.util.Properties;
 import javax.mail.Message;
@@ -161,7 +162,8 @@ public class QuejaV extends javax.swing.JDialog {
     }//GEN-LAST:event_enviarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        dispose();
+
+       dispose();
     }//GEN-LAST:event_salirActionPerformed
 
 

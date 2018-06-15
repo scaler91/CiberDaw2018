@@ -342,12 +342,6 @@ public class ClienteV extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        try {
-            LoginV v = new LoginV();
-            v.setVisible(true);
-        } catch (ClassNotFoundException | SQLException | ErrorConexionBD ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,7 +384,6 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
         QuejaV queja = new QuejaV(this, rootPaneCheckingEnabled);
         queja.setVisible(true);
-
     }//GEN-LAST:event_jButton5ActionPerformed
     /*
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
