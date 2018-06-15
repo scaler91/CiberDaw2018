@@ -67,6 +67,11 @@ public class ModificarV extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        JTextApellidos.setBackground(new java.awt.Color(0, 0, 0));
+        JTextApellidos.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        JTextApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        JTextApellidos.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
+
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,6 +170,11 @@ public class ModificarV extends javax.swing.JDialog {
                 jButtonBusquedaActionPerformed(evt);
             }
         });
+
+        JTextNombre.setBackground(new java.awt.Color(0, 0, 0));
+        JTextNombre.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        JTextNombre.setForeground(new java.awt.Color(255, 0, 0));
+        JTextNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
@@ -269,7 +279,7 @@ public class ModificarV extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 19, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -305,7 +315,7 @@ public class ModificarV extends javax.swing.JDialog {
     private void jTextBuscarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextBuscarUsuarioMouseClicked
         // TODO add your handling code here:
         jTextBuscarUsuario.setText("");
-        jTextBuscarUsuario.setForeground(Color.black);
+        jTextBuscarUsuario.setForeground(Color.white);
     }//GEN-LAST:event_jTextBuscarUsuarioMouseClicked
 
     private void jTextBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBuscarUsuarioActionPerformed

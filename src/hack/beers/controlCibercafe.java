@@ -98,4 +98,8 @@ public class controlCibercafe {
     public void modificarConsumibles(int idConsumible, int cantidad, float precio) throws SQLException {
         DAOHackBeer.instancia().modificarConsumible(idConsumible, cantidad, precio);
     }
+
+    public void annadirPedidoTiempo(Usuario u) throws SQLException {
+        DAOHackBeer.instancia().annadirPedidoTiempo(u);
+    }
 }

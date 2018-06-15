@@ -44,12 +44,16 @@ public class PedidoV extends javax.swing.JDialog {
 
     private void annadirComboBox() throws SQLException {
 
+        int contador = 0;
         Iterator it = I.getInventario().iterator();
 
         while (it.hasNext()) {
             Consumible nextElement = (Consumible) it.next();
-            jComboBox1.addItem(nextElement.getNombre());
-
+            if (contador >= 1) {
+                jComboBox1.addItem(nextElement.getNombre());
+            } else {
+                contador++;
+            }
         }
     }
 
@@ -84,7 +88,7 @@ public class PedidoV extends javax.swing.JDialog {
             cantidad = (int) jComboBox2.getSelectedIndex() + 1;
             nombreConsumible = (String) jComboBox1.getSelectedItem();
             idConsumible = ccc.pedirIdConsumible(nombreConsumible);
-            ccc.annadirPedido(new Pedido(u.getDNI(), 1, getIdConsumible(), getCantidad(), calculo(), false));
+            ccc.annadirPedido(new Pedido(u.getDNI(), u.getIdOrdenador(), getIdConsumible(), getCantidad(), calculo(), false));
         } catch (SQLException ex) {
             Logger.getLogger(PedidoV.class.getName()).log(Level.SEVERE, null, ex);
         }

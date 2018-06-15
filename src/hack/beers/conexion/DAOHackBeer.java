@@ -306,4 +306,13 @@ public class DAOHackBeer {
     public void modificarConsumible(int idConsumible, int cantidad, float precio) throws SQLException {
         ConexionBD.instancia().getStatement().executeUpdate("UPDATE consumibles SET Cantidad=" + cantidad + ", Precio=" + precio + " where idConsumible=" + idConsumible);
     }
+
+    public void annadirPedidoTiempo(Usuario u) throws SQLException {
+        ConexionBD.instancia().getStatement().execute(
+                "Insert into pedidos values('"+u.getDNI()+"', " + u.getIdOrdenador()+", 0, 1, 3, 0)"
+        );
+        ConexionBD.instancia().getStatement().executeUpdate(
+                "Update consumibles set cantidad=9999 where idConsumible=0"
+        );
+    }
 }

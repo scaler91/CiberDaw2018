@@ -24,13 +24,16 @@ public class ClienteV extends javax.swing.JFrame {
     Usuario u;
     LoginV v;
 
+    PedidoV pv;
+    ProgramasV vp;
+
     String[] cabecera = {"Nombre", "Cantidad", "Precio"};
     String[][] vaciaPedidos = {};
     DefaultTableModel tablaPedidos;
     DefaultTableModel tablaVacia;
 
     Timer timer;
-    int tiempo = 300000;
+    int tiempo = 60000;
     int minuto = tiempo / 60000;
     int segundo = tiempo % 60000;
 // Import ImageIcon     
@@ -82,6 +85,7 @@ public class ClienteV extends javax.swing.JFrame {
                     v.setVisible(true);
                     fin();
                 }
+
             }
         });
 
@@ -89,7 +93,7 @@ public class ClienteV extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setAlwaysOnTop(true);
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.RED));
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
@@ -318,15 +322,22 @@ public class ClienteV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        minuto = minuto + (tiempo / 60000);
-        jLabel7.setText(Integer.toString(minuto));
-        timer.start();
+        try {
+            // TODO add your handling code here:
+            ccc.annadirPedidoTiempo(u);
+            minuto = minuto + (1800000 / 60000);
+            jLabel7.setText(Integer.toString(minuto));
+            timer.start();
+            actualizarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -355,25 +366,31 @@ public class ClienteV extends javax.swing.JFrame {
             jTable1.setModel(tablaPedidos);
 
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteV.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PedidoV vp;
+
         try {
-            vp = new PedidoV(this, true);
+            PedidoV vp = new PedidoV(this, true);
             vp.setVisible(true);
+
         } catch (SQLException ex) {
-            Logger.getLogger(AdministradorV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteV.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (ErrorConexionBD ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteV.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         QuejaV queja = new QuejaV(this, rootPaneCheckingEnabled);
-        queja.setVisible(rootPaneCheckingEnabled);
+        queja.setVisible(true);
+
     }//GEN-LAST:event_jButton5ActionPerformed
     /*
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -393,16 +410,24 @@ public class ClienteV extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteV.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteV.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteV.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteV.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -412,8 +437,10 @@ public class ClienteV extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ClienteV().setVisible(true);
+
                 } catch (ErrorConexionBD | SQLException ex) {
-                    Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClienteV.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

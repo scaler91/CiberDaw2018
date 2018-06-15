@@ -34,6 +34,7 @@ public class QuejaV extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
     }
+    
 
     public void SendMail() {
         Properties props = new Properties();
@@ -162,6 +163,7 @@ public class QuejaV extends javax.swing.JDialog {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         dispose();
     }//GEN-LAST:event_salirActionPerformed
+
 
     /**
      * @param args the command line arguments
