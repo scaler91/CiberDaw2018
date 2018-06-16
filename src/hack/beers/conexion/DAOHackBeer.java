@@ -90,8 +90,7 @@ public class DAOHackBeer {
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
-                    //           JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
-                    Bienvenido b = new Bienvenido(null, true, nombre, apellidos);
+                    Bienvenido b = new Bienvenido (null, true, nombre, apellidos);
                     b.setVisible(true);
 
                     if (vip == 1) {
@@ -130,7 +129,6 @@ public class DAOHackBeer {
         if (contador == 0) {
             UoCincorrecto uoc = new UoCincorrecto(null, true);
             uoc.setVisible(true);
-//            JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
         }
 
     }
@@ -315,7 +313,7 @@ public class DAOHackBeer {
 
     public void annadirPedidoTiempo(Usuario u) throws SQLException {
         ConexionBD.instancia().getStatement().execute(
-                "Insert into pedidos values('" + u.getDNI() + "', " + u.getIdOrdenador() + ", 0, 1, 3, 0)"
+                "Insert into pedidos values('"+u.getDNI()+"', " + u.getIdOrdenador()+", 0, 1, 3, 0)"
         );
         ConexionBD.instancia().getStatement().executeUpdate(
                 "Update consumibles set cantidad=9999 where idConsumible=0"

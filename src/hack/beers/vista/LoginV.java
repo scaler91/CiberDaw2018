@@ -37,11 +37,11 @@ public class LoginV extends javax.swing.JFrame {
         int ancho = pantalla.width;
 
         initComponents();
-        
         getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.RED));
+
         setLocationRelativeTo(null);
+
         this.getContentPane().setBackground(Color.BLACK);
-        
         ccc = new controlCibercafe();
     }
 
