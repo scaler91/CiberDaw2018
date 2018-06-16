@@ -10,8 +10,6 @@ import hack.beers.Pedidos.Consumible;
 import hack.beers.Pedidos.Inventario;
 import hack.beers.Pedidos.Pedido;
 import hack.beers.Usuario;
-import hack.beers.jOptionPane.Bienvenido;
-import hack.beers.jOptionPane.UoCincorrecto;
 import hack.beers.vista.AdministradorV;
 import hack.beers.vista.ClienteV;
 import hack.beers.vista.ClienteVIP;
@@ -90,8 +88,7 @@ public class DAOHackBeer {
                 u = new Usuario(nombre, apellidos, dni, contraseñaU, vip);
                 contador++;
                 if (usuario.equals(dni) && contraseña.equals(contraseñaU)) {
-                    Bienvenido b = new Bienvenido (null, true, nombre, apellidos);
-                    b.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Bienvenido: " + nombre + " " + apellidos);
 
                     if (vip == 1) {
                         ClienteVIP cliNuV = new ClienteVIP();
@@ -127,8 +124,7 @@ public class DAOHackBeer {
             }
         }
         if (contador == 0) {
-            UoCincorrecto uoc = new UoCincorrecto(null, true);
-            uoc.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
         }
 
     }

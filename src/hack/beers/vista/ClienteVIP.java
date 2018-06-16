@@ -57,7 +57,7 @@ public class ClienteVIP extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
-        jLabel2.setText(u.getNombre() + " " + u.getApellidos());
+        jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
     }
 
     public void fin() {
