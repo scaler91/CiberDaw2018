@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import hack.beers.controlCibercafe;
+import hack.beers.jOptionPane.ultimaOportunidad;
 import hack.beers.mail.QuejaV;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -23,6 +24,8 @@ public class ClienteV extends javax.swing.JFrame {
     controlCibercafe ccc;
     Usuario u;
     LoginV v;
+    
+    int seleccion = 0;
 
     PedidoV pv;
     ProgramasV vp;
@@ -72,18 +75,27 @@ public class ClienteV extends javax.swing.JFrame {
 
                 }
                 if ("0:00".equals(jLabel7.getText())) {
-
-                    try {
-                        v = new LoginV();
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ErrorConexionBD ex) {
-                        Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    v.setVisible(true);
+                    
+                    jButton1.setEnabled(false);
+                    jButton2.setEnabled(false);
+                    jButton3.setEnabled(false);
+                    jButton4.setEnabled(false);
+                    jButton5.setEnabled(false);
+                    
+                    ultimaOportunidad uo = new ultimaOportunidad(null, true);
+                    uo.setVisible(true);
+                    seleccion = uo.getSeleccion();
+                    if (seleccion == 0) {
+                        jButton1ActionPerformed(e);
+                        
+                    jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
+                    jButton3.setEnabled(true);
+                    jButton4.setEnabled(true);
+                    jButton5.setEnabled(true);
+                    } else {
                     fin();
+                    }
                 }
 
             }
@@ -98,7 +110,7 @@ public class ClienteV extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");
-        jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
+        jLabel2.setText(u.getNombre() + " " + u.getApellidos());
     }
 
     public void fin() {
@@ -230,7 +242,7 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("5:00");
+        jLabel7.setText("1:00");
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
