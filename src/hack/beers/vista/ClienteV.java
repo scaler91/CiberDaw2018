@@ -100,7 +100,7 @@ public class ClienteV extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         logo.setIcon(iconLogo);
         setTitle("Cliente");
-        jLabel2.setText(u.getNombre() + ", " + u.getApellidos());
+        jLabel2.setText(u.getNombre() + " " + u.getApellidos());
     }
 
     public void fin() {
@@ -233,7 +233,7 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("5:00");
+        jLabel7.setText("1:00");
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
