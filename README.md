@@ -1,13 +1,14 @@
 # CiberDaw2018
 proyecto 1º DAW 2018
 
-Alejandro: Persona, Usuario, Administrador y Almacenamiento.
-
+Old->Alejandro: Persona, Usuario, Administrador y Almacenamiento.
+New->Felipe y ("Alejandro"): Persona, Usuario, Administrador.
 Felipe y Saul: Interfaz gráfica en general.
 
 Javier: Base de datos.
 
-Victor: Pedidos, Inventario, Consumible.
+Old->Victor: Pedidos, Inventario, Consumible.
+New-> Saul y Javier: Pedidos, Inventario, Consumible.
 
 EXTRA: Ordenador y Programas para el primero que termine de premio especial.
 
